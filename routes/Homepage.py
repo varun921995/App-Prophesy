@@ -5,4 +5,6 @@ home = Blueprint('home', __name__)
 
 @home.route("/index")
 def homepage():
+    print("Hello")
     return render_template('homepage.html')
+

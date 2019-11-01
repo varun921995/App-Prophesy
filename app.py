@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_cors import CORS
 from routes.Developer import developer
 from routes.Homepage import home
-
+from models.test import *
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(developer)
@@ -10,14 +10,12 @@ def create_app():
     CORS(app)
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug= True, host='0.0.0.0')
     return app
 
 # app = Flask(__name__)
 
-# @app.route("/")
-# def main():
-#     return render_template('index.html')
+
 
 # @app.route("/sunburst")
 # def sunburstGraph():
@@ -34,4 +32,5 @@ def create_app():
 #         return file_content 
 
 if __name__ == "__main__":
+    xyz()
     create_app()
