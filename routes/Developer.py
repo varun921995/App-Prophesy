@@ -4,6 +4,7 @@ import pandas as pd
 import json
 import csv
 from collections import OrderedDict
+from models.textMining import *
 
 developer = Blueprint('developer', __name__)
 
@@ -35,4 +36,9 @@ def get_data():
             data.append(entry)
     data = json.dumps(data)
     return (data)
+
+@developer.route("/word-installation-data")
+def callTextMining():
+    textMining()
+    return ""
 
