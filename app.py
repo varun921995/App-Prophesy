@@ -32,5 +32,5 @@ def create_app():
 #         return file_content 
 
 if __name__ == "__main__":
-    xyz()
+    main()
     create_app()
