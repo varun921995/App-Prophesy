@@ -3,7 +3,8 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import string
 import re
-
+import numpy as np
+import json
 
 def loadData():
     path_to_file = "dataset/Google-Playstore-32K.csv"
@@ -14,28 +15,51 @@ def cleanData(data_set):
     #unique words from all application names
     stopWordsList = stopwords.words("english")
     uniqueWords = []
-    appAndInstll={}
-    df = data_set[['App Name','Installs']]
-    df = df.set_index('App Name').T.to_dict('records')
-    list_of_word_instl = []
-    for k,v in df[0].items():
-        instl = v.replace(',','')
-        instl = instl.replace('+','')
+
+    df = data_set[['App Name','Installs','Category']]
+
+    # df['Installs'] =  pd.to_numeric(df['Installs'].str.replace('[^\w\s]',''))
+    df['Installs'] = pd.to_numeric(df['Installs'].str.replace('[^\w\s]',''),errors='ignore')
+    df['App Name'] = (df['App Name'].str.replace('[^\w\s]',''))
+
+    df_dict = {}
+
+    for idx in range(df.shape[0]):
         try:
-            if(int(instl)):
-                text = re.sub(r'[^\w\s]','',k)
-                text = ([word.lower() for word in word_tokenize(text) if word not in stopWordsList])
-                list_of_word_instl.extend(list(map(lambda x: (x,int(instl)), text))) #array of tuples with words and installations
+            if(int(df.loc[idx, 'Installs'])):
+                text = [word.lower() for word in word_tokenize(df.loc[idx, 'App Name']) ]
+                z = [ (a,int(df.loc[idx, 'Installs'])) for a in text ]
+                df_dict.setdefault(df.loc[idx, 'Category'],[]).extend(list(filter(lambda x: x[0] not in stopWordsList, z)))
                 uniqueWords.extend(text)
         except:
             continue
-        
-
     uniqueWords = set(uniqueWords)
-    for i in uniqueWords:
-        num = list(map(lambda x: x[1],list(filter(lambda x: x[0]==i, list_of_word_instl)))) #[('food',10000),('foods',12000)] #'food':[1,2,4]
-        print(i,np.mean(num)) #word wrt to installation mean
+    return uniqueWords,df_dict
+
+def mapWordsWithInstll(uniqueWords,df_dict):
+    a={}
+    for k,v in df_dict.items():
+        a = [(uk,sum([vv for kk,vv in v if kk==uk])/len([vv for kk,vv in v if kk==uk])) for uk in uniqueWords if (len(uk)>1) if ( sum([vv for kk,vv in v if kk==uk])!= 0)]
+        df_dict[k] = dict(a)
+    return df_dict
+    
+# For value without category    
+#     num = []
+#     b={}
+#     for j in uniqueWords:
+#         num = list(map(lambda x: x[1],list(filter(lambda x: x[0]==j, v)))) #[('food',10000),('foods',12000)] #'food':[1,2,4]
+#         if(len(num)!=0):
+# #             print(j,np.mean(num))
+#             b[j]=np.mean(num)
+#     df_dict[k] = b
+# #             df_dict[k] = (j,np.mean(num))
+
+def storeJson(jsonData):
+    with open('dataset/dataWithWords.json', 'w') as outfile:
+        json.dump(df_dict, outfile)
 
 def textMining():
     data_set = loadData()
-    cleanData(data_set)
+    uniqueWords,df_dict = cleanData(data_set)
+    jsonForm = mapWordsWithInstll(uniqueWords,df_dict)
+    storeJson(jsonForm)
