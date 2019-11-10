@@ -1,6 +1,7 @@
 import pandas as pd
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from nltk.corpus import words
 import string
 import re
 import numpy as np
@@ -15,6 +16,7 @@ def cleanData(data_set):
     #unique words from all application names
     stopWordsList = stopwords.words("english")
     uniqueWords = []
+    englishWords = words.words()
 
     df = data_set[['App Name','Installs','Category']]
 
@@ -27,7 +29,7 @@ def cleanData(data_set):
     for idx in range(df.shape[0]):
         try:
             if(int(df.loc[idx, 'Installs'])):
-                text = [word.lower() for word in word_tokenize(df.loc[idx, 'App Name']) ]
+                text = [word.lower() for word in word_tokenize(df.loc[idx, 'App Name']) if (word not in stopWordsList and word in englishWords)]
                 z = [ (a,int(df.loc[idx, 'Installs'])) for a in text ]
                 df_dict.setdefault(df.loc[idx, 'Category'],[]).extend(list(filter(lambda x: x[0] not in stopWordsList, z)))
                 uniqueWords.extend(text)
@@ -56,7 +58,7 @@ def mapWordsWithInstll(uniqueWords,df_dict):
 
 def storeJson(jsonData):
     with open('dataset/dataWithWords.json', 'w') as outfile:
-        json.dump(df_dict, outfile)
+        json.dump(jsonData, outfile)
 
 def textMining():
     data_set = loadData()

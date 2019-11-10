@@ -5,6 +5,7 @@ import json
 import csv
 from collections import OrderedDict
 from models.textMining import *
+from flask import Flask, request
 
 developer = Blueprint('developer', __name__)
 
@@ -37,8 +38,10 @@ def get_data():
     data = json.dumps(data)
     return (data)
 
-@developer.route("/word-installation-data")
-def callTextMining():
-    textMining()
-    return ""
+@developer.route("/word-installation-data/<id>")
+def callTextMining(id):
+    # textMining()
+    with open('dataset/dataWithMeaningfulWords.json') as json_file:
+        data = json.load(json_file) 
+        return data[id]
 
