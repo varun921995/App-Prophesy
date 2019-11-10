@@ -3,6 +3,8 @@
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
     </head>
   <body onload="getData()">
         <div id="container"></div>
@@ -11,15 +13,17 @@
 
   <script>
 
-var allData, categoryValues;
+var allData, categoryValues, wordsCat;
 
 //getdata
-function getData(){
+async function getData(){
     fetch('/getData')
     .then((resp) => resp.json()) // Transform the data into json
     .then(function(data) {
         console.log(data);
         data.shift()
+        allData = data
+
         var div = document.querySelector("#container"),
     select = document.createElement("select");
     const unique = (value, index, self) => {
@@ -28,15 +32,48 @@ function getData(){
         categoryValues = data.map(e=>e.Category).filter(unique)
     categoryValues.map((e,i)=>select.options.add( new Option(e,i) ))
     div.appendChild(select);
-    render_wordcloud()
+    render_wordcloud_hc(String(0))
+    // render_wordcloud()
     })
-    
 }
 
 $('#container').change(function(data){
-    console.log($('#container').children().val());
-    
+    render_wordcloud_hc($('#container').children().val())
 })
+
+function render_wordcloud_hc(catId){
+ console.log(categoryValues[parseInt(catId)])
+ 
+  fetch('/word-installation-data/'+categoryValues[parseInt(catId)])
+    .then((resp) => resp.json()) // Transform the data into json
+    .then(function(vdata) {
+      wordsCat = vdata    
+
+      jsonArr = []
+      for (var key in wordsCat) {
+          if (wordsCat.hasOwnProperty(key)) {
+            obj = {
+              name: key,
+              weight: (wordsCat[key]<0.1)?wordsCat[key]+0.09:wordsCat[key]
+            }
+          }
+          jsonArr.push(obj)
+      }
+
+      Highcharts.chart('my_dataviz', {
+          series: [{
+              type: 'wordcloud',
+              data: jsonArr,
+              name: 'Occurrences'
+          }],
+          title: {
+              text: 'Wordcloud of Lorem Ipsum'
+          }
+      });
+    })
+
+
+}
 
 function render_wordcloud(){
 // List of words
