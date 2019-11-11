@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Python Flask Bucket List App</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <div>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#" style="font-family: monospace; font-size: 36px;">APP PROPHESY</a>
+        </nav>
+        <div class="container-fluid" style="margin-top: 1%;">
+            <div class="col-md-12 form-group">
+                <label class="form-label">X - Axis</label>
+                <select class="js-example-basic-single form-control" id="xAxis" placeholder="xAxis">
+                    <option value="price">Price</option>
+                    <option value="size">Size</option>
+                </select>
+            </div>
+            <!-- <button id="changeAxis" onclick="changeAxis()">change</button> -->
+            <!-- <div class="row">
+
+                <div class="col-md-12 form-group">
+                    <label class="form-label">Category</label>
+                    <select class="js-example-basic-single form-control" placeholder="Category" name="categories"
+                        multiple>
+                    </select>
+                </div>
+
+            </div> -->
+
+            <div class="row">
+                <!-- <div id="scatterPlot"></div> -->
+                <div id="container" style="height: 700px;" class="container-fluid"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.full.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script>
+
+
+    var chart;
+    var seriesOptions = [];
+    var colours = ["#CC3333", "#D14133", "#90B52A", "#25B9A2", "#A738A2",
+        "#C374E8", "#D56B00", "#D12599", "#00CC99", "#746F99",
+        "#B96F0E", "#4AA761", "#C76617", "#CC9E00", "#9E3874"]
+    $.ajax({
+        dataType: 'json',
+        url: "getDataForScatter",
+        type: "GET",
+        success: function (response) {
+            var categories = response.categories;
+            var responseData = JSON.parse(response.data);
+            console.log(categories);
+
+            var series1 = [];
+            var series2 = [];
+            for (let i = 0; i < categories.length; i++) {
+                var cate = {};
+                var ratingPriceData = [];
+                var installPriceData = [];
+                for (let j = 0; j < 10000; j++) {
+                    if (responseData[j].Category == categories[i]) {
+                        var rpd = [];
+                        var ipd = [];
+                        if (responseData[j].Price >= 1 && responseData[j].Price < 130) {
+                            rpd.push(responseData[j].Price);
+                            rpd.push(responseData[j].Rating);
+                            ratingPriceData.push(rpd);
+                        }
+
+                        if (responseData[j].Size != "Varies with device") {
+                            var size = responseData[j].Size;
+                            size = size.replace("M", "");
+                            size = parseInt(size);
+                            if (size > 4) {
+                                ipd.push(size);
+                                ipd.push(responseData[j].Rating);
+                                installPriceData.push(ipd);
+                            }
+                        }
+
+                    }
+                }
+                cate = { "name": categories[i], color: colours[i], "data": ratingPriceData };
+                series1.push(cate);
+                cate = { "name": categories[i], color: colours[i], "data": installPriceData };
+                series2.push(cate);
+            }
+            seriesOptions.push(series1);
+            seriesOptions.push(series2);
+            plotChart(seriesOptions[0]);
+            changeAxis("price");
+        }
+    })
+
+    function plotChart(series) {
+        chart = Highcharts.chart('container', {
+            chart: {
+                type: 'scatter',
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'Rating vs Price'
+            },
+            subtitle: {
+                text: 'Source:'
+            },
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: 'Price'
+                },
+                startOnTick: true,
+                endOnTick: true,
+                showLastLabel: true,
+                min: 0
+            },
+            yAxis: {
+                title: {
+                    text: 'Rating'
+                }
+            },
+            legend: {
+                backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
+                borderWidth: 1,
+                width: 470,
+                itemWidth: 230
+            },
+            plotOptions: {
+                scatter: {
+                    marker: {
+                        radius: 3,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                lineColor: 'rgb(100,100,100)'
+                            }
+                        }
+                    },
+                    states: {
+                        hover: {
+                            marker: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br>',
+                        pointFormat: '{point.x} , {point.y}'
+                    }
+                }
+            },
+            series: series
+        });
+    }
+
+
+    $('#xAxis').change(function () {
+        changeAxis($('#xAxis').val())
+    })
+
+    function changeAxis(xAxisLabel) {
+        if (xAxisLabel == "price") {
+            if (chart == null) {
+                plotChart(seriesOptions[0]);
+                chart.xAxis[0].axisTitle.attr({
+                    text: 'Price ($)'
+                });
+                chart.title.attr({
+                    text : "Rating vs Price"
+                });
+            } else {
+                chart.destroy();
+                plotChart(seriesOptions[0]);
+                chart.xAxis[0].axisTitle.attr({
+                    text: 'Price ($)'
+                });
+                chart.title.attr({
+                    text : "Rating vs Price"
+                });
+            }
+        } else {
+            if (chart == null) {
+                plotChart(seriesOptions[1]);
+                chart.xAxis[0].axisTitle.attr({
+                    text: 'Size (MB)'
+                });
+                chart.title.attr({
+                    text : "Rating vs Size"
+                });
+            } else {
+                chart.destroy();
+                plotChart(seriesOptions[1]);
+                chart.xAxis[0].axisTitle.attr({
+                    text: 'Size (MB)'
+                });
+                chart.title.attr({
+                    text : "Rating vs Size"
+                });
+
+            }
+        }
+
+    }
+
+
+</script>
+
+</html>
