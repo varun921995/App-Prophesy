@@ -1,0 +1,129 @@
+<html>
+  <head>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+    </head>
+  <body onload="getData()">
+        <div id="container"></div>
+        <div id="my_dataviz"></div>
+  </body>
+
+  <script>
+
+var allData, categoryValues, wordsCat;
+
+//getdata
+async function getData(){
+    fetch('/getData')
+    .then((resp) => resp.json()) // Transform the data into json
+    .then(function(data) {
+        console.log(data);
+        data.shift()
+        allData = data
+
+        var div = document.querySelector("#container"),
+    select = document.createElement("select");
+    const unique = (value, index, self) => {
+                return self.indexOf(value) === index
+            }
+        categoryValues = data.map(e=>e.Category).filter(unique)
+    categoryValues.map((e,i)=>select.options.add( new Option(e,i) ))
+    div.appendChild(select);
+    render_wordcloud_hc(String(0))
+    // render_wordcloud()
+    })
+}
+
+$('#container').change(function(data){
+    render_wordcloud_hc($('#container').children().val())
+})
+
+function render_wordcloud_hc(catId){
+ console.log(categoryValues[parseInt(catId)])
+ 
+  fetch('/word-installation-data/'+categoryValues[parseInt(catId)])
+    .then((resp) => resp.json()) // Transform the data into json
+    .then(function(vdata) {
+      wordsCat = vdata    
+
+      jsonArr = []
+      for (var key in wordsCat) {
+          if (wordsCat.hasOwnProperty(key)) {
+            obj = {
+              name: key,
+              weight: (wordsCat[key]<0.1)?wordsCat[key]+0.09:wordsCat[key]
+            }
+          }
+          jsonArr.push(obj)
+      }
+
+      Highcharts.chart('my_dataviz', {
+          series: [{
+              type: 'wordcloud',
+              data: jsonArr,
+              name: 'Occurrences'
+          }],
+          title: {
+              text: 'Wordcloud of Lorem Ipsum'
+          }
+      });
+    })
+
+
+}
+
+function render_wordcloud(){
+// List of words
+var myWords = [{word: "Running", size: "10"}, {word: "Surfing", size: "20"}, {word: "Climbing", size: "50"}, {word: "Kiting", size: "30"}, {word: "Sailing", size: "20"}, {word: "Snowboarding", size: "60"} ]
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 450 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
+// Wordcloud features that are different from one word to the other must be here
+var layout = d3.layout.cloud()
+  .size([width, height])
+  .words(myWords.map(function(d) { return {text: d.word, size:d.size}; }))
+  .padding(5)        //space between words
+  .rotate(function() { return ~~(Math.random() * 2) * 90; })
+  .fontSize(function(d) { return d.size; })      // font size of words
+  .on("end", draw);
+layout.start();
+
+// This function takes the output of 'layout' above and draw the words
+// Wordcloud features that are THE SAME from one word to the other can be here
+function draw(words) {
+  svg
+    .append("g")
+      .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size; })
+        .style("fill", "#69b3a2")
+        .attr("text-anchor", "middle")
+        .style("font-family", "Impact")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+}
+}
+
+
+</script>
+
+  </html>

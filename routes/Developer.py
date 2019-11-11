@@ -3,9 +3,15 @@ from flask import Flask, render_template
 import pandas as pd
 import json
 import csv
+<<<<<<< HEAD
 import pandas as pd
 import re
 import numpy as np
+=======
+from collections import OrderedDict
+from models.textMining import *
+from flask import Flask, request
+>>>>>>> origin/master
 
 developer = Blueprint('developer', __name__)
 
@@ -23,17 +29,24 @@ def scatterPlot():
 def testApi():
     return "list of applications"
 
+@developer.route("/wordCloud")
+def wordCloud():
+    return render_template('/wordCloud.html')
 
 @developer.route('/getData', methods=['GET'])
 def get_data():
     csvFile = "dataset/Google-Playstore-32K.csv"
-    data = {}
+    data = []
+    fieldnames = ("App Name","Category","Rating","Reviews",	"Installs",	"Size",	"Price"	,"Content Rating","Last Updated"	
+    ,"Minimum Version","Latest Version")
+
     with open(csvFile) as csvF:
-        csvReader = csv.DictReader(csvF)
-        idx=0
+        csvReader = csv.DictReader(csvF, fieldnames)
         for rows in csvReader:
-           data[idx] = rows
-           idx=idx+1
+            entry = OrderedDict()
+            for field in fieldnames:
+                entry[field] = rows[field]
+            data.append(entry)
     data = json.dumps(data)
     return (data)
 
@@ -56,3 +69,12 @@ def getDataForScatter():
         res['categories'] =  np.array(categories).tolist()
         res['test'] = {"cate"  : 1}
     return res
+
+    
+@developer.route("/word-installation-data/<id>")
+def callTextMining(id):
+    # textMining()
+    with open('dataset/dataWithMeaningfulWords.json') as json_file:
+        data = json.load(json_file) 
+        return data[id]
+
