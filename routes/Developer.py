@@ -1,17 +1,13 @@
 from flask import Blueprint
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 import pandas as pd
 import json
 import csv
-<<<<<<< HEAD
-import pandas as pd
 import re
 import numpy as np
-=======
 from collections import OrderedDict
 from models.textMining import *
-from flask import Flask, request
->>>>>>> origin/master
+
 
 developer = Blueprint('developer', __name__)
 
@@ -64,10 +60,10 @@ def getDataForScatter():
         for j in regex:
             df['Category'] = df['Category'].astype(str).apply(lambda x : re.sub(j, 'GAME', x))
         categories = df['Category'].unique()
-        responseDf = df.loc[df['Category'] == "FOOD_AND_DRINK"]
+        
         res['data'] = df.to_json(orient='records')
         res['categories'] =  np.array(categories).tolist()
-        res['test'] = {"cate"  : 1}
+       
     return res
 
     
