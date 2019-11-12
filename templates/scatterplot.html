@@ -25,21 +25,10 @@
                     <option value="size">Size</option>
                 </select>
             </div>
-            <!-- <button id="changeAxis" onclick="changeAxis()">change</button> -->
-            <!-- <div class="row">
-
-                <div class="col-md-12 form-group">
-                    <label class="form-label">Category</label>
-                    <select class="js-example-basic-single form-control" placeholder="Category" name="categories"
-                        multiple>
-                    </select>
-                </div>
-
-            </div> -->
 
             <div class="row">
-                <!-- <div id="scatterPlot"></div> -->
                 <div id="container" style="height: 700px;" class="container-fluid"></div>
+
             </div>
         </div>
     </div>
@@ -55,11 +44,16 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script>
 
+    // $(document).ready(function () {
+    //     // plotBubbleChart();
+    // })
 
     var chart;
     var seriesOptions = [];
+    var chartOptions;
     var colours = ["#CC3333", "#D14133", "#90B52A", "#25B9A2", "#A738A2",
         "#C374E8", "#D56B00", "#D12599", "#00CC99", "#746F99",
         "#B96F0E", "#4AA761", "#C76617", "#CC9E00", "#9E3874"]
@@ -71,20 +65,24 @@
             var categories = response.categories;
             var responseData = JSON.parse(response.data);
             console.log(categories);
-
+           
             var series1 = [];
             var series2 = [];
             for (let i = 0; i < categories.length; i++) {
                 var cate = {};
                 var ratingPriceData = [];
                 var installPriceData = [];
-                for (let j = 0; j < 10000; j++) {
+                for (let j = 0; j < responseData.length; j++) {
                     if (responseData[j].Category == categories[i]) {
                         var rpd = [];
-                        var ipd = [];
+
                         if (responseData[j].Price >= 1 && responseData[j].Price < 130) {
-                            rpd.push(responseData[j].Price);
-                            rpd.push(responseData[j].Rating);
+
+                            var rpd = {
+                                x: responseData[j].Price, y: responseData[j].Rating, appName: responseData[j]['App Name']
+                            };
+                            // rpd.push(responseData[j].Price);
+                            // rpd.push(responseData[j].Rating);
                             ratingPriceData.push(rpd);
                         }
 
@@ -93,8 +91,11 @@
                             size = size.replace("M", "");
                             size = parseInt(size);
                             if (size > 4) {
-                                ipd.push(size);
-                                ipd.push(responseData[j].Rating);
+                                var ipd = {
+                                    x: size, y: responseData[j].Rating, appName: responseData[j]['App Name']
+                                };
+                                // ipd.push(size);
+                                // ipd.push(responseData[j].Rating);
                                 installPriceData.push(ipd);
                             }
                         }
@@ -108,6 +109,8 @@
             }
             seriesOptions.push(series1);
             seriesOptions.push(series2);
+
+            console.log(seriesOptions[0][0]);
             plotChart(seriesOptions[0]);
             changeAxis("price");
         }
@@ -165,8 +168,11 @@
                         }
                     },
                     tooltip: {
+                        // headerFormat: '<b>{point.appName}</b><br/>'
                         headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: '{point.x} , {point.y}'
+                        pointFormat: '<b>{point.appName}</b><br> {point.x} , {point.y}'
+
+
                     }
                 }
             },
@@ -187,7 +193,7 @@
                     text: 'Price ($)'
                 });
                 chart.title.attr({
-                    text : "Rating vs Price"
+                    text: "Rating vs Price"
                 });
             } else {
                 chart.destroy();
@@ -196,7 +202,7 @@
                     text: 'Price ($)'
                 });
                 chart.title.attr({
-                    text : "Rating vs Price"
+                    text: "Rating vs Price"
                 });
             }
         } else {
@@ -206,7 +212,7 @@
                     text: 'Size (MB)'
                 });
                 chart.title.attr({
-                    text : "Rating vs Size"
+                    text: "Rating vs Size"
                 });
             } else {
                 chart.destroy();
@@ -215,70 +221,12 @@
                     text: 'Size (MB)'
                 });
                 chart.title.attr({
-                    text : "Rating vs Size"
+                    text: "Rating vs Size"
                 });
 
             }
         }
     }
-    // function changeAxis(xAxisLabel) {
-    //     if (xAxisLabel == "price") {
-    //         if (chart == null) {
-    //             plotChart(seriesOptions[0]);
-    //             chart.xAxis[0].axisTitle.attr({
-    //                 text: 'Price ($)'
-    //             });
-    //             chart.title.attr({
-    //                 text: "Rating vs Price"
-    //             });
-    //         } else {
-
-    //             chart.series[0].remove();
-    //             chart.update({
-    //                 series: seriesOptions[0]
-    //             },true,true);
-    //             // chart.series[0].addSeries(seriesOptions[0]);
-    //             // chart.redraw();
-    //             // chart.destroy();
-    //             // plotChart(seriesOptions[0]);
-    //             // chart.xAxis[0].axisTitle.attr({
-    //             //     text: 'Price ($)'
-    //             // });
-    //             // chart.title.attr({
-    //             //     text : "Rating vs Price"
-    //             // });
-    //         }
-    //     } else {
-    //         if (chart == null) {
-    //             plotChart(seriesOptions[1]);
-    //             chart.xAxis[0].axisTitle.attr({
-    //                 text: 'Size (MB)'
-    //             });
-    //             chart.title.attr({
-    //                 text: "Rating vs Size"
-    //             });
-    //         } else {
-    //             chart.series[0].remove();
-    //             chart.update({
-    //                 series: seriesOptions[1]
-    //             },true,true);
-    //             // chart.redraw();
-    //             // chart.destroy();
-    //             // plotChart(seriesOptions[1]);
-    //             // chart.xAxis[0].axisTitle.attr({
-    //             //     text: 'Size (MB)'
-    //             // });
-    //             // chart.title.attr({
-    //             //     text : "Rating vs Size"
-    //             // });
-
-    //         }
-    //     }
-
-
-    // }
-
-
 </script>
 
 </html>
