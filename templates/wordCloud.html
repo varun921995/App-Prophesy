@@ -1,14 +1,24 @@
 <html>
   <head>
+      <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+      <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+        <style>
+            html, body, #my_dataviz {
+            width: 100%;
+            height: 90%;
+            margin: 0;
+            padding: 0;
+            }
+          </style> 
     </head>
-  <body onload="getData()">
+  <body onload="getDataJson()">
         <div id="container"></div>
-        <div id="my_dataviz"></div>
+        <div id="my_dataviz"><div id="canvas"></div></div>
   </body>
 
   <script>
@@ -16,12 +26,13 @@
 var allData, categoryValues, wordsCat;
 
 //getdata
-async function getData(){
+async function getDataJson(){
     fetch('/getData')
     .then((resp) => resp.json()) // Transform the data into json
     .then(function(data) {
         console.log(data);
         data.shift()
+        
         allData = data
 
         var div = document.querySelector("#container"),
@@ -32,14 +43,124 @@ async function getData(){
         categoryValues = data.map(e=>e.Category).filter(unique)
     categoryValues.map((e,i)=>select.options.add( new Option(e,i) ))
     div.appendChild(select);
-    render_wordcloud_hc(String(0))
+    catId = 0
+    render_wordcloud_any()
+    // render_wordcloud_hc(String(0))
     // render_wordcloud()
     })
 }
 
 $('#container').change(function(data){
-    render_wordcloud_hc($('#container').children().val())
+    // render_wordcloud_hc($('#container').children().val())
+    catId = $('#container').children().val()
+    $('#canvas').remove()
+    $('#my_dataviz').append('<div id="canvas"></div>');
+    render_wordcloud_any()
 })
+
+
+function render_wordcloud_any(){
+  // var that = this
+  anychart.onDocumentReady(function() {
+    fetch('/word-installation-data/'+categoryValues[parseInt(catId)])
+    .then((resp) => resp.json()) // Transform the data into json
+    .then(function(vdata) {
+      wordsCat = vdata    
+
+      var jsonArr = []
+      for (var key in wordsCat) {        
+          if (wordsCat.hasOwnProperty(key)) {
+            obj = {
+              x: key,
+              value:wordsCat[key],
+            }
+          }
+          jsonArr.push(obj)
+      }
+      console.log(jsonArr);
+      // create a tag (word) cloud chart
+      var chart = anychart.tagCloud(jsonArr);
+
+    // set a chart title
+    chart.title(categoryValues[parseInt(catId)])
+    // set an array of angles at which the words will be laid out
+    // chart.angles([0])
+    // // enable a color range
+    // chart.colorRange(true);
+    // // set the color range length
+    // chart.colorRange().length('80%');
+    // enable HTML for tooltips
+    chart.tooltip().useHtml(true);
+    chart.angles([0, -45, 90, 45])
+
+    // configure tooltips
+    chart.tooltip().format(function() {
+      var percentOfTotal = (this.getData("value")*100/this.getStat("sum"));
+      return "Downloads: " +
+              (percentOfTotal.toFixed(2))+"%"
+      // if (percentOfTotal < 7)
+      //   return percentOfTotal.toFixed(1) +
+      //         "%<br></br><br></br>" + this.getData("custom_field");
+      // if (percentOfTotal > 15)
+      // return "<span style='font-size:26'>" +
+      //         percentOfTotal.toFixed(1) +
+      //         "%</span><br><br>" +
+      //         this.getData("custom_field");
+      // return "<span style='font-size:18'>" +
+      //       percentOfTotal.toFixed(1) +
+      //       "%</span><br><br>" +
+      //       this.getData("custom_field");
+    });    // display the word cloud chart
+    // create and configure a color scale.
+    var customColorScale = anychart.scales.ordinalColor();
+    customColorScale.ranges([
+        {less: 0.20},
+        {from: 0.20, to: 0.25},
+        {from: 0.25, to: 0.35},
+        {from: 0.35, to: 0.45},
+        {from: 0.45, to: 0.55},
+        {from: 0.55, to: 0.65},        
+        {from: 0.65, to: 0.75},
+        {from: 0.75, to: 0.85},
+        {from: 0.85, to: 0.88},
+        {greater: 0.88}
+    ]);
+    customColorScale.colors(["gray","#ffcc00", "#E377C2","#17BECF", "#FF8C06","#481769", "#89C400", "#00C076","#0b63ef","#FF003C"]);
+
+    // set the color scale as the color scale of the chart
+    chart.colorScale(customColorScale);
+
+    // add a color range
+    chart.colorRange().enabled(true);
+    chart.container("canvas");
+    chart.draw();
+    // format the tooltips
+    // var formatter = "{{ value }}{scale:(1)(1000)(1000)(1000)|( dozen)( thousand)( million)( billion)}";
+    // var tooltip = chart.tooltip();
+    // tooltip.format(formatter);
+    })
+  // var data = [
+  //   {"x": "Mandarin chinese", "value": 1090000000, category: "Sino-Tibetan"},
+  //   {"x": "English", "value": 983000000, category: "Indo-European"},
+  //   {"x": "Hindustani", "value": 544000000, category: "Indo-European"},
+  //   {"x": "Spanish", "value": 527000000, category: "Indo-European"},
+  //   {"x": "Arabic", "value": 422000000, category: "Afro-Asiatic"},
+  //   {"x": "Malay", "value": 281000000, category: "Austronesian"},
+  //   {"x": "Russian", "value": 267000000, category: "Indo-European"},
+  //   {"x": "Bengali", "value": 261000000, category: "Indo-European"},
+  //   {"x": "Portuguese", "value": 229000000, category: "Indo-European"},
+  //   {"x": "French", "value": 229000000, category: "Indo-European"},
+  //   {"x": "Hausa", "value": 150000000, category: "Afro-Asiatic"},
+  //   {"x": "Punjabi", "value": 148000000, category: "Indo-European"},
+  //   {"x": "Japanese", "value": 129000000, category: "Japonic"},
+  //   {"x": "German", "value": 129000000, category: "Indo-European"},
+  //   {"x": "Persian", "value": 121000000, category: "Indo-European"},
+    
+  // ];
+
+ 
+});
+}
 
 function render_wordcloud_hc(catId){
  console.log(categoryValues[parseInt(catId)])
@@ -50,20 +171,25 @@ function render_wordcloud_hc(catId){
       wordsCat = vdata    
 
       jsonArr = []
-      for (var key in wordsCat) {
+      for (var key in wordsCat) {        
           if (wordsCat.hasOwnProperty(key)) {
             obj = {
               name: key,
-              weight: (wordsCat[key]<0.1)?wordsCat[key]+0.09:wordsCat[key]
+              // weight: (wordsCat[key]<0.1)?wordsCat[key]+0.04:wordsCat[key]+0.04
+              weight:wordsCat[key],
+              color:'#646bb6'
             }
           }
           jsonArr.push(obj)
       }
+      console.log(jsonArr);
+      
 
       Highcharts.chart('my_dataviz', {
           series: [{
               type: 'wordcloud',
               data: jsonArr,
+              placementStrategy: 'random',
               name: 'Occurrences'
           }],
           title: {
