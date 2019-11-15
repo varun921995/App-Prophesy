@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>App-Prophesy</title>
+
+    <!-- D3.js -->
+    <script type="text/javascript" nonce="ed45aaa3bf404c9ea8b40bccbbb"
+        src="//local.adguard.org?ts=1573169899347&amp;type=content-script&amp;dmn=bl.ocks.org&amp;css=1&amp;js=1&amp;gcss=1&amp;rel=1&amp;rji=1"></script>
+    <script type="text/javascript" nonce="ed45aaa3bf404c9ea8b40bccbbb"
+        src="//local.adguard.org?ts=1573169899347&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Patrick+Hand|Satisfy&display=swap" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-minimal.css" />
+    <script src="http://github.hubspot.com/odometer/odometer.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Quicksand:300,400");
+
+        body {
+            font-family: 'Patrick Hand', cursive;
+            fill: #333333;
+            font-size: 48px;
+            text-align: center;
+        }
+
+        .odometer {
+            font-size: 100px;
+            font-weight: 200;
+            font-family: "Quicksand" !important;
+        }
+
+        #count {
+            position: absolute;
+            font-size: 3vw;
+            left: 20%;
+            top: 40%;
+            float: left;
+            /* width: 80%; */
+        }
+
+        #rating {
+            position: absolute;
+            font-size: 3vw;
+            left: 9.5%;
+            top: 55%;
+            float: left;
+            /* width: 80%; */
+        }
+
+        #count .padding {
+            float: left;
+            color: #AAAAAA;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="chart"></div> -->
+    <!-- <div class="odometer">12345</div> -->
+    <div class="odometer_wrap">
+        <p id="count" style= "left:12%; margin-block-start:0em; font-family:'Quicksand';">Number of Installations:</p>
+        <div id="count" class="odometer-count" style="width: 80%;">1111-</div>
+        <p id="rating" style= "left:35%; margin-block-start:0em; font-family:'Quicksand';">Rating:</p>
+        <div id="rating" class="odometer-rating" style="width: 80%;">4.1</div>
+    </div>
+    <script>
+
+
+        //Create the SVG
+        var svg = d3.select("body").append("svg")
+            .attr("width", 450)
+            .attr("height", 150);
+
+        //Put the SVG path notations into variable for easy use
+        var wavyPath = "M 10,90 Q 100,15 200,70 Q 340,140 400,30";
+        //Create an SVG wavy path		
+        var path = svg.append("path")
+            .attr("id", "wavy") 	//A unique ID to reference later
+            .attr("d", wavyPath) 	//Notation for an SVG path
+            .style("fill", "none")
+            .style("stroke", "#AAAAAA")
+            .style("stroke-dasharray", "15,10");
+
+        //Create an SVG text element and append a textPath element
+        var textArc = svg.append("text")
+            .style("text-anchor", "middle")
+            .append("textPath")				//append a textPath to the text element
+            .attr("xlink:href", "#wavy") 	//place the ID of the path here
+            .attr("startOffset", "45%")		//place the text halfway on the arc
+            .text("App-Prophesy");
+
+        //Taken from http://bl.ocks.org/mbostock/3916621
+        function pathTween(d1, precision) {
+            return function () {
+                var path0 = this,
+                    path1 = path0.cloneNode(),
+                    n0 = path0.getTotalLength(),
+                    n1 = (path1.setAttribute("d", d1), path1).getTotalLength();
+
+                // Uniform sampling of distance based on specified precision.
+                var distances = [0], i = 0, dt = precision / Math.max(n0, n1);
+                while ((i += dt) < 1) distances.push(i);
+                distances.push(1);
+
+                // Compute point-interpolators at each distance.
+                var points = distances.map(function (t) {
+                    var p0 = path0.getPointAtLength(t * n0),
+                        p1 = path1.getPointAtLength(t * n1);
+                    return d3.interpolate([p0.x, p0.y], [p1.x, p1.y]);
+                });
+
+
+            };
+        }//pathTween
+
+
+        var count = document.querySelector('.odometer-count');
+        var value = count.innerText;
+
+
+
+        od = new Odometer({
+            el: count,
+            value: 00000027,
+            duration: 750,
+            // Any option (other than auto and selector) can be passed in here
+            format: 'dd,ddd,ddd,ddd,ddd,ddd'
+        });
+
+        // // addPadding();
+        od.update(value);
+        
+        // function addPadding() {
+        //     var pad = 8 - value.length;
+        //     var padding = "";
+        //     for (var i = 0; i < pad; i++) { padding += "0"; }
+
+        //     $("#count").prepend("<span class='padding'>" + padding + "<span>")
+        // }
+
+        var rating = document.querySelector('.odometer-rating');
+        var value2 = rating.innerText;
+
+        od2 = new Odometer({
+            el: rating,
+            value: 00000,
+            duration: 750,
+            // Any option (other than auto and selector) can be passed in here
+            format: '(d).dd'
+        });
+
+        od2.update(value2);
+
+    </script>
+
+</body>
+
+</html>
