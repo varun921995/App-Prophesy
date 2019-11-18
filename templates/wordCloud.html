@@ -59,6 +59,24 @@ $('#container').change(function(data){
 })
 
 
+function installFormatter(num) {
+    return Math.abs(num) < 1000 ? '<1K'
+    : Math.abs(num) < 200000 ? '<200K' 
+    : Math.abs(num) < 500000 ? '<500K' 
+    : Math.abs(num) < 1000000 ? '<1M' 
+    : Math.abs(num) < 2000000 ? '<2M' 
+    : Math.abs(num) < 3000000 ? '<3M' 
+    : Math.abs(num) < 4000000 ? '<4M' 
+    : Math.abs(num) < 5000000 ? '<5M' 
+    : Math.abs(num) < 6000000 ? '<6M' 
+    : Math.abs(num) < 7000000 ? '<7M' 
+    : Math.abs(num) < 8000000 ? '<8M' 
+    : Math.abs(num) < 9000000 ? '<9M' 
+    : Math.abs(num) < 10000000 ? '<10M' 
+    : Math.abs(num) < 15000000 ? '<15M' 
+    : '>15M'
+}
+
 function render_wordcloud_any(){
   // var that = this
   anychart.onDocumentReady(function() {
@@ -73,16 +91,18 @@ function render_wordcloud_any(){
             obj = {
               x: key,
               value:wordsCat[key],
+              category:installFormatter(parseInt(wordsCat[key]))
             }
           }
           jsonArr.push(obj)
       }
-      console.log(jsonArr);
+      jsonArr.sort((a, b) => (a.value > b.value) ? 1 : -1)
+
       // create a tag (word) cloud chart
       var chart = anychart.tagCloud(jsonArr);
 
     // set a chart title
-    chart.title(categoryValues[parseInt(catId)])
+    console.log(categoryValues[parseInt(catId)].replace(/_/g," "))
     // set an array of angles at which the words will be laid out
     // chart.angles([0])
     // // enable a color range
@@ -90,75 +110,32 @@ function render_wordcloud_any(){
     // // set the color range length
     // chart.colorRange().length('80%');
     // enable HTML for tooltips
-    chart.tooltip().useHtml(true);
+    // chart.tooltip().useHtml(true);
     chart.angles([0, -45, 90, 45])
-
+    chart.textSpacing(2);
     // configure tooltips
     chart.tooltip().format(function() {
-      var percentOfTotal = (this.getData("value")*100/this.getStat("sum"));
-      return "Downloads: " +
-              (percentOfTotal.toFixed(2))+"%"
-      // if (percentOfTotal < 7)
-      //   return percentOfTotal.toFixed(1) +
-      //         "%<br></br><br></br>" + this.getData("custom_field");
-      // if (percentOfTotal > 15)
-      // return "<span style='font-size:26'>" +
-      //         percentOfTotal.toFixed(1) +
-      //         "%</span><br><br>" +
-      //         this.getData("custom_field");
-      // return "<span style='font-size:18'>" +
-      //       percentOfTotal.toFixed(1) +
-      //       "%</span><br><br>" +
-      //       this.getData("custom_field");
+      var percentOfTotal = this.getData("value");
+      return 'Installations:'+
+        installFormatter(parseInt(percentOfTotal))
+      
     });    // display the word cloud chart
-    // create and configure a color scale.
+   
     var customColorScale = anychart.scales.ordinalColor();
-    customColorScale.ranges([
-        {less: 0.20},
-        {from: 0.20, to: 0.25},
-        {from: 0.25, to: 0.35},
-        {from: 0.35, to: 0.45},
-        {from: 0.45, to: 0.55},
-        {from: 0.55, to: 0.65},        
-        {from: 0.65, to: 0.75},
-        {from: 0.75, to: 0.85},
-        {from: 0.85, to: 0.88},
-        {greater: 0.88}
-    ]);
-    customColorScale.colors(["gray","#ffcc00", "#E377C2","#17BECF", "#FF8C06","#481769", "#89C400", "#00C076","#0b63ef","#FF003C"]);
+    customColorScale.colors(["gray","#89C400", "#E377C2","#17BECF","#FF003C","#481769", "#ffcc00", "#00C076","#0b63ef","#BA5656", "#FF8C06", "#00C076","#0b63ef","#BA5656", "#FF8C06"]);
 
     // set the color scale as the color scale of the chart
     chart.colorScale(customColorScale);
 
     // add a color range
     chart.colorRange().enabled(true);
+    // add a color range
+    // chart.colorRange().enabled(true);
+    chart.colorRange().length('80%');
     chart.container("canvas");
     chart.draw();
-    // format the tooltips
-    // var formatter = "{{ value }}{scale:(1)(1000)(1000)(1000)|( dozen)( thousand)( million)( billion)}";
-    // var tooltip = chart.tooltip();
-    // tooltip.format(formatter);
     })
-  // var data = [
-  //   {"x": "Mandarin chinese", "value": 1090000000, category: "Sino-Tibetan"},
-  //   {"x": "English", "value": 983000000, category: "Indo-European"},
-  //   {"x": "Hindustani", "value": 544000000, category: "Indo-European"},
-  //   {"x": "Spanish", "value": 527000000, category: "Indo-European"},
-  //   {"x": "Arabic", "value": 422000000, category: "Afro-Asiatic"},
-  //   {"x": "Malay", "value": 281000000, category: "Austronesian"},
-  //   {"x": "Russian", "value": 267000000, category: "Indo-European"},
-  //   {"x": "Bengali", "value": 261000000, category: "Indo-European"},
-  //   {"x": "Portuguese", "value": 229000000, category: "Indo-European"},
-  //   {"x": "French", "value": 229000000, category: "Indo-European"},
-  //   {"x": "Hausa", "value": 150000000, category: "Afro-Asiatic"},
-  //   {"x": "Punjabi", "value": 148000000, category: "Indo-European"},
-  //   {"x": "Japanese", "value": 129000000, category: "Japonic"},
-  //   {"x": "German", "value": 129000000, category: "Indo-European"},
-  //   {"x": "Persian", "value": 121000000, category: "Indo-European"},
-    
-  // ];
 
- 
 });
 }
 
