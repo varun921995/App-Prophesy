@@ -1,5 +1,20 @@
 <html>
   <head>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+        <!-- Bootstrap core CSS     -->
+        <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <!--  Paper Dashboard core CSS    -->
+        <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/paper-dashboard.css" rel="stylesheet" />
+        <!--  CSS for Demo Purpose, don't include it in your project     -->
+        <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/demo.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Alata|Calistoga|Oswald&display=swap" rel="stylesheet">
+        <!--  Fonts and icons     -->
+        <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/themify-icons.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
       <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
       <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -16,10 +31,22 @@
             }
           </style> 
     </head>
-  <body onload="getDataJson()">
+    <body onload="getDataJson()">
+      <div class="wrapper">
+          {% include 'sidebar.html' %}
+          <div class="main-panel">
+              {% include 'navbar.html' %}
+              <div class="container-fluid" style="margin-top: 1%;">
+                <div id="container"></div>
+                <div id="my_dataviz" style="height:70%"><div id="canvas"></div></div>
+              </div>
+          </div>
+        </div>
+    </body>
+  <!-- <body onload="getDataJson()">
         <div id="container"></div>
         <div id="my_dataviz"><div id="canvas"></div></div>
-  </body>
+  </body> -->
 
   <script>
 
@@ -43,6 +70,7 @@ async function getDataJson(){
         categoryValues = data.map(e=>e.Category).filter(unique)
     categoryValues.map((e,i)=>select.options.add( new Option(e,i) ))
     div.appendChild(select);
+    
     catId = 0
     render_wordcloud_any()
     // render_wordcloud_hc(String(0))
@@ -112,7 +140,7 @@ function render_wordcloud_any(){
     // enable HTML for tooltips
     // chart.tooltip().useHtml(true);
     chart.angles([0, -45, 90, 45])
-    chart.textSpacing(2);
+    chart.textSpacing(2).fontFamily('Alata, sans-serif');
     // configure tooltips
     chart.tooltip().format(function() {
       var percentOfTotal = this.getData("value");
@@ -126,12 +154,23 @@ function render_wordcloud_any(){
 
     // set the color scale as the color scale of the chart
     chart.colorScale(customColorScale);
-
+    // chart.title(categoryValues[parseInt(catId)].replace(/_/g," "))
     // add a color range
     chart.colorRange().enabled(true);
     // add a color range
     // chart.colorRange().enabled(true);
     chart.colorRange().length('80%');
+     // title settings
+    var title = chart.title();
+    // enable title
+    title.enabled(true);
+    // enables HTML tags
+    title.useHtml(true);
+    // place text in the center
+    title.align("left");
+    title.text(
+      "<div style=\" color: #7c795d; font-family: 'Oswald', sans-serif; font-size: 35px; font-weight: normal;text-decoration:underline; margin-top:30px; margin-left:15px;\">"+categoryValues[parseInt(catId)].replace(/_/g," ")+"</div>"
+    );
     chart.container("canvas");
     chart.draw();
     })
