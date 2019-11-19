@@ -8,7 +8,6 @@ import numpy as np
 from collections import OrderedDict
 from models.textMining import *
 
-
 developer = Blueprint('developer', __name__)
 
 @developer.route("/developerPage")
@@ -70,7 +69,7 @@ def getDataForScatter():
 @developer.route("/word-installation-data/<id>")
 def callTextMining(id):
     # textMining()
-    with open('dataset/dataWithMeaningfulWordsNorm3.json') as json_file:
+    with open('dataset/dataWithMeaningfulWords.json') as json_file:
         data = json.load(json_file) 
         return data[id]
 
