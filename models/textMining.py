@@ -20,7 +20,6 @@ def cleanData(data_set):
     englishWords = words.words()
     df = data_set[['App Name','Installs','Category']]
 
-    # df['Installs'] =  pd.to_numeric(df['Installs'].str.replace('[^\w\s]',''))
     df['Installs'] = pd.to_numeric(df['Installs'].str.replace('[^\w\s]',''),errors='ignore')
     df['App Name'] = (df['App Name'].str.replace('[^\w\s]',''))
     df_dict = {}
@@ -42,24 +41,12 @@ def mapWordsWithInstll(uniqueWords,df_dict):
     for k,v in df_dict.items():
         a = [(uk,int((sum([vv for kk,vv in v if kk==uk])/len([vv for kk,vv in v if kk==uk])))) for uk in uniqueWords if (len(uk)>1) if ( sum([vv for kk,vv in v if kk==uk])!= 0)]
         df_dict[k] = dict(a)
-        del df_dict[')']
-        del df_dict[' Channel 2 News']
-        del df_dict['Podcasts']
+    del df_dict[')']
+    del df_dict[' Channel 2 News']
     return df_dict
-    
-# For value without category    
-#     num = []
-#     b={}
-#     for j in uniqueWords:
-#         num = list(map(lambda x: x[1],list(filter(lambda x: x[0]==j, v)))) #[('food',10000),('foods',12000)] #'food':[1,2,4]
-#         if(len(num)!=0):
-# #             print(j,np.mean(num))
-#             b[j]=np.mean(num)
-#     df_dict[k] = b
-# #             df_dict[k] = (j,np.mean(num))
 
 def storeJson(jsonData):
-    with open('dataset/dataWithWords.json', 'w') as outfile:
+    with open('dataset/dataWithMeaningfulWords.json', 'w') as outfile:
         json.dump(jsonData, outfile)
 
 def textMining():
