@@ -50,6 +50,13 @@
 
 
 <script>
+
+$(document).ready(function(){
+    $('#navBrand').html("Sunburst");
+    $("li").removeClass("active");
+    $("#sunburst").addClass("active");
+})
+
     var graphData = {{ data.chart_data | safe }};
     var graphData1 = {{ data.chart_data1 | safe }}; //paid
     var graphData2 = {{ data.chart_data2 | safe }}; 
