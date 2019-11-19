@@ -2,9 +2,11 @@ from flask import Flask, render_template, request
 from flask_cors import CORS
 from routes.Developer import developer
 from routes.Homepage import home
+from routes.sburst import sunburst
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(developer)
+    app.register_blueprint(sunburst)
     app.register_blueprint(home)
     CORS(app)
     app.jinja_env.auto_reload = True

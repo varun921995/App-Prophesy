@@ -44,6 +44,12 @@
     </body>
   <script>
 
+$(document).ready(function(){
+    $('#navBrand').html("Word Cloud");
+    $("li").removeClass("active");
+    $("#wordCloud").addClass("active");
+})
+
 var allData, categoryValues, wordsCat;
 
 //getdata

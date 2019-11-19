@@ -68,9 +68,11 @@
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script>
 
-    // $(document).ready(function () {
-    //     // plotBubbleChart();
-    // })
+    $(document).ready(function () {
+        $('#navBrand').html("Scatter Plot");
+        $("li").removeClass("active");
+        $("#scatterPlot").addClass("active");
+    })
 
     var chart;
     var seriesOptions = [];
@@ -100,10 +102,10 @@
                         if (price != "0") {
                             price = price.substring(1, price.length);
                             price = parseFloat(price);
-                            if(price == NaN){
+                            if (price == NaN) {
                                 price = 0;
                             }
-                        }else{
+                        } else {
                             price = 0;
                         }
                         var rating = parseFloat(responseData[j].Rating);
