@@ -24,44 +24,41 @@
       {% include 'navbar.html' %}
       <div class="container-fluid" style="margin-top: 1%;">
         <div class="container">
-          <div class="form-group col-md-3">
-            <label class="control-label">Categories</label>
-            <select class="form-control"></select>
-          </div>
-          <div class="form-group col-md-3">
-            <label class="control-label">Audience</label>
-            <select class="form-control"></select>
-          </div>
-          <div class="form-group col-md-2">
-            <label class="control-label">Type</label>
-            <select class="form-control"></select>
-          </div>
-          <div class="form-group col-md-2">
-            <label class="control-label">Size</label>
-            <select class="form-control"></select>
-          </div>
-          <div class="form-group col-md-2">
-            <label class="control-label">Size</label>
-            <select class="form-control"></select>
-          </div>
-          <div class="form-group col-md-6">
-            <label class="control-label">Prediction</label>
-            <select class="form-control"></select>
-          </div>
+          <form  action="javascript:void(0)">
+            <div class="form-group col-md-3">
+              <label class="control-label">Categories</label>
+              <select class="form-control" id="category"></select>
+            </div>
+            <div class="form-group col-md-3">
+              <label class="control-label">Audience</label>
+              <select class="form-control" id="audience"></select>
+            </div>
+            <div class="form-group col-md-2">
+              <label class="control-label">Type</label>
+              <select class="form-control" id="type"></select>
+            </div>
+            <div class="form-group col-md-2">
+              <label class="control-label">Size</label>
+              <input type="number" id="size" min=0.01 class="form-control" step=".01" value="2"></input>
+            </div>
+            <div class="form-group col-md-2">
+              <label class="control-label">Price</label>
+              <input type="number" id="price" class="form-control"></input>
+            </div>
         </div>
         <!-- <div class="row"> -->
         <div class="row" style="margin: 2.5% 0%;">
           <div class="col-md-4"></div>
-          <button class="col-md-4 btn btn-lg btn-fill btn-wd btn-success">Predict</button>
+          <button type="submit" class="col-md-4 btn btn-lg btn-fill btn-wd btn-success" onClick="getPrediction()">Predict</button>
           <div class="col-md-4"></div>
         </div>
+        </form>
         <!-- </div> -->
         <div class="container">
           <div class="col-md-6" style="padding: 0 10%;">
             <div class="card" style="width: 36rem; box-shadow: 10px 10px 5px grey;">
               <img class="card-img-top" style="margin: 0 25% ;width: 18rem; height: 14rem;"
-                src="https://image.flaticon.com/icons/png/512/671/671423.png"
-                alt="Card image cap">
+                src="https://image.flaticon.com/icons/png/512/671/671423.png" alt="Card image cap">
               <div class="card-body">
                 <h1 class="card-title" style="text-align: center;"> 100 M</h1>
                 <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -72,19 +69,19 @@
             </div>
           </div>
           <div class="col-md-6" style="padding: 0 10%;">
-              <div class="card" style="width: 36rem; box-shadow: 10px 10px 5px grey;">
-                <img class="card-img-top" style="margin: 0 25% ;width: 18rem; height: 14rem;"
-                  src="https://asset.barrons.com/public/resources/images/ON-CJ684_quizgr_B620_20171229134559.jpg"
-                  alt="Card image cap">
-                <div class="card-body">
-                  <h1 class="card-title" style="text-align: center;">4.50</h1>
-                  <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            <div class="card" style="width: 36rem; box-shadow: 10px 10px 5px grey;">
+              <img class="card-img-top" style="margin: 0 25% ;width: 18rem; height: 14rem;"
+                src="https://asset.barrons.com/public/resources/images/ON-CJ684_quizgr_B620_20171229134559.jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h1 class="card-title" style="text-align: center;">4.50</h1>
+                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's
                     content.</p>
                   <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                </div>
               </div>
             </div>
+          </div>
         </div>
         <div class="col-md-12" style="margin: 2.5% 0%;">
           <div id="container"></div>
@@ -108,6 +105,61 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 <script>
+
+  $(document).ready(function () {
+    getAttributes();
+    $('#price').val(0);
+    $('#price').attr('disabled', 'disable')
+  })
+
+
+  $('#type').change(function(){
+    if($('#type').val() == "Free"){
+      $('#price').val(0);
+      $('#price').attr('disabled', 'disable')
+    }else{
+      $('#price').removeAttr('disabled')
+    }
+  })
+
+  function getAttributes() {
+    $.ajax({
+      dataType: 'json',
+      url: "/getAttributes",
+      type: "GET",
+      success: function (response) {
+        $('#category').html("");
+        $('#audience').html("");
+        $('#type').html("");
+        var options = "";
+        for (let index = 0; index < response.Category.length; index++) {
+          options += '<option value=' + response.Category[index];
+          options += '>' + response.Category[index];
+          options += '</option>';
+
+        }
+        $('#category').append(options);
+        options = "";
+        for (let index = 0; index < response['Content Rating'].length; index++) {
+          options += '<option value=' + response['Content Rating'][index];
+          options += '>' + response['Content Rating'][index];
+          options += '</option>';
+
+        }
+        $('#audience').append(options);
+        options = "";
+        for (let index = 0; index < response.Type.length; index++) {
+          options += '<option value=' + response['Type'][index];
+          options += '>' + response['Type'][index];
+          options += '</option>';
+
+        }
+        $('#type').append(options);
+      }
+    });
+
+  }
+
 
   Highcharts.chart('container', {
 
@@ -172,6 +224,24 @@
     }
 
   });
+
+
+function getPrediction(){
+    var reqBody = {'Category' :$('#category').val(), 'ContentRating' :  $('#audience').val(), 'Type' : $('#type').val(), 'Price' : $('#price').val(), 'Size' : $('#size').val(),
+    'varySize' : 0, 'varyPrice' : 0 }
+    $.ajax({
+      dataType: 'json',
+      contentType :'application/json',
+      url: "/prediction",
+      type: "POST",
+      data : JSON.stringify(reqBody),
+      success: function (response) {
+
+      }
+    });
+}
+
+  
 </script>
 
 </html>
