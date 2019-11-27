@@ -1,6 +1,7 @@
 <html>
-  <head>
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+
+<head>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
         <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
@@ -44,49 +45,52 @@
     </body>
   <script>
 
-$(document).ready(function(){
+  $(document).ready(function () {
     $('#navBrand').html("Word Cloud");
     $("li").removeClass("active");
     $("#wordCloud").addClass("active");
-})
+  })
 
-var allData, categoryValues, wordsCat;
+  var allData, categoryValues, wordsCat;
 
-//getdata
-async function getDataJson(){
+  //getdata
+  async function getDataJson() {
     fetch('/getData')
     .then((resp) => resp.json()) // Transform the data into json
     .then(function(data) {
         data.shift()
-        
+
         allData = data
 
         var div = document.querySelector("#container"),
-    select = document.createElement("select");
-    const unique = (value, index, self) => {
-                return self.indexOf(value) === index
-            }
-  
-    categoryValues = data.map(e=>e.Category).filter(unique)        
-    categoryValues = categoryValues.filter(e=>e!==" Podcasts"&&e!==")"&&e!==" Channel 2 News")
-    categoryValues.map((e,i)=>select.options.add( new Option(e,i) ))  
-    div.appendChild(select);
-    
-    catId = 0
-    render_wordcloud_any()
-    })
-}
+        select = document.createElement("select");
+        var att = document.createAttribute("class");       // Create a "class" attribute
+        att.value = "form-control";                           // Set the value of the class attribute
+        select.setAttributeNode(att);
+        const unique = (value, index, self) => {
+          return self.indexOf(value) === index
+        }
+        categoryValues = data.map(e => e.Category).filter(unique)
+        categoryValues.map((e, i) => select.options.add(new Option(e, i)))
+        div.appendChild(select);
 
-$('#container').change(function(data){
+        catId = 0
+        render_wordcloud_any()
+        // render_wordcloud_hc(String(0))
+        // render_wordcloud()
+      })
+  }
+
+  $('#container').change(function (data) {
     // render_wordcloud_hc($('#container').children().val())
     catId = $('#container').children().val()
     $('#canvas').remove()
     $('#my_dataviz').append('<div id="canvas"></div>');
     render_wordcloud_any()
-})
+  })
 
 
-function installFormatter(num) {
+  function installFormatter(num) {
     return Math.abs(num) < 1000 ? '<1K'
     : Math.abs(num) < 200000 ? '<200K' 
     : Math.abs(num) < 500000 ? '<500K' 
@@ -120,6 +124,7 @@ function render_wordcloud_any(){
               value:wordsCat[key],
               category:installFormatter(parseInt(wordsCat[key]))
             }
+            jsonArr.push(obj)
           }
           jsonArr.push(obj)
       }
@@ -160,4 +165,4 @@ function render_wordcloud_any(){
 
 </script>
 
-  </html>
+</html>
