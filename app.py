@@ -1,15 +1,17 @@
 from flask import Flask, render_template, request
 from flask_cors import CORS
 from routes.Developer import developer
-from routes.Homepage import home
+from routes.Homepage import *
 
 from models.preprocessing import *
 from models.model import *
 import pickle
 
+from routes.sburst import sunburst
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(developer)
+    app.register_blueprint(sunburst)
     app.register_blueprint(home)
     # global cleanedData
     cleanedData = preProcessData()
@@ -51,6 +53,5 @@ def create_app():
 #         return file_content 
 
 if __name__ == "__main__":
-    
     create_app()
     

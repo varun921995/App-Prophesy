@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Python Flask Bucket List App</title>
+  <title>Homepage</title>
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
   <!-- Bootstrap core CSS     -->
@@ -14,7 +14,11 @@
   <!--  Fonts and icons     -->
   <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/themify-icons.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+  <link href="static/assets/css/dark-unica.css" rel="stylesheet" />
+  <link href="static/assets/css/easy-loading.min.css" rel="stylesheet" />
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+  
 </head>
 
 <body>
@@ -24,9 +28,9 @@
       {% include 'navbar.html' %}
       <div class="container-fluid" style="margin-top: 1%;">
         <div class="container">
-          <form  action="javascript:void(0)">
+          <form action="javascript:void(0)">
             <div class="form-group col-md-3">
-              <label class="control-label">Categories</label>
+              <label class="control-label">Category</label>
               <select class="form-control" id="category"></select>
             </div>
             <div class="form-group col-md-3">
@@ -43,45 +47,66 @@
             </div>
             <div class="form-group col-md-2">
               <label class="control-label">Price</label>
-              <input type="number" id="price" class="form-control"></input>
+              <input type="number" min=0.01 id="price" step=".01" class="form-control"></input>
             </div>
         </div>
         <!-- <div class="row"> -->
-        <div class="row" style="margin: 2.5% 0%;">
-          <div class="col-md-4"></div>
-          <button type="submit" class="col-md-4 btn btn-lg btn-fill btn-wd btn-success" onClick="getPrediction()">Predict</button>
-          <div class="col-md-4"></div>
+        <div class="col-md-12" style="margin: 2.5% 0%;">
+          <div class="col-md-3 "> </div>
+          <div class="col-md-6" style="padding-left: 10%;"><button type="submit"
+              class="col-md-8 btn btn-lg btn-fill btn-wd btn-success" onClick="getPrediction()">Predict</button></div>
+
+          <div class="col-md-3"></div>
         </div>
         </form>
         <!-- </div> -->
-        <div class="container">
-          <div class="col-md-6" style="padding: 0 10%;">
-            <div class="card" style="width: 36rem; box-shadow: 10px 10px 5px grey;">
-              <img class="card-img-top" style="margin: 0 25% ;width: 18rem; height: 14rem;"
-                src="https://image.flaticon.com/icons/png/512/671/671423.png" alt="Card image cap">
-              <div class="card-body">
-                <h1 class="card-title" style="text-align: center;"> 100 M</h1>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's
-                  content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        <div class="container" id="predictionDiv" style="display: none;">
+          <div class="col-md-4">
+            <div class="card" style="width: 36rem; box-shadow: 10px 10px 5px grey;" id="cardInstall"
+              style="display: block;">
+                  <img class="card-img-top" style="margin: 0 40% ;width: 8rem; height: 8rem; margin-top:5%"
+                  src="static/img/installations.png" alt="Card image cap">
+             
+              <div class="card-body" style="padding-bottom: 0.5%;">
+                <h1 class="card-title" style="text-align: center; margin:0%" id="installations"> </h1>
+                <h5 class="card-title" style="text-align: center;margin-top: 5%;" > Installations</h5>
+
+
               </div>
             </div>
           </div>
-          <div class="col-md-6" style="padding: 0 10%;">
-            <div class="card" style="width: 36rem; box-shadow: 10px 10px 5px grey;">
-              <img class="card-img-top" style="margin: 0 25% ;width: 18rem; height: 14rem;"
+          <div class="col-md-4">
+            <div class="card" style="width: 36rem; box-shadow: 10px 10px 5px grey;" id="cardAccuracy"
+              style="display: block;">
+              <img class="card-img-top" style="margin: 0 40% ;width: 8rem; height: 8rem; margin-top:5%"
+                src="https://image.flaticon.com/icons/png/512/671/671423.png" alt="Card image cap">
+              <div class="card-body" style="padding-bottom: 0.25%;">
+                <h4 class="card-title" style="text-align: center;margin-top:3%" id="accuracyInstall"> </h4>
+                <h4 class="card-title" style="text-align: center;" id="accuracyRating"> </h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card" style="width: 36rem; box-shadow: 10px 10px 5px grey;" id="cardRating"
+              style="display: block;">
+              <img class="card-img-top" style="margin: 0 40% ;width: 10rem; height: 8rem; margin-top:5%"
                 src="https://asset.barrons.com/public/resources/images/ON-CJ684_quizgr_B620_20171229134559.jpg"
                 alt="Card image cap">
-              <div class="card-body">
-                <h1 class="card-title" style="text-align: center;">4.50</h1>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              <div class="card-body" style="padding-bottom: 0.5%;" >
+                <h1 class="card-title" style="text-align: center;margin-top: 0%;" id="rating"></h1>
+                <h5 class="card-title" style="text-align: center;margin-top: 0%;" >Rating</h5>
               </div>
             </div>
           </div>
+        </div>
+        <div class="row" style="margin: 2.5% 0%; display: none;" id="varyBtnDiv">
+          <div class="col-md-2"></div>
+          <button type="submit" class="col-md-3 btn btn-lg btn-fill btn-wd btn-info"
+            onClick="getPredictionVarySize()">Vary with size</button>
+          <div class="col-md-2"></div>
+          <button type="submit" class="col-md-3 btn btn-lg btn-fill btn-wd btn-info" onClick="getPredictionVaryPrice()"
+            id="varyWithPrice">Vary with Price</button>
+          <div class="col-md-2"></div>
         </div>
         <div class="col-md-12" style="margin: 2.5% 0%;">
           <div id="container"></div>
@@ -103,22 +128,56 @@
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="static/assets/js/plugins/easy-loading.min.js"  type="text/javascript"></script>
+<!-- <script src="https://github.com/highcharts/highcharts/blob/master/js/themes/dark-unica.js"></script> -->
+
 
 <script>
 
   $(document).ready(function () {
+    $('#navBrand').html("Prediction");
+    $("li").removeClass("active");
+    $("#predict").addClass("active");
     getAttributes();
     $('#price').val(0);
-    $('#price').attr('disabled', 'disable')
+    $('#price').attr('disabled', 'disable');
+    $("#predictionDiv").fadeOut();
+    $('#varyWithPrice').attr('disabled', 'disable');
+    // $.ajax({
+    //     url: "/temp/rating.txt",
+    //     type: 'GET',
+    //     dataType: 'json', // added data type
+    //     success: function(res) {
+    //         console.log(res);
+    //     }
+    // });
+
   })
 
 
-  $('#type').change(function(){
-    if($('#type').val() == "Free"){
+  function readAccuracy() {
+    $.ajax({
+        url: "/getRatingAccuracy",
+        type: 'GET',
+        dataType: 'json', // added data type
+        success: function(res) {
+            console.log();
+            $('#accuracyInstall').html("Confidence of installations : "+res.install.split(':')[1]);
+            $('#accuracyRating').html("Confidence of rating : "+res.rating.split(':')[1]);
+        }
+    });
+  }
+
+
+  $('#type').change(function () {
+    if ($('#type').val() == "Free") {
       $('#price').val(0);
       $('#price').attr('disabled', 'disable')
-    }else{
-      $('#price').removeAttr('disabled')
+      $('#varyWithPrice').attr('disabled', 'disable');
+
+    } else {
+      $('#price').removeAttr('disabled');
+      $('#varyWithPrice').removeAttr('disabled');
     }
   })
 
@@ -141,15 +200,32 @@
         $('#category').append(options);
         options = "";
         for (let index = 0; index < response['Content Rating'].length; index++) {
-          options += '<option value=' + response['Content Rating'][index];
-          options += '>' + response['Content Rating'][index];
-          options += '</option>';
+          console.log(response['Content Rating'][index]);
+          if (response['Content Rating'][index] == "Everyone 10+") {
+            options += '<option value= "Everyone 10+"';
+            options += '>' + response['Content Rating'][index];
+            options += '</option>';
+          } else if (response['Content Rating'][index] == "Mature 17+") {
+            options += '<option value="Mature 17+"';
+            options += '>' + response['Content Rating'][index];
+            options += '</option>';
+          } else if (response['Content Rating'][index] == "Adults only 18+") {
+            options += '<option value="Adults only 18+"';
+            options += '>' + response['Content Rating'][index];
+            options += '</option>';
+          } else {
+            options += '<option value=' + response['Content Rating'][index];
+            options += '>' + response['Content Rating'][index];
+            options += '</option>';
+          }
+
 
         }
         $('#audience').append(options);
         options = "";
         for (let index = 0; index < response.Type.length; index++) {
-          options += '<option value=' + response['Type'][index];
+
+          options += '<option value= ' + response['Type'][index];
           options += '>' + response['Type'][index];
           options += '</option>';
 
@@ -160,88 +236,273 @@
 
   }
 
+  function plotLineChart(xAxisData, yAxisData, xLabel) {
+    Highcharts.chart('container', {
+      chart: {
+        zoomType: 'x'
+      },
 
-  Highcharts.chart('container', {
-
-    title: {
-      text: 'Solar Employment Growth by Sector, 2010-2016'
-    },
-
-    subtitle: {
-      text: 'Source: thesolarfoundation.com'
-    },
-
-    yAxis: {
       title: {
-        text: 'Number of Employees'
-      }
-    },
-    legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle'
-    },
+        text: 'Installation and Rating Predictions',
+        style: {
+          color: 'white'
+        }
+      },
 
-    plotOptions: {
-      series: {
-        label: {
-          connectorAllowed: false
+      subtitle: {
+        text: 'Source: TechGoons',
+        style: {
+          color: 'white'
+        }
+      },
+
+      yAxis: [{
+        title: {
+          text: 'Application Installations',
+          style: {
+            color: '#5ed670'
+          }
         },
-        pointStart: 2010
-      }
-    },
-
-    series: [{
-      name: 'Installation',
-      data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-    }, {
-      name: 'Manufacturing',
-      data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-    }, {
-      name: 'Sales & Distribution',
-      data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-    }, {
-      name: 'Project Development',
-      data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-    }, {
-      name: 'Other',
-      data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-    }],
-
-    responsive: {
-      rules: [{
-        condition: {
-          maxWidth: 500
-        },
-        chartOptions: {
-          legend: {
-            layout: 'horizontal',
-            align: 'center',
-            verticalAlign: 'bottom'
+        labels: {
+          format: '{value}',
+          style: {
+            color: '#5ed670'
           }
         }
-      }]
+      }, { // Secondary yAxis
+        gridLineWidth: 0,
+        title: {
+          text: 'Rating',
+          style: {
+            color: '#ff7a75'
+          }
+        },
+        labels: {
+          format: '{value}',
+          style: {
+            color: '#ff7a75'
+          }
+        }, opposite: true
+
+      }],
+      xAxis: {
+        categories: xAxisData,
+        title: {
+          text: xLabel,
+          style: {
+            color: 'white'
+          }
+        },
+        labels: {
+          style: {
+            color: 'white'
+          }
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        itemStyle: {
+          color: 'white',
+          fontWeight: 'bold'
+        }
+      },
+      tooltip: {
+        style: {
+          color: 'white',
+          fontWeight: 'bold'
+        }
+      },
+
+
+      plotOptions: {
+        series: {
+          label: {
+            connectorAllowed: false
+          }
+        }
+      },
+
+      series: [{
+        name: 'Installation',
+        yAxis: 0,
+        color: '#5ed670',
+        data: yAxisData[0]
+      }, {
+        name: 'Rating',
+        yAxis: 1,
+        color: '#ff7a75',
+        data: yAxisData[1]
+      }],
+      responsive: {
+        rules: [{
+          condition: {
+            maxWidth: 500
+          },
+          chartOptions: {
+            legend: {
+              layout: 'horizontal',
+              align: 'center',
+              verticalAlign: 'bottom'
+            }
+          }
+        }]
+      }
+    });
+  }
+
+  function getPredictionVaryPrice() {
+    var reqBody = {
+      'Category': $('#category').val(), 'ContentRating': $('#audience').val(), 'Type': $('#type').val(), 'Price': $('#price').val(), 'Size': $('#size').val(),
+      'varySize': 0, 'varyPrice': 1
     }
-
-  });
-
-
-function getPrediction(){
-    var reqBody = {'Category' :$('#category').val(), 'ContentRating' :  $('#audience').val(), 'Type' : $('#type').val(), 'Price' : $('#price').val(), 'Size' : $('#size').val(),
-    'varySize' : 0, 'varyPrice' : 0 }
     $.ajax({
       dataType: 'json',
-      contentType :'application/json',
+      contentType: 'application/json',
       url: "/prediction",
       type: "POST",
-      data : JSON.stringify(reqBody),
+      data: JSON.stringify(reqBody),
       success: function (response) {
+        readAccuracy();
+        var yAxisSeries = [];
+        var installation = response.installation;
+        installation = installation.replace(/'/g, '"');
+        var jsonInstallation = JSON.parse(installation);
+        jsonInstallation[Object.keys(jsonInstallation)[0]] = parseFloat($('#installations').html());
+        var sortedInstallationKeys = Object.keys(jsonInstallation);
+        var numericKeys = [];
+        for (let index = 0; index < sortedInstallationKeys.length; index++) {
+          var k = parseFloat(sortedInstallationKeys[index]);
+          numericKeys.push(k);
+        }
+        numericKeys = numericKeys.sort(function (a, b) { return a - b });
+        console.log(numericKeys);
+
+        for (let index = 0; index < numericKeys.length; index++) {
+          if (Number.isInteger(numericKeys[index])) {
+            numericKeys[index] = parseFloat(numericKeys[index]).toFixed(1);
+          }
+        }
+        console.log(numericKeys);
+        var sortedInstallationValues = []
+        for (let index = 0; index < sortedInstallationKeys.length; index++) {
+          sortedInstallationValues.push(jsonInstallation["" + numericKeys[index] + ""]);
+        }
+
+        sortedInstallationValues.shift();
+        yAxisSeries.push(sortedInstallationValues);
+
+        var rating = response.rating;
+        rating = rating.replace(/'/g, '"');
+        var jsonRating = JSON.parse(rating);
+        var sortedRatingKeys = Object.keys(jsonRating);
+        numericKeys = [];
+        for (let index = 0; index < sortedRatingKeys.length; index++) {
+          var k = parseFloat(sortedRatingKeys[index]);
+          numericKeys.push(k);
+        }
+        numericKeys = numericKeys.sort(function (a, b) { return a - b });
+        for (let index = 0; index < numericKeys.length; index++) {
+          if (Number.isInteger(numericKeys[index])) {
+            numericKeys[index] = parseFloat(numericKeys[index]).toFixed(1);
+          }
+        }
+
+        var sortedRatingValues = []
+        for (let index = 0; index < sortedRatingKeys.length; index++) {
+          sortedRatingValues.push(jsonRating["" + numericKeys[index] + ""]);
+
+        }
+        sortedRatingValues.shift();
+        numericKeys.shift();
+        yAxisSeries.push(sortedRatingValues);
+        plotLineChart(numericKeys, yAxisSeries, "Price ($)")
+
 
       }
     });
-}
+  }
 
-  
+  function getPredictionVarySize() {
+    var reqBody = {
+      'Category': $('#category').val(), 'ContentRating': $('#audience').val(), 'Type': $('#type').val(), 'Price': $('#price').val(), 'Size': $('#size').val(),
+      'varySize': 1, 'varyPrice': 0
+    }
+    $.ajax({
+      dataType: 'json',
+      contentType: 'application/json',
+      url: "/prediction",
+      type: "POST",
+      data: JSON.stringify(reqBody),
+      success: function (response) {
+
+        var yAxisSeries = [];
+        var installation = response.installation;
+        installation = installation.replace(/'/g, '"');
+        var jsonInstallation = JSON.parse(installation);
+       
+        jsonInstallation[Object.keys(jsonInstallation)[0]] = parseFloat($('#installations').html());
+        var sortedInstallationKeys = Object.keys(jsonInstallation).sort();
+        var sortedInstallationValues = []
+        for (let index = 0; index < sortedInstallationKeys.length; index++) {
+          sortedInstallationValues.push(jsonInstallation[sortedInstallationKeys[index]]);
+
+        }
+        sortedInstallationValues.shift();
+        yAxisSeries.push(sortedInstallationValues);
+        // plotLineChart(sortedInstallationKeys,sortedInstallationValues)
+
+
+        var rating = response.rating;
+        rating = rating.replace(/'/g, '"');
+        var jsonRating = JSON.parse(rating);
+        var sortedRatingKeys = Object.keys(jsonRating).sort();
+        var sortedRatingValues = []
+        for (let index = 0; index < sortedRatingKeys.length; index++) {
+          sortedRatingValues.push(jsonRating[sortedRatingKeys[index]]);
+
+        }
+        sortedRatingValues.shift();
+        yAxisSeries.push(sortedRatingValues);
+        sortedInstallationKeys.shift();
+        plotLineChart(sortedInstallationKeys, yAxisSeries, "Size (MB)")
+
+      }
+    });
+  }
+  function getPrediction() {
+    var reqBody = {
+      'Category': $('#category').val(), 'ContentRating': $('#audience').val(), 'Type': $('#type').val(), 'Price': $('#price').val(), 'Size': $('#size').val(),
+      'varySize': 0, 'varyPrice': 0
+    }
+    $.ajax({
+      dataType: 'json',
+      contentType: 'application/json',
+      url: "/prediction",
+      type: "POST",
+      data: JSON.stringify(reqBody),
+      success: function (response) {
+        readAccuracy();
+        $("#predictionDiv").fadeIn(1000, function () {
+
+        });
+        $("#cardInstall").fadeIn(2000, function () {
+          $('#installations').html(response.installation);
+        });
+        $("#cardRating").fadeIn(2000, function () {
+          $('#rating').html(response.rating);
+        });
+        $("#varyBtnDiv").fadeIn(2000);
+
+        getPredictionVarySize();
+
+      }
+    });
+
+  }
+
+
 </script>
 
 </html>

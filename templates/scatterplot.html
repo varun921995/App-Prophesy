@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Python Flask Bucket List App</title>
+    <title>Scatter Plot</title>
 
 
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -19,6 +19,7 @@
     <!--  Fonts and icons     -->
     <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/themify-icons.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="static/assets/css/easy-loading.min.css" rel="stylesheet" />
 
 </head>
 
@@ -66,87 +67,102 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="static/assets/js/plugins/easy-loading.min.js" type="text/javascript"></script>
+<script src="static/assets/js/plugins/easy-loading.min.js" type="text/javascript"></script>
+Î
 <script>
 
-    // $(document).ready(function () {
-    //     // plotBubbleChart();
-    // })
+    $(document).ready(function () {
+        $('#navBrand').html("Scatter Plot");
+        $("li").removeClass("active");
+        $("#scatterPlot").addClass("active");
+        getDataForScatter();
+    })
 
     var chart;
     var seriesOptions = [];
     var chartOptions;
     var colours = ["#CC3333", "#D14133", "#90B52A", "#25B9A2", "#A738A2",
         "#C374E8", "#D56B00", "#D12599", "#00CC99", "#746F99",
-        "#B96F0E", "#4AA761", "#C76617", "#CC9E00", "#9E3874"]
-    $.ajax({
-        dataType: 'json',
-        url: "getDataForScatter",
-        type: "GET",
-        success: function (response) {
-            var categories = response.categories;
-            var responseData = JSON.parse(response.data);
-            console.log(categories);
+        "#B96F0E", "#4AA761", "#C76617", "#CC9E00", "#9E3874"];
 
-            var series1 = [];
-            var series2 = [];
-            for (let i = 0; i < categories.length; i++) {
-                var cate = {};
-                var ratingPriceData = [];
-                var installPriceData = [];
-                for (let j = 0; j < responseData.length; j++) {
-                    if (responseData[j].Category == categories[i]) {
-                        var rpd = [];
-                        var price = responseData[j].Price;
-                        if (price != "0") {
-                            price = price.substring(1, price.length);
-                            price = parseFloat(price);
-                            if(price == NaN){
+    function getDataForScatter() {
+        EasyLoading.show({
+            type: EasyLoading.TYPE["LINE_SCALE_PULSE_OUT_RAPID"],
+            text: "Loading",
+
+        });
+        $.ajax({
+            dataType: 'json',
+            url: "getDataForScatter",
+            type: "GET",
+            success: function (response) {
+                var categories = response.categories;
+                var responseData = JSON.parse(response.data);
+                console.log(categories);
+
+                var series1 = [];
+                var series2 = [];
+                for (let i = 0; i < categories.length; i++) {
+                    var cate = {};
+                    var ratingPriceData = [];
+                    var installPriceData = [];
+                    for (let j = 0; j < responseData.length; j++) {
+                        if (responseData[j].Category == categories[i]) {
+                            var rpd = [];
+                            var price = responseData[j].Price;
+                            if (price != "0") {
+                                // price = price.substring(1, price.length);
+                                price = parseFloat(price);
+                                if (price == NaN) {
+                                    price = 0;
+                                }
+                            } else {
                                 price = 0;
                             }
-                        }else{
-                            price = 0;
-                        }
-                        var rating = parseFloat(responseData[j].Rating);
-                        if (price >= 1 && price < 130) {
+                            var rating = parseFloat(responseData[j].Rating);
+                            if (price >= 1 && price < 130) {
 
-                            var rpd = {
-                                x: price, y: rating, appName: responseData[j]['App Name']
-                            };
-
-                            // rpd.push(responseData[j].Price);
-                            // rpd.push(responseData[j].Rating);
-                            ratingPriceData.push(rpd);
-                        }
-
-                        if (responseData[j].Size != "Varies with device") {
-                            var size = responseData[j].Size;
-                            size = size.replace("M", "");
-                            size = parseInt(size);
-                            if (size > 4) {
-                                var ipd = {
-                                    x: size, y: parseFloat(responseData[j].Rating), appName: responseData[j]['App Name']
+                                var rpd = {
+                                    x: price, y: rating, appName: responseData[j]['App Name']
                                 };
-                                // ipd.push(size);
-                                // ipd.push(responseData[j].Rating);
-                                installPriceData.push(ipd);
+
+                                // rpd.push(responseData[j].Price);
+                                // rpd.push(responseData[j].Rating);
+                                ratingPriceData.push(rpd);
                             }
+
+                            if (responseData[j].Size != "Varies with device") {
+                                var size = responseData[j].Size;
+                                // size = size.replace("M", "");
+                                size = parseInt(size);
+                                if (size > 4) {
+                                    var ipd = {
+                                        x: size, y: parseFloat(responseData[j].Rating), appName: responseData[j]['App Name']
+                                    };
+                                    // ipd.push(size);
+                                    // ipd.push(responseData[j].Rating);
+                                    installPriceData.push(ipd);
+                                }
+                            }
+
                         }
-
                     }
+                    cate = { "name": categories[i], color: colours[i], "data": ratingPriceData };
+                    series1.push(cate);
+                    cate = { "name": categories[i], color: colours[i], "data": installPriceData };
+                    series2.push(cate);
                 }
-                cate = { "name": categories[i], color: colours[i], "data": ratingPriceData };
-                series1.push(cate);
-                cate = { "name": categories[i], color: colours[i], "data": installPriceData };
-                series2.push(cate);
-            }
-            seriesOptions.push(series1);
-            seriesOptions.push(series2);
+                seriesOptions.push(series1);
+                seriesOptions.push(series2);
 
-            console.log(seriesOptions[0][0]);
-            plotChart(seriesOptions[0]);
-            changeAxis("price");
-        }
-    })
+                console.log(seriesOptions[0][0]);
+                plotChart(seriesOptions[0]);
+                changeAxis("price");
+                EasyLoading.hide();
+            }
+        });
+    }
 
     function plotChart(series) {
         chart = Highcharts.chart('container', {
@@ -201,8 +217,8 @@
                     },
                     tooltip: {
                         // headerFormat: '<b>{point.appName}</b><br/>'
-                        headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: '<b>{point.appName}</b><br> {point.x} , {point.y}'
+                        headerFormat: '<b>Category : {series.name}</b><br>',
+                        pointFormat: '<b> App Name : {point.appName}</b><br> {point.x} ,  {point.y}'
 
 
                     }

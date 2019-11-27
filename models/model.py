@@ -9,6 +9,7 @@ import pandas as pd
 
 import seaborn as sns
 import matplotlib.pyplot as plt
+from math import sqrt
 
 from sklearn import metrics
 from sklearn import preprocessing
@@ -19,10 +20,11 @@ from sklearn.model_selection import train_test_split
 from models.preprocessing import preProcessData 
 import random
 import xgboost as xgb
+from sklearn.metrics import mean_squared_error
+
 
 
 def trainModelRating(df_train):
-    
     # Split data into training and testing sets
     features = [ 'Size', 'Type_LE', 'ContentRating_LE','Price','Category_LE']
     # features.extend(category_list)
@@ -35,6 +37,13 @@ def trainModelRating(df_train):
     xgbModel.fit(X_train, y_train)
     accuracy = xgbModel.score(X_test,y_test)
     print('Accuracy: ' + str(np.round(accuracy*100, 2)) + '%')
+
+    predicted = xgbModel.predict(X_test)
+    open("temp/rating.txt", 'w').close()
+    with open("temp/rating.txt", "a") as myfile:
+        myfile.write('Accuracy: ' + str(np.round(accuracy*100, 2)) + '%\n')
+        myfile.write("RMSE:"  + str(np.round(sqrt(mean_squared_error(y_test, predicted)),2)))
+
     return xgbModel
 
 def trainModelInstallation(df_train):
@@ -52,4 +61,10 @@ def trainModelInstallation(df_train):
     xgbModel.fit(X_train, y_train)
     accuracy = xgbModel.score(X_test,y_test)
     print('Accuracy: ' + str(np.round(accuracy*100, 2)) + '%')
+    predicted = xgbModel.predict(X_test)
+    open("temp/install.txt", 'w').close()
+    with open("temp/install.txt", "a") as myfile:
+        myfile.write('Accuracy: ' + str(np.round(accuracy*100, 2)) + '%\n')
+        myfile.write("RMSE: "  + str(np.round(sqrt(mean_squared_error(y_test, predicted)),2)))
+
     return xgbModel
