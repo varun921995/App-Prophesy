@@ -1,3 +1,4 @@
+<!-- Author Varun Mahagaokar -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -112,7 +113,6 @@
                             var rpd = [];
                             var price = responseData[j].Price;
                             if (price != "0") {
-                                // price = price.substring(1, price.length);
                                 price = parseFloat(price);
                                 if (price == NaN) {
                                     price = 0;
@@ -126,22 +126,17 @@
                                 var rpd = {
                                     x: price, y: rating, appName: responseData[j]['App Name']
                                 };
-
-                                // rpd.push(responseData[j].Price);
-                                // rpd.push(responseData[j].Rating);
                                 ratingPriceData.push(rpd);
                             }
 
                             if (responseData[j].Size != "Varies with device") {
                                 var size = responseData[j].Size;
-                                // size = size.replace("M", "");
                                 size = parseInt(size);
                                 if (size > 4) {
                                     var ipd = {
                                         x: size, y: parseFloat(responseData[j].Rating), appName: responseData[j]['App Name']
                                     };
-                                    // ipd.push(size);
-                                    // ipd.push(responseData[j].Rating);
+                                 
                                     installPriceData.push(ipd);
                                 }
                             }
@@ -155,8 +150,6 @@
                 }
                 seriesOptions.push(series1);
                 seriesOptions.push(series2);
-
-                console.log(seriesOptions[0][0]);
                 plotChart(seriesOptions[0]);
                 changeAxis("price");
                 EasyLoading.hide();
@@ -216,7 +209,6 @@
                         }
                     },
                     tooltip: {
-                        // headerFormat: '<b>{point.appName}</b><br/>'
                         headerFormat: '<b>Category : {series.name}</b><br>',
                         pointFormat: '<b> App Name : {point.appName}</b><br> {point.x} ,  {point.y}'
 
