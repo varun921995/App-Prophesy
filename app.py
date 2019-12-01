@@ -31,27 +31,6 @@ def create_app():
     return app
 
 
-# def getInstallationModel():
-#     print("----",cleanedData)
-#     return cleanedData
-# app = Flask(__name__)
-
-
-
-# @app.route("/sunburst")
-# def sunburstGraph():
-#     return render_template('sunburst.html')
-
-# @app.route("/radialGraph")
-# def radialGraph():
-#     return render_template('radialGraph.html')
-
-# @app.route('/getfile', methods=['GET','POST'])
-# def getfile():
-#         with open("templates/winequality-red.csv") as f:
-#             file_content = f.read()
-#         return file_content 
-
 if __name__ == "__main__":
     create_app()
     

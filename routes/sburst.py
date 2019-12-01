@@ -1,14 +1,16 @@
+#Author Vishnu
 import json
-
 from flask import Flask, render_template, Blueprint
 import pandas as pd
 import numpy as np
+from flask import jsonify
 
 sunburst = Blueprint('sunburst',__name__)
 
+# Vishnu : url to render sunburst page
+
 @sunburst.route("/sunburstpage")
 def index():
-    print("here")
     df = pd.read_csv('dataset/processed.csv')
     df = df[['App Name','Category','Installs','Type','Content Rating','Rating']]
     df['Content Rating'] = df['Content Rating'].str.lower()
@@ -19,7 +21,6 @@ def index():
     list5 = df['Content Rating'].tolist()
     list9 = df['Category'].tolist()
     list6 = df['Type'].tolist()
-    print(list6[2])
     
     list7 =[]
     list8 = []
@@ -45,22 +46,22 @@ def index():
             list10.append(list9[i])
 
         elif((list5[i] == 'teen') and (list6[i] == 'Paid')):
-            print(2)
+          
             list7.append(list5[i])
             list11.append(list9[i])
         elif((list5[i] == 'everyone10+') and (list6[i] == 'Paid')):
-            print(3)
+           
             list7.append(list5[i])
             list12.append(list9[i])
         elif((list5[i] == 'mature17+') and (list6[i] == 'Paid')):
-             print(4)
+           
              list7.append(list5[i])
              list13.append(list9[i])
         elif((list5[i] == 'adultsonly18+') and (list6[i] == 'Paid')):
-             print(5)
+            
              list7.append(list5[i])
         elif((list5[i] == 'unrated') and (list6[i] == 'Paid')):
-             print(6)
+            
              list7.append(list5[i])
     for j in range(le):
        
@@ -244,8 +245,7 @@ def index():
     chart_data12 =  df_fc6.to_dict(orient='records')
     chart_data12 = json.dumps(chart_data12, indent=2)
     data12 = {'chart_data12': chart_data12}
-   # chart_data13= json.dumps(topAppsDict, indent=2)
-   # data13 = {'chart_data13': chart_data13}
+
     chart_data13 =  df_app.to_dict(orient='records')
     chart_data13 = json.dumps(chart_data13, indent=2)
     data13 = {'chart_data13': chart_data13}
@@ -253,10 +253,6 @@ def index():
     chart_data14 =  df_app1.to_dict(orient='records')
     chart_data14 = json.dumps(chart_data14, indent=2)
     data14 = {'chart_data14': chart_data14}
-
-
-    #data13 = {'topAppsDict':topAppsDict}
-    #Forming dataframe of price 
     new_dict = df['Type'].value_counts()
     df5 = pd.DataFrame(list(new_dict.iteritems()),
                       columns=['price','count'])
@@ -270,6 +266,4 @@ def index():
     return render_template("sunburst.html", data=data,data2 = topAppsDict)
 
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
 

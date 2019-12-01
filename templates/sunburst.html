@@ -1,43 +1,44 @@
+<!-- Author Vishnu -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Sunburst</title>
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
-  <!-- Bootstrap core CSS     -->
-  <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/bootstrap.min.css" rel="stylesheet" />
-  <!--  Paper Dashboard core CSS    -->
-  <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/paper-dashboard.css" rel="stylesheet" />
-  <!--  CSS for Demo Purpose, don't include it in your project     -->
-  <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/demo.css" rel="stylesheet" />
-  <link href="static/assets/css/easy-loading.min.css" rel="stylesheet" />
+    <title>Sunburst</title>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS     -->
+    <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!--  Paper Dashboard core CSS    -->
+    <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/paper-dashboard.css" rel="stylesheet" />
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/demo.css" rel="stylesheet" />
+    <link href="static/assets/css/easy-loading.min.css" rel="stylesheet" />
 
-  <!--  Fonts and icons     -->
-  <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/themify-icons.css" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-  <meta charset="UTF-8">
+    <!--  Fonts and icons     -->
+    <link href="https://demos.creative-tim.com/bs3/paper-dashboard/assets/css/themify-icons.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-   
+
 </head>
 
 <body>
-  <div class="wrapper">
-    {% include 'sidebar.html' %}
-    <div class="main-panel">
-      {% include 'navbar.html' %}
-      <div class="container-fluid" style="margin-top: 1%;">
-        <div id="container"></div>
+    <div class="wrapper">
+        {% include 'sidebar.html' %}
+        <div class="main-panel">
+            {% include 'navbar.html' %}
+            <div class="container-fluid" style="margin-top: 1%;">
+                <div id="container"></div>
 
+            </div>
         </div>
     </div>
-</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 
 <script src="static/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
 <script src="static/assets/js/paper-dashboard.js"></script>
@@ -54,3033 +55,2987 @@
 
 <script>
 
-$(document).ready(function(){
-    $('#navBrand').html("Sunburst");
-    $("li").removeClass("active");
-    $("#sunburst").addClass("active");
-})
+    $(document).ready(function () {
+        $('#navBrand').html("Sunburst");
+        $("li").removeClass("active");
+        $("#sunburst").addClass("active");
+    })
 
     var graphData = {{ data.chart_data | safe }};
     var graphData1 = {{ data.chart_data1 | safe }}; //paid
-    var graphData2 = {{ data.chart_data2 | safe }}; 
-    var graphData4 = {{ data.chart_data3 | safe }}; 
-    var graphData6 = {{ data.chart_data4 | safe }}; 
-    var graphData8 = {{ data.chart_data5 | safe }}; 
-    var graphData10 = {{ data.chart_data6 | safe }}; 
-    var graphData12 = {{ data.chart_data7 | safe }}; 
-    var graphData14 = {{ data.chart_data8 | safe }}; 
-    var graphData16 = {{ data.chart_data9 | safe }}; 
-    var graphData18 = {{ data.chart_data10 | safe }}; 
-    var graphData20 = {{ data.chart_data11 | safe }}; 
+    var graphData2 = {{ data.chart_data2 | safe }};
+    var graphData4 = {{ data.chart_data3 | safe }};
+    var graphData6 = {{ data.chart_data4 | safe }};
+    var graphData8 = {{ data.chart_data5 | safe }};
+    var graphData10 = {{ data.chart_data6 | safe }};
+    var graphData12 = {{ data.chart_data7 | safe }};
+    var graphData14 = {{ data.chart_data8 | safe }};
+    var graphData16 = {{ data.chart_data9 | safe }};
+    var graphData18 = {{ data.chart_data10 | safe }};
+    var graphData20 = {{ data.chart_data11 | safe }};
     var graphData22 = {{ data.chart_data12 | safe }}
-    var graphData23 = {{ data.chart_data13 | safe }}; 
-    var graphData25 = {{ data.chart_data14 | safe }}; 
+    var graphData23 = {{ data.chart_data13 | safe }};
+    var graphData25 = {{ data.chart_data14 | safe }};
 
-
-
-    //console.log(graphData24)
-    console.log(graphData)
-    console.log(graphData1)
-   var graphData24 = JSON.parse(graphData23.chart_data13) //free
-    console.log(graphData24)
-    var graphData26 = JSON.parse(graphData25.chart_data14) //paid_app names
-    console.log(graphData26)
-   var graphData3 = JSON.parse(graphData2.chart_data2) //free
-   console.log(graphData3)
-
-   var graphData5 = JSON.parse(graphData4.chart_data3) //paid categories_teen
-   console.log(graphData5)
-   var graphData7 = JSON.parse(graphData6.chart_data4) //paid categories_everyone10+
-   console.log(graphData7)
-   var graphData9 = JSON.parse(graphData8.chart_data5) //paid categories_mature17+
-   console.log(graphData9)     
-   var graphData11 = JSON.parse(graphData10.chart_data6) //paid categories_everyone
-   console.log(graphData11)     
-   var graphData13 = JSON.parse(graphData12.chart_data7) //free categories_mature17+
-   console.log(graphData13)
-   var graphData15 = JSON.parse(graphData14.chart_data8) //free categories_teen
-   console.log(graphData15)
-   var graphData17 = JSON.parse(graphData16.chart_data9) //free categories_everyone
-   console.log(graphData17)
-   var graphData19 = JSON.parse(graphData18.chart_data10) //free categories_everyone10+
-   console.log(graphData19)
-   var graphData21 = JSON.parse(graphData20.chart_data11) //free categories_unrated 
-   console.log(graphData21)
-   var graphData23 = JSON.parse(graphData22.chart_data12) //free categories_adultsonly18+
-   console.log(graphData23)
-   
-
-var customData = []
     
-var data = [{
-id: '0.0',
-parent: '',
-name: 'The App'
-}, {
-id: '1.2',
-parent: '0.0',
-name: graphData[1].price,
-value1:graphData[1].percentage.toFixed(2)
-
-}, {
-id: '1.1',
-parent: '0.0',
-name:  graphData[0].price,
-value1:graphData[0].percentage.toFixed(2)
-
-}, 
-/* Africa */
-{
-id: '2.1',
-parent: '1.1',
-name: graphData3[4].content
-},
-
-{
-id: '3.1',
-parent: '2.1',
-name: graphData13[0].category,
-value: 104957438
-},{
-id: '4.100',
-parent: '3.1',
-name: graphData24[0].Apps,
-value: 104957438
-},{
-id: '4.101',
-parent: '3.1',
-name: graphData24[1].Apps,
-value: 104957438
-},
-{
-id: '3.2',
-parent: '2.1',
-name: graphData13[1].category,
-value: 57310019
-},{
-id: '4.102',
-parent: '3.2',
-name: graphData24[2].Apps,
-value: 104957438
-},{
-id: '4.103',
-parent: '3.2',
-name: graphData24[3].Apps,
-value: 104957438
-},
-{
-id: '3.3',
-parent: '2.1',
-name: graphData13[2].category,
-value: 49699862
-}, {
-id: '4.104',
-parent: '3.3',
-name: graphData24[4].Apps,
-value: 104957438
-},{
-id: '4.105',
-parent: '3.3',
-name: graphData24[7].Apps,
-value: 104957438
-},
-{
-id: '3.4',
-parent: '2.1',
-name: graphData13[3].category,
-value: 42862958
-},{
-id: '4.106',
-parent: '3.4',
-name: graphData24[9].Apps,
-value: 104957438
-},{
-id: '4.107',
-parent: '3.4',
-name: graphData24[10].Apps,
-value: 104957438
-},
-{
-id: '3.5',
-parent: '2.1',
-name: graphData13[4].category,
-value: 29668834
-}, {
-id: '4.108',
-parent: '3.5',
-name: graphData24[11].Apps,
-value: 104957438
-}, {
-id: '4.109',
-parent: '3.5',
-name: graphData24[12].Apps,
-value: 104957438
-},
-{
-id: '3.6',
-parent: '2.1',
-name: graphData13[5].category,
-value: 25570895
-}, {
-id: '4.110',
-parent: '3.6',
-name: graphData24[13].Apps,
-value: 104957438
-},{
-id: '4.111',
-parent: '3.6',
-name: graphData24[14].Apps,
-value: 104957438
-}, 
-{
-id: '3.7',
-parent: '2.1',
-name: graphData13[6].category,
-value: 18622104
-},{
-id: '4.112',
-parent: '3.7',
-name: graphData24[15].Apps,
-value: 104957438
-}, {
-id: '4.113',
-parent: '3.7',
-name: graphData24[16].Apps,
-value: 104957438
-}, 
-{
-id: '3.8',
-parent: '2.1',
-name: graphData13[7].category,
-value: 17094130
-}, {
-id: '4.114',
-parent: '3.8',
-name: graphData24[17].Apps,
-value: 104957438
-}, {
-id: '4.115',
-parent: '3.8',
-name: graphData24[18].Apps,
-value: 104957438
-}, 
-{
-id: '3.9',
-parent: '2.1',
-name: graphData13[8].category,
-value: 16529904
-},{
-id: '4.115',
-parent: '3.9',
-name: graphData24[19].Apps,
-value: 104957438
-},{
-id: '4.116',
-parent: '3.9',
-name: graphData24[20].Apps,
-value: 104957438
-}, {
-id: '3.10',
-parent: '2.1',
-name: graphData13[9].category,
-value: 14742523
-},{
-id: '4.116',
-parent: '3.10',
-name: graphData24[21].Apps,
-value: 104957438
-},{
-id: '4.117',
-parent: '3.10',
-name: graphData24[22].Apps,
-value: 104957438
-},
-{
-id: '3.11',
-parent: '2.1',
-name: graphData13[10].category,
-value: 12575714
-},{
-id: '4.118',
-parent: '3.11',
-name: graphData24[23].Apps,
-value: 104957438
-},{
-id: '4.119',
-parent: '3.11',
-name: graphData24[23].Apps,
-value: 104957438
-}, {
-id: '3.12',
-parent: '2.1',
-name: graphData13[11].category,
-value: 12208407
-},{
-id: '4.120',
-parent: '3.12',
-name: graphData24[24].Apps,
-value: 104957438
-},{
-id: '4.121',
-parent: '3.12',
-name: graphData24[25].Apps,
-value: 104957438
-}, {
-id: '3.13',
-parent: '2.1',
-name: graphData13[12].category,
-value: 10864245
-},{
-id: '4.122',
-parent: '3.13',
-name: graphData24[26].Apps,
-value: 104957438
-},{
-id: '4.123',
-parent: '3.13',
-name: graphData24[27].Apps,
-value: 104957438
-}, {
-id: '3.14',
-parent: '2.1',
-name: graphData13[13].category,
-value: 5068831
-},{
-id: '4.124',
-parent: '3.14',
-name: graphData24[28].Apps,
-value: 104957438
-},{
-id: '4.125',
-parent: '3.14',
-name: graphData24[29].Apps,
-value: 104957438
-}, {
-id: '3.15',
-parent: '2.1',
-name: graphData13[14].category,
-value: 1265138
-},{
-id: '4.126',
-parent: '3.15',
-name: graphData24[31].Apps,
-value: 104957438
-},{
-id: '4.127',
-parent: '3.15',
-name: graphData24[33].Apps,
-value: 104957438
-}, {
-id: '3.16',
-parent: '2.1',
-name: graphData13[15].category,
-value: 956985
-},{
-id: '4.128',
-parent: '3.16',
-name: graphData24[34].Apps,
-value: 104957438
-},{
-id: '4.129',
-parent: '3.16',
-name: graphData24[35].Apps,
-value: 104957438
-}, {
-id: '3.17',
-parent: '2.1',
-name: graphData13[16].category,
-value: 876562
-}, {
-id: '4.130',
-parent: '3.17',
-name: graphData24[36].Apps,
-value: 104957438
-},{
-id: '4.131',
-parent: '3.18',
-name: graphData24[37].Apps,
-value: 104957438
-}, {
-id: '3.18',
-parent: '2.1',
-name: graphData13[17].category,
-value: 813912
-}, {
-id: '3.19',
-parent: '2.1',
-name: graphData13[18].category,
-value: 253045
-},{
-id: '4.132',
-parent: '3.19',
-name: graphData24[38].Apps,
-value: 104957438
-},{
-id: '4.133',
-parent: '3.19',
-name: graphData24[39].Apps,
-value: 104957438
-}, {
-id: '3.20',
-parent: '2.1',
-name: graphData13[19].category,
-value: 94737
-}, {
-id: '4.133',
-parent: '3.20',
-name: graphData24[40].Apps,
-value: 104957438
-},{
-id: '4.133',
-parent: '3.20',
-name: graphData24[41].Apps,
-value: 104957438
-},{
-id: '3.21',
-parent: '2.1',
-name: graphData13[20].category,
-value: 94737
-},{
-id: '4.134',
-parent: '3.21',
-name: graphData24[42].Apps,
-value: 104957438
-},{
-id: '4.135',
-parent: '3.21',
-name: graphData24[43].Apps,
-value: 104957438
-}, {
-id: '3.22',
-parent: '2.1',
-name: graphData13[21].category,
-value: 94737
-},{
-id: '4.136',
-parent: '3.22',
-name: graphData24[44].Apps,
-value: 104957438
-},{
-id: '4.137',
-parent: '3.22',
-name: graphData24[45].Apps,
-value: 104957438
-},
-{
-id: '3.23',
-parent: '2.1',
-name: graphData13[22].category,
-value: 94737
-},{
-id: '4.138',
-parent: '3.23',
-name: graphData24[46].Apps,
-value: 104957438
-},{
-id: '4.139',
-parent: '3.23',
-name: graphData24[47].Apps,
-value: 104957438
-},
-{
-id: '3.24',
-parent: '2.1',
-name: graphData13[23].category,
-value: 94737
-},{
-id: '4.140',
-parent: '3.24',
-name: graphData24[48].Apps,
-value: 104957438
-},
-{
-id: '3.25',
-parent: '2.1',
-name: graphData13[24].category,
-value: 94737
-},{
-id: '4.141',
-parent: '3.25',
-name: graphData24[49].Apps,
-value: 104957438
-},{
-id: '4.142',
-parent: '3.25',
-name: graphData24[50].Apps,
-value: 104957438
-},{
-id: '3.26',
-parent: '2.1',
-name: graphData13[25].category,
-value: 94737
-},{
-id: '4.143',
-parent: '3.26',
-name: graphData24[51].Apps,
-value: 104957438
-},{
-id: '4.144',
-parent: '3.26',
-name: graphData24[52].Apps,
-value: 104957438
-},{
-id: '3.27',
-parent: '2.1',
-name: graphData13[26].category,
-value: 94737
-},{
-id: '4.145',
-parent: '3.27',
-name: graphData24[53].Apps,
-value: 104957438
-},{
-id: '4.146',
-parent: '3.27',
-name: graphData24[54].Apps,
-value: 104957438
-},{
-id: '3.28',
-parent: '2.1',
-name: graphData13[27].category,
-value: 94737
-},{
-id: '4.147',
-parent: '3.28',
-name: graphData24[55].Apps,
-value: 104957438
-},{
-id: '4.148',
-parent: '3.28',
-name: graphData24[56].Apps,
-value: 104957438
-},{
-id: '3.29',
-parent: '2.1',
-name: graphData13[28].category,
-value: 94737
-},{
-id: '4.149',
-parent: '3.29',
-name: graphData24[57].Apps,
-value: 104957438
-},{
-id: '4.150',
-parent: '3.29',
-name: graphData24[58].Apps,
-value: 104957438
-},{
-id: '3.30',
-parent: '2.1',
-name: graphData13[29].category,
-value: 94737
-},{
-id: '4.151',
-parent: '3.30',
-name: graphData24[59].Apps,
-value: 104957438
-},{
-id: '4.152',
-parent: '3.30',
-name: graphData24[60].Apps,
-value: 104957438
-},{
-id: '3.31',
-parent: '2.1',
-name: graphData13[30].category,
-value: 94737
-},{
-id: '4.153',
-parent: '3.31',
-name: graphData24[61].Apps,
-value: 104957438
-},{
-id: '4.154',
-parent: '3.31',
-name: graphData24[62].Apps,
-value: 104957438
-},
-{
-id: '3.32',
-parent: '2.1',
-name: graphData13[31].category,
-value: 94737
-},{
-id: '4.155',
-parent: '3.32',
-name: graphData24[63].Apps,
-value: 104957438
-},{
-id: '4.156',
-parent: '3.32',
-name: graphData24[64].Apps,
-value: 104957438
-},{
-id: '3.33',
-parent: '2.1',
-name: graphData13[32].category,
-value: 94737
-},{
-id: '4.157',
-parent: '3.33',
-name: graphData24[65].Apps,
-value: 104957438
-},
-
-{
-id: '2.5',                         //content of free    
-parent: '1.1',
-name: graphData3[1].content
-},
-
-{
-id: '3.42',
-parent: '2.5',
-name: graphData15[0].category,
-value: 1090886311
-},
-{
-id: '4.158',
-parent: '3.42',
-name: graphData24[66].Apps,
-value: 109088655
-},{
-id: '4.159',
-parent: '3.42',
-name: graphData24[67].Apps,
-value: 109088655
-}, {
-id: '3.43',
-parent: '2.5',
-name: graphData15[1].category,
-value: 128833629
-},{
-id: '4.160',
-parent: '3.43',
-name: graphData24[69].Apps,
-value: 109088655
-}, {
-id: '4.161',
-parent: '3.43',
-name: graphData24[70].Apps,
-value: 109088655
-},{
-id: '3.44',
-parent: '2.5',
-name: graphData15[2].category,
-value: 124294750
-}, {
-id: '4.162',
-parent: '3.44',
-name: graphData24[71].Apps,
-value: 109088655
-}, {
-id: '4.163',
-parent: '3.44',
-name: graphData24[72].Apps,
-value: 109088655
-}, {
-id: '3.45',
-parent: '2.5',
-name:  graphData15[3].category,
-value: 121477348
-},{
-id: '4.164',
-parent: '3.45',
-name: graphData24[73].Apps,
-value: 109088655
-},{
-id: '4.165',
-parent: '3.45',
-name: graphData24[74].Apps,
-value: 109088655
-}, {
-id: '3.46',
-parent: '2.5',
-name:  graphData15[4].category,
-value: 19193382
-}, {
-id: '4.166',
-parent: '3.46',
-name: graphData24[75].Apps,
-value: 109088655
-},
-{
-id: '4.166',
-parent: '3.46',
-name: graphData24[76].Apps,
-value: 109088655
-},{
-id: '3.47',
-parent: '2.5',
-name:  graphData15[5].category,
-value: 18541980
-},{
-id: '4.166',
-parent: '3.47',
-name: graphData24[77].Apps,
-value: 109088655
-},{
-id: '4.167',
-parent: '3.47',
-name: graphData24[78].Apps,
-value: 109088655
-}, {
-id: '3.48',
-parent: '2.5',
-name:  graphData15[6].category,
-value: 15850567
-}, {
-id: '4.168',
-parent: '3.48',
-name: graphData24[79].Apps,
-value: 109088655
-},{
-id: '4.169',
-parent: '3.48',
-name: graphData24[81].Apps,
-value: 109088655
-},{
-id: '3.49',
-parent: '2.5',
-name:  graphData15[7].category,
-value: 12717176
-},{
-id: '4.170',
-parent: '3.49',
-name: graphData24[82].Apps,
-value: 109088655
-}, {
-id: '4.171',
-parent: '3.49',
-name: graphData24[83].Apps,
-value: 109088655
-},{
-id: '3.50',
-parent: '2.5',
-name:  graphData15[8].category,
-value: 11175692
-}, {
-id: '4.172',
-parent: '3.50',
-name: graphData24[84].Apps,
-value: 109088655
-},  {
-id: '4.172',
-parent: '3.50',
-name: graphData24[85].Apps,
-value: 109088655
-},{
-id: '3.51',
-parent: '2.5',
-name:  graphData15[9].category,
-value: 7797694
-}, {
-id: '4.173',
-parent: '3.51',
-name: graphData24[87].Apps,
-value: 109088655
-},{
-id: '4.174',
-parent: '3.51',
-name: graphData24[88].Apps,
-value: 109088655
-}, {
-id: '3.52',
-parent: '2.5',
-name:  graphData15[10].category,
-value: 7557212
-},{
-id: '4.175',
-parent: '3.52',
-name: graphData24[90].Apps,
-value: 109088655
-}, {
-id: '4.176',
-parent: '3.52',
-name: graphData24[91].Apps,
-value: 109088655
-},{
-id: '3.53',
-parent: '2.5',
-name:  graphData15[11].category,
-value: 4731906
-}, {
-id: '4.176',
-parent: '3.53',
-name: graphData24[92].Apps,
-value: 109088655
-}, {
-id: '4.177',
-parent: '3.53',
-name: graphData24[93].Apps,
-value: 109088655
-}, {
-id: '3.54',
-parent: '2.5',
-name:  graphData15[12].category,
-value: 4420184
-},{
-id: '4.178',
-parent: '3.54',
-name: graphData24[94].Apps,
-value: 109088655
-},{
-id: '4.179',
-parent: '3.54',
-name: graphData24[95].Apps,
-value: 109088655
-},   {
-id: '3.55',
-parent: '2.5',
-name:  graphData15[13].category,
-value: 2100568
-},{
-id: '4.180',
-parent: '3.55',
-name: graphData24[96].Apps,
-value: 109088655
-}, {
-id: '4.181',
-parent: '3.55',
-name: graphData24[97].Apps,
-value: 109088655
-},  {
-id: '3.56',
-parent: '2.5',
-name:  graphData15[14].category,
-value: 1861283
-}, {
-id: '4.182',
-parent: '3.56',
-name: graphData24[98].Apps,
-value: 109088655
-}, {
-id: '4.183',
-parent: '3.56',
-name: graphData24[99].Apps,
-value: 109088655
-}, {
-id: '3.57',
-parent: '2.5',
-name:  graphData15[15].category,
-value: 546388
-},{
-id: '4.184',
-parent: '3.57',
-name: graphData24[100].Apps,
-value: 109088655
-},{
-id: '4.185',
-parent: '3.57',
-name: graphData24[101].Apps,
-value: 109088655
-}, {
-id: '3.58',
-parent: '2.5',
-name:  graphData15[16].category,
-value: 4049
-},{
-id: '4.186',
-parent: '3.58',
-name: graphData24[102].Apps,
-value: 109088655
-},  {
-id: '4.187',
-parent: '3.58',
-name: graphData24[103].Apps,
-value: 109088655
-}, {
-id: '3.59',
-parent: '2.5',
-name:  graphData15[17].category,
-value: 4049
-}, {
-id: '4.188',
-parent: '3.59',
-name: graphData24[104].Apps,
-value: 109088655
-},{
-id: '4.189',
-parent: '3.59',
-name: graphData24[105].Apps,
-value: 109088655
-}, {
-id: '3.60',
-parent: '2.5',
-name:  graphData15[18].category,
-value: 4049
-},{
-id: '4.190',
-parent: '3.60',
-name: graphData24[107].Apps,
-value: 109088655
-}, {
-id: '4.191',
-parent: '3.60',
-name: graphData24[108].Apps,
-value: 109088655
-},{
-id: '3.61',
-parent: '2.5',
-name:  graphData15[19].category,
-value: 4049
-}, {
-id: '4.192',
-parent: '3.61',
-name: graphData24[109].Apps,
-value: 109088655
-},{
-id: '4.193',
-parent: '3.61',
-name: graphData24[111].Apps,
-value: 109088655
-},{
-id: '3.62',
-parent: '2.5',
-name:  graphData15[20].category,
-value: 4049
-},{
-id: '4.194',
-parent: '3.62',
-name: graphData24[112].Apps,
-value: 109088655
-},{
-id: '4.195',
-parent: '3.62',
-name: graphData24[113].Apps,
-value: 109088655
-},{
-id: '3.63',
-parent: '2.5',
-name:  graphData15[21].category,
-value: 4049
-},{
-id: '4.196',
-parent: '3.63',
-name: graphData24[114].Apps,
-value: 109088655
-},{
-id: '4.197',
-parent: '3.63',
-name: graphData24[115].Apps,
-value: 109088655
-},{
-id: '3.64',
-parent: '2.5',
-name:  graphData15[22].category,
-value: 4049
-},{
-id: '4.198',
-parent: '3.64',
-name: graphData24[117].Apps,
-value: 109088655
-},{
-id: '4.199',
-parent: '3.64',
-name: graphData24[118].Apps,
-value: 109088655
-},{
-id: '3.65',
-parent: '2.5',
-name:  graphData15[23].category,
-value: 4049
-},{
-id: '4.200',
-parent: '3.65',
-name: graphData24[119].Apps,
-value: 109088655
-},{
-id: '4.201',
-parent: '3.65',
-name: graphData24[120].Apps,
-value: 109088655
-},{
-id: '3.66',
-parent: '2.5',
-name:  graphData15[24].category,
-value: 4049
-},{
-id: '4.202',
-parent: '3.66',
-name: graphData24[121].Apps,
-value: 109088655
-},{
-id: '4.203',
-parent: '3.66',
-name: graphData24[122].Apps,
-value: 109088655
-},{
-id: '3.67',
-parent: '2.5',
-name:  graphData15[25].category,
-value: 4049
-},{
-id: '4.204',
-parent: '3.67',
-name: graphData24[123].Apps,
-value: 109088655
-},{
-id: '4.205',
-parent: '3.67',
-name: graphData24[124].Apps,
-value: 109088655
-},{
-id: '3.68',
-parent: '2.5',
-name:  graphData15[26].category,
-value: 4049
-},{
-id: '4.206',
-parent: '3.68',
-name: graphData24[125].Apps,
-value: 109088655
-},{
-id: '4.207',
-parent: '3.68',
-name: graphData24[126].Apps,
-value: 109088655
-},{
-id: '3.69',
-parent: '2.5',
-name:  graphData15[27].category,
-value: 4049
-},{
-id: '4.208',
-parent: '3.69',
-name: graphData24[127].Apps,
-value: 109088655
-},{
-id: '4.209',
-parent: '3.69',
-name: graphData24[128].Apps,
-value: 109088655
-},
-{
-id: '3.70',
-parent: '2.5',
-name:  graphData15[28].category,
-value: 4049
-},{
-id: '4.210',
-parent: '3.70',
-name: graphData24[130].Apps,
-value: 109088655
-},{
-id: '4.211',
-parent: '3.70',
-name: graphData24[131].Apps,
-value: 109088655
-},{
-id: '3.71',
-parent: '2.5',
-name:  graphData15[29].category,
-value: 4049
-},{
-id: '4.212',
-parent: '3.71',
-name: graphData24[133].Apps,
-value: 109088655
-},{
-id: '4.213',
-parent: '3.71',
-name: graphData24[134].Apps,
-value: 109088655
-},
-{
-id: '3.72',
-parent: '2.5',
-name:  graphData15[30].category,
-value: 4049
-},{
-id: '4.214',
-parent: '3.72',
-name: graphData24[135].Apps,
-value: 109088655
-},{
-id: '4.215',
-parent: '3.72',
-name: graphData24[136].Apps,
-value: 109088655
-},
-{
-id: '3.73',
-parent: '2.5',
-name:  graphData15[31].category,
-value: 4049
-},{
-id: '4.216',
-parent: '3.73',
-name: graphData24[137].Apps,
-value: 109088655
-},{
-id: '4.217',
-parent: '3.73',
-name: graphData24[139].Apps,
-value: 109088655
-},
-
-{
-id: '2.3',
-parent: '1.1',
-name: graphData3[2].content
-},
-
-{
-id: '3.74',
-parent: '2.3',
-name: graphData17[0].category,
-value: 127553151
-},{
-id: '4.218',
-parent: '3.74',
-name: graphData24[140].Apps,
-value: 109088655
-},{
-id: '4.219',
-parent: '3.74',
-name: graphData24[249].Apps,
-value: 109088655
-}, {
-id: '3.75',
-parent: '2.3',
-name: graphData17[1].category,
-value: 141318142
-},{
-id: '4.220',
-parent: '3.75',
-name: graphData24[142].Apps,
-value: 109088655
-},{
-id: '4.221',
-parent: '3.75',
-name: graphData24[143].Apps,
-value: 109088655
-}, {
-id: '3.76',
-parent: '2.3',
-name: graphData17[2].category,
-value: 140533330
-},{
-id: '4.222',
-parent: '3.76',
-name: graphData24[144].Apps,
-value: 109088655
-},{
-id: '4.223',
-parent: '3.76',
-name: graphData24[145].Apps,
-value: 109088655
-}, {
-id: '3.77',
-parent: '2.3',
-name: graphData17[3].category,
-value: 135739580
-},{
-id: '4.224',
-parent: '3.77',
-name: graphData24[147].Apps,
-value: 109088655
-}, {
-id: '4.225',
-parent: '3.77',
-name: graphData24[161].Apps,
-value: 109088655
-},{
-id: '3.78',
-parent: '2.3',
-name: graphData17[4].category,
-value: 111532127
-}, {
-id: '4.226',
-parent: '3.78',
-name: graphData24[150].Apps,
-value: 109088655
-},{
-id: '4.227',
-parent: '3.78',
-name: graphData24[163].Apps,
-value: 109088655
-}, {
-id: '3.79',
-parent: '2.3',
-name:graphData17[5].category,
-value: 16374616
-},{
-id: '4.228',
-parent: '3.79',
-name: graphData24[152].Apps,
-value: 109088655
-},{
-id: '4.229',
-parent: '3.79',
-name: graphData24[153].Apps,
-value: 109088655
-}, {
-id: '3.80',
-parent: '2.3',
-name: graphData17[6].category,
-value: 14552628
-},{
-id: '4.230',
-parent: '3.80',
-name: graphData24[154].Apps,
-value: 109088655
-},{
-id: '4.231',
-parent: '3.80',
-name: graphData24[156].Apps,
-value: 109088655
-}, {
-id: '3.81',
-parent: '2.3',
-name: graphData17[7].category,
-value: 14552628
-}, {
-id: '4.232',
-parent: '3.81',
-name: graphData24[157].Apps,
-value: 109088655
-},{
-id: '4.233',
-parent: '3.81',
-name: graphData24[158].Apps,
-value: 109088655
-},{
-id: '3.82',
-parent: '2.3',
-name: graphData17[8].category,
-value: 4552628
-},{
-id: '4.234',
-parent: '3.82',
-name: graphData24[159].Apps,
-value: 109088655
-},{
-id: '4.235',
-parent: '3.82',
-name: graphData24[160].Apps,
-value: 109088655
-}, {
-id: '3.83',
-parent: '2.3',
-name: graphData17[9].category,
-value: 4552628
-},{
-id: '4.236',
-parent: '3.83',
-name: graphData24[161].Apps,
-value: 109088655
-},{
-id: '4.237',
-parent: '3.83',
-name: graphData24[162].Apps,
-value: 109088655
-},{
-id: '3.84',
-parent: '2.3',
-name: graphData17[10].category,
-value: 4552628
-},{
-id: '4.238',
-parent: '3.84',
-name: graphData24[163].Apps,
-value: 109088655
-},{
-id: '4.239',
-parent: '3.84',
-name: graphData24[164].Apps,
-value: 109088655
-},{
-id: '3.85',
-parent: '2.3',
-name: graphData17[11].category,
-value: 4552628
-},{
-id: '4.240',
-parent: '3.85',
-name: graphData24[166].Apps,
-value: 109088655
-},{
-id: '4.241',
-parent: '3.85',
-name: graphData24[167].Apps,
-value: 109088655
-},{
-id: '3.86',
-parent: '2.3',
-name: graphData17[12].category,
-value: 4552628
-},{
-id: '4.242',
-parent: '3.86',
-name: graphData24[168].Apps,
-value: 109088655
-},{
-id: '4.243',
-parent: '3.86',
-name: graphData24[169].Apps,
-value: 109088655
-},{
-id: '3.87',
-parent: '2.3',
-name: graphData17[13].category,
-value: 4552628
-},{
-id: '4.243',
-parent: '3.87',
-name: graphData24[170].Apps,
-value: 109088655
-},{
-id: '4.244',
-parent: '3.87',
-name: graphData24[171].Apps,
-value: 109088655
-},{
-id: '3.88',
-parent: '2.3',
-name: graphData17[14].category,
-value: 4552628
-},{
-id: '4.245',
-parent: '3.88',
-name: graphData24[172].Apps,
-value: 109088655
-},{
-id: '4.246',
-parent: '3.88',
-name: graphData24[174].Apps,
-value: 109088655
-},{
-id: '3.89',
-parent: '2.3',
-name: graphData17[15].category,
-value: 4552628
-},{
-id: '4.247',
-parent: '3.89',
-name: graphData24[175].Apps,
-value: 109088655
-},{
-id: '4.248',
-parent: '3.89',
-name: graphData24[176].Apps,
-value: 109088655
-},{
-id: '3.90',
-parent: '2.3',
-name: graphData17[16].category,
-value: 4552628
-},{
-id: '4.249',
-parent: '3.90',
-name: graphData24[177].Apps,
-value: 109088655
-},{
-id: '4.250',
-parent: '3.90',
-name: graphData24[178].Apps,
-value: 109088655
-},{
-id: '3.91',
-parent: '2.3',
-name: graphData17[17].category,
-value: 4552628
-},{
-id: '4.251',
-parent: '3.91',
-name: graphData24[179].Apps,
-value: 109088655
-},{
-id: '4.252',
-parent: '3.91',
-name: graphData24[180].Apps,
-value: 109088655
-},{
-id: '3.92',
-parent: '2.3',
-name: graphData17[18].category,
-value: 4552628
-},{
-id: '4.253',
-parent: '3.92',
-name: graphData24[181].Apps,
-value: 109088655
-},{
-id: '4.254',
-parent: '3.92',
-name: graphData24[182].Apps,
-value: 109088655
-},{
-id: '3.93',
-parent: '2.3',
-name: graphData17[19].category,
-value: 4552628
-},{
-id: '4.255',
-parent: '3.93',
-name: graphData24[183].Apps,
-value: 109088655
-},{
-id: '4.256',
-parent: '3.93',
-name: graphData24[184].Apps,
-value: 109088655
-},{
-id: '3.94',
-parent: '2.3',
-name: graphData17[20].category,
-value: 4552628
-},{
-id: '4.257',
-parent: '3.94',
-name: graphData24[185].Apps,
-value: 109088655
-},{
-id: '4.258',
-parent: '3.94',
-name: graphData24[186].Apps,
-value: 109088655
-},{
-id: '3.95',
-parent: '2.3',
-name: graphData17[21].category,
-value: 4552628
-},{
-id: '4.259',
-parent: '3.95',
-name: graphData24[187].Apps,
-value: 109088655
-},{
-id: '4.260',
-parent: '3.95',
-name: graphData24[188].Apps,
-value: 109088655
-},{
-id: '3.96',
-parent: '2.3',
-name: graphData17[22].category,
-value: 4552628
-},{
-id: '4.261',
-parent: '3.96',
-name: graphData24[190].Apps,
-value: 109088655
-},{
-id: '4.262',
-parent: '3.96',
-name: graphData24[191].Apps,
-value: 109088655
-},{
-id: '3.97',
-parent: '2.3',
-name: graphData17[23].category,
-value: 4552628
-},{
-id: '4.263',
-parent: '3.97',
-name: graphData24[192].Apps,
-value: 109088655
-},{
-id: '4.264',
-parent: '3.97',
-name: graphData24[193].Apps,
-value: 109088655
-},
-
-
-{
-id: '2.2',
-parent: '1.1',
-name: graphData3[5].content
-},
-
-{
-id: '3.98',
-parent: '2.2',
-name: graphData19[0].category,
-value: 14339988
-},{
-id: '4.265',
-parent: '3.98',
-name: graphData24[194].Apps,
-value: 109088655
-},{
-id: '4.266',
-parent: '3.98',
-name: graphData24[195].Apps,
-value: 109088655
-}, {
-id: '3.99',
-parent: '2.2',
-name: graphData19[1].category,
-value: 14784193
-},{
-id: '4.267',
-parent: '3.99',
-name: graphData24[200].Apps,
-value: 109088655
-},{
-id: '4.268',
-parent: '3.99',
-name: graphData24[201].Apps,
-value: 109088655
-}, {
-id: '3.100',
-parent: '2.2',
-name: graphData19[2].category,
-value: 14053727
-},{
-id: '4.269',
-parent: '3.100',
-name: graphData24[199].Apps,
-value: 109088655
-},{
-id: '4.270',
-parent: '3.100',
-name: graphData24[200].Apps,
-value: 109088655
-}, {
-id: '3.101',
-parent: '2.2',
-name: graphData19[3].category,
-value: 4899994
-},{
-id: '4.271',
-parent: '3.101',
-name: graphData24[201].Apps,
-value: 109088655
-},{
-id: '4.272',
-parent: '3.101',
-name: graphData24[202].Apps,
-value: 109088655
-}, {
-id: '3.102',
-parent: '2.2',
-name: graphData19[4].category,
-value: 4260750
-},{
-id: '4.273',
-parent: '3.102',
-name: graphData24[203].Apps,
-value: 109088655
-},{
-id: '4.274',
-parent: '3.102',
-name: graphData24[204].Apps,
-value: 109088655
-}, {
-id: '3.103',
-parent: '2.2',
-name: graphData19[5].category,
-value: 4659080
-},{
-id: '4.275',
-parent: '3.103',
-name: graphData24[205].Apps,
-value: 109088655
-}, {
-id: '4.276',
-parent: '3.103',
-name: graphData24[206].Apps,
-value: 109088655
-},{
-id: '3.104',
-parent: '2.2',
-name: graphData19[6].category,
-value: 4025137
-},{
-id: '4.277',
-parent: '3.104',
-name: graphData24[207].Apps,
-value: 109088655
-}, {
-id: '4.278',
-parent: '3.104',
-name: graphData24[208].Apps,
-value: 109088655
-},{
-id: '3.105',
-parent: '2.2',
-name: graphData19[7].category,
-value: 4267689
-},{
-id: '4.279',
-parent: '3.105',
-name: graphData24[209].Apps,
-value: 109088655
-},{
-id: '4.280',
-parent: '3.105',
-name: graphData24[211].Apps,
-value: 109088655
-}, {
-id: '3.106',
-parent: '2.2',
-name: graphData19[8].category,
-value: 4204327
-},{
-id: '4.281',
-parent: '3.106',
-name: graphData24[212].Apps,
-value: 109088655
-},{
-id: '4.282',
-parent: '3.106',
-name: graphData24[213].Apps,
-value: 109088655
-}, {
-id: '3.107',
-parent: '2.2',
-name: graphData19[9].category,
-value: 4204327
-},{
-id: '4.283',
-parent: '3.107',
-name: graphData24[214].Apps,
-value: 109088655
-},{
-id: '4.284',
-parent: '3.107',
-name: graphData24[214].Apps,
-value: 109088655
-},{
-id: '3.108',
-parent: '2.2',
-name: graphData19[10].category,
-value: 4204327
-},{
-id: '4.285',
-parent: '3.108',
-name: graphData24[214].Apps,
-value: 109088655
-},{
-id: '4.286',
-parent: '3.108',
-name: graphData24[215].Apps,
-value: 109088655
-},{
-id: '3.109',
-parent: '2.2',
-name: graphData19[11].category,
-value: 4204327
-},{
-id: '4.287',
-parent: '3.109',
-name: graphData24[215].Apps,
-value: 109088655
-},{
-id: '4.288',
-parent: '3.109',
-name: graphData24[216].Apps,
-value: 109088655
-},{
-id: '3.110',
-parent: '2.2',
-name: graphData19[12].category,
-value: 4204327
-},{
-id: '4.289',
-parent: '3.110',
-name: graphData24[218].Apps,
-value: 109088655
-},{
-id: '4.290',
-parent: '3.110',
-name: graphData24[220].Apps,
-value: 109088655
-},{
-id: '3.111',
-parent: '2.2',
-name: graphData19[13].category,
-value: 4204327
-},{
-id: '4.291',
-parent: '3.111',
-name: graphData24[221].Apps,
-value: 109088655
-},{
-id: '4.292',
-parent: '3.111',
-name: graphData24[222].Apps,
-value: 109088655
-},
-{
-id: '3.112',
-parent: '2.2',
-name: graphData19[14].category,
-value: 4204327
-},{
-id: '4.293',
-parent: '3.112',
-name: graphData24[223].Apps,
-value: 109088655
-},{
-id: '4.294',
-parent: '3.112',
-name: graphData24[224].Apps,
-value: 109088655
-},{
-id: '3.113',
-parent: '2.2',
-name: graphData19[15].category,
-value: 4204327
-},{
-id: '4.295',
-parent: '3.113',
-name: graphData24[225].Apps,
-value: 109088655
-},{
-id: '4.296',
-parent: '3.113',
-name: graphData24[226].Apps,
-value: 109088655
-},{
-id: '3.114',
-parent: '2.2',
-name: graphData19[16].category,
-value: 4204327
-},{
-id: '4.297',
-parent: '3.114',
-name: graphData24[227].Apps,
-value: 109088655
-},{
-id: '4.298',
-parent: '3.114',
-name: graphData24[228].Apps,
-value: 109088655
-},{
-id: '3.115',
-parent: '2.2',
-name: graphData19[17].category,
-value: 4204327
-},{
-id: '4.299',
-parent: '3.115',
-name: graphData24[229].Apps,
-value: 109088655
-},{
-id: '4.300',
-parent: '3.115',
-name: graphData24[230].Apps,
-value: 109088655
-},{
-id: '3.116',
-parent: '2.2',
-name: graphData19[18].category,
-value: 4204327
-},{
-id: '4.301',
-parent: '3.116',
-name: graphData24[231].Apps,
-value: 109088655
-},{
-id: '4.301',
-parent: '3.116',
-name: graphData24[231].Apps,
-value: 109088655
-},{
-id: '3.117',
-parent: '2.2',
-name: graphData19[19].category,
-value: 4204327
-},{
-id: '4.302',
-parent: '3.117',
-name: graphData24[232].Apps,
-value: 109088655
-},{
-id: '4.303',
-parent: '3.117',
-name: graphData24[233].Apps,
-value: 109088655
-},{
-id: '3.118',
-parent: '2.2',
-name: graphData19[20].category,
-value: 4204327
-},{
-id: '4.304',
-parent: '3.118',
-name: graphData24[234].Apps,
-value: 109088655
-},{
-id: '4.305',
-parent: '3.118',
-name: graphData24[235].Apps,
-value: 109088655
-},{
-id: '3.119',
-parent: '2.2',
-name: graphData19[21].category,
-value: 4204327
-},{
-id: '4.306',
-parent: '3.119',
-name: graphData24[236].Apps,
-value: 109088655
-},{
-id: '4.306',
-parent: '3.119',
-name: graphData24[237].Apps,
-value: 109088655
-},{
-id: '3.120',
-parent: '2.2',
-name: graphData19[22].category,
-value: 4204327
-},{
-id: '4.307',
-parent: '3.120',
-name: graphData24[238].Apps,
-value: 109088655
-},{
-id: '4.308',
-parent: '3.120',
-name: graphData24[239].Apps,
-value: 109088655
-},{
-id: '3.121',
-parent: '2.2',
-name: graphData19[23].category,
-value: 4204327
-},{
-id: '4.309',
-parent: '3.121',
-name: graphData24[240].Apps,
-value: 109088655
-},{
-id: '4.310',
-parent: '3.121',
-name: graphData24[241].Apps,
-value: 109088655
-},{
-id: '3.122',
-parent: '2.2',
-name: graphData19[24].category,
-value: 4204327
-},{
-id: '4.311',
-parent: '3.122',
-name: graphData24[242].Apps,
-value: 109088655
-},{
-id: '4.312',
-parent: '3.122',
-name: graphData24[243].Apps,
-value: 109088655
-},{
-id: '3.123',
-parent: '2.2',
-name: graphData19[25].category,
-value: 4204327
-},{
-id: '4.313',
-parent: '3.123',
-name: graphData24[243].Apps,
-value: 109088655
-},{
-id: '4.314',
-parent: '3.123',
-name: graphData24[244].Apps,
-value: 109088655
-},{
-id: '3.124',
-parent: '2.2',
-name: graphData19[26].category,
-value: 4204327
-},{
-id: '4.315',
-parent: '3.124',
-name: graphData24[245].Apps,
-value: 109088655
-},{
-id: '4.316',
-parent: '3.124',
-name: graphData24[246].Apps,
-value: 109088655
-},{
-id: '3.125',
-parent: '2.2',
-name: graphData19[27].category,
-value: 4204327
-},{
-id: '4.317',
-parent: '3.125',
-name: graphData24[247].Apps,
-value: 109088655
-},{
-id: '3.126',
-parent: '2.2',
-name: graphData19[28].category,
-value: 4204327
-},{
-id: '4.317',
-parent: '3.126',
-name: graphData24[249].Apps,
-value: 109088655
-},{
-id: '4.318',
-parent: '3.126',
-name: graphData24[251].Apps,
-value: 109088655
-},{
-id: '3.127',
-parent: '2.2',
-name: graphData19[29].category,
-value: 4204327
-},{
-id: '4.319',
-parent: '3.127',
-name: graphData24[252].Apps,
-value: 109088655
-},{
-id: '4.320',
-parent: '3.127',
-name: graphData24[253].Apps,
-value: 109088655
-},{
-id: '3.128',
-parent: '2.2',
-name: graphData19[30].category,
-value: 4204327
-},{
-id: '4.320',
-parent: '3.128',
-name: graphData24[254].Apps,
-value: 109088655
-},{
-id: '4.321',
-parent: '3.128',
-name: graphData24[255].Apps,
-value: 109088655
-},
-{
-id: '2.4',
-parent: '1.1',
-name: graphData3[0].content
-},
-
-{
-id: '3.129',
-parent: '2.4',
-name: graphData21[0].category,
-value: 56717156
-},{
-id: '4.321',
-parent: '3.129',
-name: graphData24[256].Apps,
-value: 109088655
-},{
-id: '4.322',
-parent: '3.129',
-name: graphData24[257].Apps,
-value: 109088655
-}, 
-{
-id: '3.130',
-parent: '2.4',
-name: graphData21[1].category,
-value: 2533794
-}, {
-id: '4.323',
-parent: '3.130',
-name: graphData24[259].Apps,
-value: 109088655
-}, {
-id: '4.324',
-parent: '3.130',
-name: graphData24[260].Apps,
-value: 109088655
-},
-
-/*88888888*/
-{
-id: '2.7',
-parent: '1.1',
-name: graphData3[3].content
-},
-
-{
-id: '3.131',
-parent: '2.7',
-name: graphData23[0].category,
-value: 56717156
-},{
-id: '4.325',
-parent: '3.131',
-name: graphData24[264].Apps,
-value: 109088655
-},{
-id: '4.326',
-parent: '3.131',
-name: graphData24[266].Apps,
-value: 109088655
-}, {
-id: '3.132',
-parent: '2.7',
-name: graphData23[1].category,
-value: 2533794
-},{
-id: '4.327',
-parent: '3.132',
-name: graphData24[269].Apps,
-value: 109088655
-},{
-id: '4.328',
-parent: '3.132',
-name: graphData24[270].Apps,
-value: 109088655
-},
-/***********/
-
-/* America */
-
-
-
-{
-id: '2.11',
-parent: '1.2',
-name: graphData1[0].content
-},
-
-{
-id: '3.133',
-parent: '2.11',
-name: graphData5[0].category,
-value: 309517397
-},{
-id: '4.328',
-parent: '3.133',
-name: graphData26[0].Apps,
-value: 109088655
-},{
-id: '4.329',
-parent: '3.133',
-name: graphData26[1].Apps,
-value: 109088655
-}, {
-id: '3.134',
-parent: '2.11',
-name: graphData5[1].category,
-value: 127484450
-},{
-id: '4.329',
-parent: '3.134',
-name: graphData26[2].Apps,
-value: 109088655
-},{
-id: '4.329',
-parent: '3.134',
-name: graphData26[4].Apps,
-value: 109088655
-}, {
-id: '3.135',
-parent: '2.11',
-name: graphData5[2].category,
-value: 50982212
-}, {
-id: '4.330',
-parent: '3.135',
-name: graphData26[5].Apps,
-value: 109088655
-}, {
-id: '4.331',
-parent: '3.135',
-name: graphData26[6].Apps,
-value: 109088655
-},{
-id: '3.136',
-parent: '2.11',
-name: graphData5[3].category,
-value: 25490965
-},{
-id: '4.331',
-parent: '3.136',
-name: graphData26[7].Apps,
-value: 109088655
-},{
-id: '4.332',
-parent: '3.136',
-name: graphData26[9].Apps,
-value: 109088655
-}, {
-id: '3.137',
-parent: '2.11',
-name: graphData5[4].category,
-value: 23626456
-}, {
-id: '4.333',
-parent: '3.137',
-name: graphData26[10].Apps,
-value: 109088655
-},{
-id: '4.334',
-parent: '3.137',
-name: graphData26[11].Apps,
-value: 109088655
-},{
-id: '3.138',
-parent: '2.11',
-name: graphData5[5].category,
-value: 7364883
-},{
-id: '4.335',
-parent: '3.138',
-name: graphData26[12].Apps,
-value: 109088655
-}, {
-id: '4.336',
-parent: '3.138',
-name: graphData26[13].Apps,
-value: 109088655
-},{
-id: '3.139',
-parent: '2.11',
-name: graphData5[6].category,
-value: 3075647
-},{
-id: '4.336',
-parent: '3.139',
-name: graphData26[14].Apps,
-value: 109088655
-},{
-id: '4.337',
-parent: '3.139',
-name: graphData26[15].Apps,
-value: 109088655
-}, {
-id: '3.140',
-parent: '2.11',
-name: graphData5[7].category,
-value: 7364883
-},{
-id: '4.337',
-parent: '3.140',
-name: graphData26[16].Apps,
-value: 109088655
-},{
-id: '4.338',
-parent: '3.140',
-name: graphData26[17].Apps,
-value: 109088655
-},{
-id: '3.141',
-parent: '2.11',
-name: graphData5[8].category,
-value: 7364883
-
-},{
-id: '4.338',
-parent: '3.141',
-name: graphData26[18].Apps,
-value: 109088655
-},{
-id: '4.339',
-parent: '3.141',
-name: graphData26[19].Apps,
-value: 109088655
-},{
-id: '3.142',
-parent: '2.11',
-name: graphData5[9].category,
-value: 7364883
-
-},{
-id: '4.340',
-parent: '3.142',
-name: graphData26[20].Apps,
-value: 109088655
-},{
-id: '4.341',
-parent: '3.142',
-name: graphData26[21].Apps,
-value: 109088655
-},{
-id: '3.143',
-parent: '2.11',
-name: graphData5[10].category,
-value: 7364883
-
-},{
-id: '4.342',
-parent: '3.143',
-name: graphData26[22].Apps,
-value: 109088655
-},{
-id: '4.343',
-parent: '3.143',
-name: graphData26[23].Apps,
-value: 109088655
-},{
-id: '3.144',
-parent: '2.11',
-name: graphData5[11].category,
-value: 7364883
-
-},{
-id: '4.343',
-parent: '3.144',
-name: graphData26[24].Apps,
-value: 109088655
-},{
-id: '4.344',
-parent: '3.144',
-name: graphData26[25].Apps,
-value: 109088655
-},{
-id: '3.145',
-parent: '2.11',
-name: graphData5[12].category,
-value: 7364883
-
-},{
-id: '4.345',
-parent: '3.145',
-name: graphData26[26].Apps,
-value: 109088655
-},{
-id: '4.346',
-parent: '3.145',
-name: graphData26[27].Apps,
-value: 109088655
-},{
-id: '3.146',
-parent: '2.11',
-name: graphData5[13].category,
-value: 7364883
-
-},{
-id: '4.347',
-parent: '3.146',
-name: graphData26[28].Apps,
-value: 109088655
-},{
-id: '4.348',
-parent: '3.146',
-name: graphData26[29].Apps,
-value: 109088655
-},
-{
-id: '3.147',
-parent: '2.11',
-name: graphData5[14].category,
-value: 7364883
-
-},{
-id: '4.349',
-parent: '3.147',
-name: graphData26[30].Apps,
-value: 109088655
-},{
-id: '4.350',
-parent: '3.147',
-name: graphData26[31].Apps,
-value: 109088655
-},{
-id: '3.148',
-parent: '2.11',
-name: graphData5[15].category,
-value: 7364883
-
-},{
-id: '4.351',
-parent: '3.148',
-name: graphData26[33].Apps,
-value: 109088655
-},{
-id: '4.352',
-parent: '3.148',
-name: graphData26[34].Apps,
-value: 109088655
-},{
-id: '3.149',
-parent: '2.11',
-name: graphData5[16].category,
-value: 7364883
-
-},{
-id: '4.352',
-parent: '3.149',
-name: graphData26[35].Apps,
-value: 109088655
-},{
-id: '4.353',
-parent: '3.149',
-name: graphData26[36].Apps,
-value: 109088655
-},{
-id: '3.150',
-parent: '2.11',
-name: graphData5[17].category,
-value: 7364883
-
-},{
-id: '4.354',
-parent: '3.150',
-name: graphData26[37].Apps,
-value: 109088655
-},{
-id: '4.355',
-parent: '3.150',
-name: graphData26[38].Apps,
-value: 109088655
-},
-{
-id: '3.151',
-parent: '2.11',
-name: graphData5[18].category,
-value: 7364883
-
-},{
-id: '4.356',
-parent: '3.151',
-name: graphData26[39].Apps,
-value: 109088655
-},{
-id: '4.357',
-parent: '3.151',
-name: graphData26[40].Apps,
-value: 109088655
-},
-{
-id: '3.152',
-parent: '2.11',
-name: graphData5[19].category,
-value: 7364883
-
-},{
-id: '4.358',
-parent: '3.152',
-name: graphData26[41].Apps,
-value: 109088655
-},{
-id: '4.359',
-parent: '3.152',
-name: graphData26[42].Apps,
-value: 109088655
-},
-{
-id: '3.153',
-parent: '2.11',
-name: graphData5[20].category,
-value: 7364883
-
-},{
-id: '4.360',
-parent: '3.153',
-name: graphData26[43].Apps,
-value: 109088655
-},{
-id: '4.361',
-parent: '3.153',
-name: graphData26[44].Apps,
-value: 109088655
-},
-{
-id: '3.154',
-parent: '2.11',
-name: graphData5[21].category,
-value: 7364883
-
-},{
-id: '4.362',
-parent: '3.154',
-name: graphData26[45].Apps,
-value: 109088655
-},{
-id: '4.363',
-parent: '3.154',
-name: graphData26[46].Apps,
-value: 109088655
-},
-{
-id: '3.155',
-parent: '2.11',
-name: graphData5[22].category,
-value: 7364883
-
-},{
-id: '4.363',
-parent: '3.155',
-name: graphData26[47].Apps,
-value: 109088655
-},{
-id: '4.364',
-parent: '3.155',
-name: graphData26[48].Apps,
-value: 109088655
-},
-{
-id: '3.156',
-parent: '2.11',
-name: graphData5[23].category,
-value: 7364883
-
-},{
-id: '4.365',
-parent: '3.156',
-name: graphData26[49].Apps,
-value: 109088655
-},{
-id: '4.366',
-parent: '3.156',
-name: graphData26[50].Apps,
-value: 109088655
-},
-{
-id: '3.157',
-parent: '2.11',
-name: graphData5[24].category,
-value: 7364883
-
-},{
-id: '4.366',
-parent: '3.157',
-name: graphData26[51].Apps,
-value: 109088655
-},{
-id: '4.367',
-parent: '3.157',
-name: graphData26[52].Apps,
-value: 109088655
-},
-{
-id: '3.158',
-parent: '2.11',
-name: graphData5[25].category,
-value: 7364883
-
-},{
-id: '4.368',
-parent: '3.158',
-name: graphData26[53].Apps,
-value: 109088655
-},{
-id: '4.369',
-parent: '3.158',
-name: graphData26[54].Apps,
-value: 109088655
-},
-{
-id: '3.159',
-parent: '2.11',
-name: graphData5[26].category,
-value: 7364883
-
-},{
-id: '4.369',
-parent: '3.159',
-name: graphData26[55].Apps,
-value: 109088655
-},{
-id: '4.370',
-parent: '3.159',
-name: graphData26[56].Apps,
-value: 109088655
-},
-{
-id: '3.161',
-parent: '2.11',
-name: graphData5[27].category,
-value: 7364883
-
-},{
-id: '4.370',
-parent: '3.161',
-name: graphData26[57].Apps,
-value: 109088655
-},{
-id: '4.371',
-parent: '3.161',
-name: graphData26[58].Apps,
-value: 109088655
-},
-{
-id: '3.162',
-parent: '2.11',
-name: graphData5[28].category,
-value: 7364883
-
-},{
-id: '4.371',
-parent: '3.162',
-name: graphData26[59].Apps,
-value: 109088655
-},{
-id: '4.372',
-parent: '3.162',
-name: graphData26[60].Apps,
-value: 109088655
-},
-{
-id: '3.163',
-parent: '2.11',
-name: graphData5[29].category,
-value: 7364883
-
-},
-{
-id: '4.373',
-parent: '3.163',
-name: graphData26[61].Apps,
-value: 109088655
-},{
-id: '4.374',
-parent: '3.163',
-name: graphData26[62].Apps,
-value: 109088655
-},
-
-
-
-{
-id: '2.12',
-parent: '1.2',
-name: graphData1[2].content
-},
-
-{
-id: '3.164',
-parent: '2.12',
-name: graphData7[0].category,
-value: 263991379
-}, {
-id: '4.375',
-parent: '3.164',
-name: graphData26[63].Apps,
-value: 109088655
-}, {
-id: '4.376',
-parent: '3.164',
-name: graphData26[64].Apps,
-value: 109088655
-},{
-id: '3.165',
-parent: '2.12',
-name: graphData7[1].category,
-value: 104918090
-}, {
-id: '4.377',
-parent: '3.165',
-name: graphData26[65].Apps,
-value: 109088655
-},{
-id: '4.378',
-parent: '3.165',
-name: graphData26[66].Apps,
-value: 109088655
-},{
-id: '3.166',
-parent: '2.12',
-name: graphData7[2].category,
-value: 95540800
-}, {
-id: '4.378',
-parent: '3.166',
-name: graphData26[67].Apps,
-value: 109088655
-}, {
-id: '4.379',
-parent: '3.166',
-name: graphData26[68].Apps,
-value: 109088655
-},{
-id: '3.167',
-parent: '2.12',
-name: graphData7[3].category,
-value: 69037513
-},{
-id: '4.380',
-parent: '3.167',
-name: graphData26[69].Apps,
-value: 109088655
-},{
-id: '4.381',
-parent: '3.167',
-name: graphData26[70].Apps,
-value: 109088655
-}, {
-id: '3.168',
-parent: '2.12',
-name: graphData7[4].category,
-value: 53370609
-}, {
-id: '4.381',
-parent: '3.168',
-name: graphData26[71].Apps,
-value: 109088655
-}, {
-id: '4.382',
-parent: '3.168',
-name: graphData26[72].Apps,
-value: 109088655
-},{
-id: '3.169',
-parent: '2.12',
-name: graphData7[5].category,
-value: 31624264
-}, {
-id: '4.383',
-parent: '3.169',
-name: graphData26[73].Apps,
-value: 109088655
-},{
-id: '4.384',
-parent: '3.169',
-name: graphData26[74].Apps,
-value: 109088655
-},  {
-id: '3.170',
-parent: '2.12',
-name: graphData7[6].category,
-value: 16005373
-},{
-id: '4.385',
-parent: '3.170',
-name: graphData26[75].Apps,
-value: 109088655
-}, {
-id: '4.386',
-parent: '3.170',
-name: graphData26[76].Apps,
-value: 109088655
-}, {
-id: '3.171',
-parent: '2.12',
-name: graphData7[7].category,
-value: 6858160
-},{
-id: '4.386',
-parent: '3.171',
-name: graphData26[77].Apps,
-value: 109088655
-},{
-id: '4.387',
-parent: '3.171',
-name: graphData26[78].Apps,
-value: 109088655
-},  {
-id: '3.172',
-parent: '2.12',
-name: graphData7[8].category,
-value: 5708844
-},{
-id: '4.388',
-parent: '3.172',
-name: graphData26[79].Apps,
-value: 109088655
-},{
-id: '4.389',
-parent: '3.172',
-name: graphData26[80].Apps,
-value: 109088655
-}, {
-id: '3.173',
-parent: '2.12',
-name: graphData7[9].category,
-value: 1296311
-},{
-id: '4.390',
-parent: '3.173',
-name: graphData26[80].Apps,
-value: 109088655
-},{
-id: '4.391',
-parent: '3.173',
-name: graphData26[81].Apps,
-value: 109088655
-}, {
-id: '3.174',
-parent: '2.12',
-name: graphData7[10].category,
-value: 428697
-// 'color': ''
-},{
-id: '4.392',
-parent: '3.174',
-name: graphData26[82].Apps,
-value: 109088655
-},{
-id: '4.393',
-parent: '3.174',
-name: graphData26[83].Apps,
-value: 109088655
-},{
-id: '3.175',
-parent: '2.12',
-name: graphData7[11].category,
-value: 428697
-// 'color': ''
-},{
-id: '4.394',
-parent: '3.175',
-name: graphData26[84].Apps,
-value: 109088655
-},{
-id: '4.395',
-parent: '3.175',
-name: graphData26[85].Apps,
-value: 109088655
-},{
-id: '3.176',
-parent: '2.12',
-name: graphData7[12].category,
-value: 428697
-// 'color': ''
-},{
-id: '4.395',
-parent: '3.176',
-name: graphData26[86].Apps,
-value: 109088655
-},{
-id: '4.396',
-parent: '3.176',
-name: graphData26[87].Apps,
-value: 109088655
-},
-{
-id: '3.177',
-parent: '2.12',
-name: graphData7[13].category,
-value: 428697
-// 'color': ''
-},{
-id: '4.397',
-parent: '3.177',
-name: graphData26[88].Apps,
-value: 109088655
-},{
-id: '4.398',
-parent: '3.177',
-name: graphData26[89].Apps,
-value: 109088655
-},{
-id: '3.178',
-parent: '2.12',
-name: graphData7[14].category,
-value: 428697
-// 'color': ''
-},{
-id: '4.399',
-parent: '3.178',
-name: graphData26[90].Apps,
-value: 109088655
-},{
-id: '4.400',
-parent: '3.178',
-name: graphData26[91].Apps,
-value: 109088655
-},
-{
-id: '3.179',
-parent: '2.12',
-name: graphData7[15].category,
-value: 428697
-// 'color': ''
-},{
-id: '4.401',
-parent: '3.179',
-name: graphData26[92].Apps,
-value: 109088655
-},{
-id: '4.402',
-parent: '3.179',
-name: graphData26[93].Apps,
-value: 109088655
-},
-{
-id: '3.180',
-parent: '2.12',
-name: graphData7[16].category,
-value: 428697
-// 'color': ''
-},
-{
-id: '4.403',
-parent: '3.180',
-name: graphData26[94].Apps,
-value: 109088655
-},{
-id: '4.404',
-parent: '3.180',
-name: graphData26[95].Apps,
-value: 109088655
-},
-{
-id: '2.14',
-parent: '1.2',
-name: graphData1[1].content
-},
-
-{
-id: '3.181',
-parent: '2.14',
-name: graphData9[0].category,
-value: 80745020
-},{
-id: '4.405',
-parent: '3.181',
-name: graphData26[96].Apps,
-value: 109088655
-},{
-id: '4.406',
-parent: '3.181',
-name: graphData26[97].Apps,
-value: 109088655
-}, {
-id: '3.182',
-parent: '2.14',
-name: graphData9[1].category,
-value: 38274618
-},{
-id: '4.407',
-parent: '3.182',
-name: graphData26[98].Apps,
-value: 109088655
-},{
-id: '4.408',
-parent: '3.182',
-name: graphData26[99].Apps,
-value: 109088655
-}, {
-id: '3.183',
-parent: '2.14',
-name: graphData9[2].category,
-value: 32938213
-},{
-id: '4.408',
-parent: '3.183',
-name: graphData26[100].Apps,
-value: 109088655
-},{
-id: '4.409',
-parent: '3.183',
-name: graphData26[101].Apps,
-value: 109088655
-}, {
-id: '3.184',
-parent: '2.14',
-name: graphData9[3].category,
-value: 28250420
-}, {
-id: '4.410',
-parent: '3.184',
-name: graphData26[102].Apps,
-value: 109088655
-},{
-id: '4.411',
-parent: '3.184',
-name: graphData26[103].Apps,
-value: 109088655
-},{
-id: '3.185',
-parent: '2.14',
-name: graphData9[4].category,
-value: 18269868
-},{
-id: '4.412',
-parent: '3.185',
-name: graphData26[104].Apps,
-value: 109088655
-},{
-id: '4.413',
-parent: '3.185',
-name: graphData26[105].Apps,
-value: 109088655
-},
-
-{
-id: '2.10',
-parent: '1.2',
-name: graphData1[3].content
-},
-
-{
-id: '3.186',
-parent: '2.10',
-name: graphData11[0].category,
-value: 31910641
-},{
-id: '4.414',
-parent: '3.186',
-name: graphData26[106].Apps,
-value: 109088655
-}, {
-id: '3.187',
-parent: '2.10',
-name: graphData11[1].category,
-value: 18204499
-},{
-id: '4.415',
-parent: '3.187',
-name: graphData26[100].Apps,
-value: 109088655
-}, {
-id: '3.187',
-parent: '2.10',
-name: graphData11[2].category,
-value: 8921343
-},{
-id: '4.416',
-parent: '3.187',
-name: graphData26[56].Apps,
-value: 109088655
-}, {
-id: '3.188',
-parent: '2.10',
-name: graphData11[3].category,
-value: 6045117
-},{
-id: '4.417',
-parent: '3.188',
-name: graphData26[57].Apps,
-value: 109088655
-}, {
-id: '3.189',
-parent: '2.10',
-name: graphData11[4].category,
-value: 5758075
-},{
-id: '4.418',
-parent: '3.189',
-name: graphData26[57].Apps,
-value: 109088655
-},
-{
-id: '3.190',
-parent: '2.10',
-name: graphData11[5].category,
-value: 5758075
-},{
-id: '4.419',
-parent: '3.190',
-name: graphData26[58].Apps,
-value: 109088655
-},
-{
-id: '3.191',
-parent: '2.10',
-name: graphData11[6].category,
-value: 5758075
-},{
-id: '4.420',
-parent: '3.191',
-name: graphData26[59].Apps,
-value: 109088655
-},
-{
-id: '3.192',
-parent: '2.10',
-name: graphData11[7].category,
-value: 5758075
-},{
-id: '4.421',
-parent: '3.192',
-name: graphData26[60].Apps,
-value: 109088655
-},
-/***********/
-
-/* Europe */
-
-
-
-
-
-
-
-/***********/
-
-
-
-];
-
-// Splice in transparent for the center circle
-var sunburstColours = ['#2f7ed8', '#0d233a', '#8bbc21', '#910000', '#1aadce',
-'#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'];
-Highcharts.setOptions({
-colors :['#2d8534', '#4e2bfc', '#bc2121', '#dc42ff', '#09424f',
-'#297063', '#ffba24', '#77a1e5', '#c42525', '#6e0a69' ]
-});
-
-
-Highcharts.chart('container', {
-
-chart: {
-    height: '60%',
-    marginRight : 0 
-
-},
-
-title: {
-    text: 'Google Play store Analysis'
-},
-
-series: [{
-    type: "sunburst",
-    data: data,
-    allowDrillToNode: true,
-    cursor: 'pointer',
-    dataLabels: {
-        format: '<span style="font-size: 10px;">{point.name}</span>',
-        filter: {
-            property: 'innerArcLength',
-            operator: '>',
-            value: 16
-        }
-    },
-    levels: [{
-        level: 1,
-        //color : 'green',
-        levelIsConstant: false,
-        dataLabels: {
-            filter: {
-                property: 'outerArcLength',
-                operator: '>',
-                value: 64
-            }
-        }
+    var graphData24 = JSON.parse(graphData23.chart_data13) //free
+    var graphData26 = JSON.parse(graphData25.chart_data14) //paid_app names
+    var graphData3 = JSON.parse(graphData2.chart_data2) //free
+    var graphData5 = JSON.parse(graphData4.chart_data3) //paid categories_teen
+    var graphData7 = JSON.parse(graphData6.chart_data4) //paid categories_everyone10+
+    var graphData9 = JSON.parse(graphData8.chart_data5) //paid categories_mature17+
+    var graphData11 = JSON.parse(graphData10.chart_data6) //paid categories_everyone
+    var graphData13 = JSON.parse(graphData12.chart_data7) //free categories_mature17+
+    var graphData15 = JSON.parse(graphData14.chart_data8) //free categories_teen
+    var graphData17 = JSON.parse(graphData16.chart_data9) //free categories_everyone
+    var graphData19 = JSON.parse(graphData18.chart_data10) //free categories_everyone10+
+    var graphData21 = JSON.parse(graphData20.chart_data11) //free categories_unrated 
+    var graphData23 = JSON.parse(graphData22.chart_data12) //free categories_adultsonly18+
+
+
+    var customData = []
+
+    var data = [{
+        id: '0.0',
+        parent: '',
+        name: 'The App'
     }, {
-        level: 2,
-        //color : 'lightcoral',
-        colorByPoint: true,
-        levelSize: {
-    unit: 'percentage',
-    value: 25
-}
+        id: '1.2',
+        parent: '0.0',
+        name: graphData[1].price,
+        value1: graphData[1].percentage.toFixed(2)
+
+    }, {
+        id: '1.1',
+        parent: '0.0',
+        name: graphData[0].price,
+        value1: graphData[0].percentage.toFixed(2)
+
     },
     {
-        level: 3,
-        colorByPoint: true,
-      //  colorByPoint: true,
-     // color : 'seagreen',
-        colorVariation: {
-            key: 'brightness',
-            to: -0.5
-        }
+        id: '2.1',
+        parent: '1.1',
+        name: graphData3[4].content
+    },
+
+    {
+        id: '3.1',
+        parent: '2.1',
+        name: graphData13[0].category,
+        value: 104957438
     }, {
-        level: 4,
-        colorVariation: {
-            key: 'brightness',
-            to: -0.5
+        id: '4.100',
+        parent: '3.1',
+        name: graphData24[0].Apps,
+        value: 104957438
+    }, {
+        id: '4.101',
+        parent: '3.1',
+        name: graphData24[1].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.2',
+        parent: '2.1',
+        name: graphData13[1].category,
+        value: 57310019
+    }, {
+        id: '4.102',
+        parent: '3.2',
+        name: graphData24[2].Apps,
+        value: 104957438
+    }, {
+        id: '4.103',
+        parent: '3.2',
+        name: graphData24[3].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.3',
+        parent: '2.1',
+        name: graphData13[2].category,
+        value: 49699862
+    }, {
+        id: '4.104',
+        parent: '3.3',
+        name: graphData24[4].Apps,
+        value: 104957438
+    }, {
+        id: '4.105',
+        parent: '3.3',
+        name: graphData24[7].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.4',
+        parent: '2.1',
+        name: graphData13[3].category,
+        value: 42862958
+    }, {
+        id: '4.106',
+        parent: '3.4',
+        name: graphData24[9].Apps,
+        value: 104957438
+    }, {
+        id: '4.107',
+        parent: '3.4',
+        name: graphData24[10].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.5',
+        parent: '2.1',
+        name: graphData13[4].category,
+        value: 29668834
+    }, {
+        id: '4.108',
+        parent: '3.5',
+        name: graphData24[11].Apps,
+        value: 104957438
+    }, {
+        id: '4.109',
+        parent: '3.5',
+        name: graphData24[12].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.6',
+        parent: '2.1',
+        name: graphData13[5].category,
+        value: 25570895
+    }, {
+        id: '4.110',
+        parent: '3.6',
+        name: graphData24[13].Apps,
+        value: 104957438
+    }, {
+        id: '4.111',
+        parent: '3.6',
+        name: graphData24[14].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.7',
+        parent: '2.1',
+        name: graphData13[6].category,
+        value: 18622104
+    }, {
+        id: '4.112',
+        parent: '3.7',
+        name: graphData24[15].Apps,
+        value: 104957438
+    }, {
+        id: '4.113',
+        parent: '3.7',
+        name: graphData24[16].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.8',
+        parent: '2.1',
+        name: graphData13[7].category,
+        value: 17094130
+    }, {
+        id: '4.114',
+        parent: '3.8',
+        name: graphData24[17].Apps,
+        value: 104957438
+    }, {
+        id: '4.115',
+        parent: '3.8',
+        name: graphData24[18].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.9',
+        parent: '2.1',
+        name: graphData13[8].category,
+        value: 16529904
+    }, {
+        id: '4.115',
+        parent: '3.9',
+        name: graphData24[19].Apps,
+        value: 104957438
+    }, {
+        id: '4.116',
+        parent: '3.9',
+        name: graphData24[20].Apps,
+        value: 104957438
+    }, {
+        id: '3.10',
+        parent: '2.1',
+        name: graphData13[9].category,
+        value: 14742523
+    }, {
+        id: '4.116',
+        parent: '3.10',
+        name: graphData24[21].Apps,
+        value: 104957438
+    }, {
+        id: '4.117',
+        parent: '3.10',
+        name: graphData24[22].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.11',
+        parent: '2.1',
+        name: graphData13[10].category,
+        value: 12575714
+    }, {
+        id: '4.118',
+        parent: '3.11',
+        name: graphData24[23].Apps,
+        value: 104957438
+    }, {
+        id: '4.119',
+        parent: '3.11',
+        name: graphData24[23].Apps,
+        value: 104957438
+    }, {
+        id: '3.12',
+        parent: '2.1',
+        name: graphData13[11].category,
+        value: 12208407
+    }, {
+        id: '4.120',
+        parent: '3.12',
+        name: graphData24[24].Apps,
+        value: 104957438
+    }, {
+        id: '4.121',
+        parent: '3.12',
+        name: graphData24[25].Apps,
+        value: 104957438
+    }, {
+        id: '3.13',
+        parent: '2.1',
+        name: graphData13[12].category,
+        value: 10864245
+    }, {
+        id: '4.122',
+        parent: '3.13',
+        name: graphData24[26].Apps,
+        value: 104957438
+    }, {
+        id: '4.123',
+        parent: '3.13',
+        name: graphData24[27].Apps,
+        value: 104957438
+    }, {
+        id: '3.14',
+        parent: '2.1',
+        name: graphData13[13].category,
+        value: 5068831
+    }, {
+        id: '4.124',
+        parent: '3.14',
+        name: graphData24[28].Apps,
+        value: 104957438
+    }, {
+        id: '4.125',
+        parent: '3.14',
+        name: graphData24[29].Apps,
+        value: 104957438
+    }, {
+        id: '3.15',
+        parent: '2.1',
+        name: graphData13[14].category,
+        value: 1265138
+    }, {
+        id: '4.126',
+        parent: '3.15',
+        name: graphData24[31].Apps,
+        value: 104957438
+    }, {
+        id: '4.127',
+        parent: '3.15',
+        name: graphData24[33].Apps,
+        value: 104957438
+    }, {
+        id: '3.16',
+        parent: '2.1',
+        name: graphData13[15].category,
+        value: 956985
+    }, {
+        id: '4.128',
+        parent: '3.16',
+        name: graphData24[34].Apps,
+        value: 104957438
+    }, {
+        id: '4.129',
+        parent: '3.16',
+        name: graphData24[35].Apps,
+        value: 104957438
+    }, {
+        id: '3.17',
+        parent: '2.1',
+        name: graphData13[16].category,
+        value: 876562
+    }, {
+        id: '4.130',
+        parent: '3.17',
+        name: graphData24[36].Apps,
+        value: 104957438
+    }, {
+        id: '4.131',
+        parent: '3.18',
+        name: graphData24[37].Apps,
+        value: 104957438
+    }, {
+        id: '3.18',
+        parent: '2.1',
+        name: graphData13[17].category,
+        value: 813912
+    }, {
+        id: '3.19',
+        parent: '2.1',
+        name: graphData13[18].category,
+        value: 253045
+    }, {
+        id: '4.132',
+        parent: '3.19',
+        name: graphData24[38].Apps,
+        value: 104957438
+    }, {
+        id: '4.133',
+        parent: '3.19',
+        name: graphData24[39].Apps,
+        value: 104957438
+    }, {
+        id: '3.20',
+        parent: '2.1',
+        name: graphData13[19].category,
+        value: 94737
+    }, {
+        id: '4.133',
+        parent: '3.20',
+        name: graphData24[40].Apps,
+        value: 104957438
+    }, {
+        id: '4.133',
+        parent: '3.20',
+        name: graphData24[41].Apps,
+        value: 104957438
+    }, {
+        id: '3.21',
+        parent: '2.1',
+        name: graphData13[20].category,
+        value: 94737
+    }, {
+        id: '4.134',
+        parent: '3.21',
+        name: graphData24[42].Apps,
+        value: 104957438
+    }, {
+        id: '4.135',
+        parent: '3.21',
+        name: graphData24[43].Apps,
+        value: 104957438
+    }, {
+        id: '3.22',
+        parent: '2.1',
+        name: graphData13[21].category,
+        value: 94737
+    }, {
+        id: '4.136',
+        parent: '3.22',
+        name: graphData24[44].Apps,
+        value: 104957438
+    }, {
+        id: '4.137',
+        parent: '3.22',
+        name: graphData24[45].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.23',
+        parent: '2.1',
+        name: graphData13[22].category,
+        value: 94737
+    }, {
+        id: '4.138',
+        parent: '3.23',
+        name: graphData24[46].Apps,
+        value: 104957438
+    }, {
+        id: '4.139',
+        parent: '3.23',
+        name: graphData24[47].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.24',
+        parent: '2.1',
+        name: graphData13[23].category,
+        value: 94737
+    }, {
+        id: '4.140',
+        parent: '3.24',
+        name: graphData24[48].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.25',
+        parent: '2.1',
+        name: graphData13[24].category,
+        value: 94737
+    }, {
+        id: '4.141',
+        parent: '3.25',
+        name: graphData24[49].Apps,
+        value: 104957438
+    }, {
+        id: '4.142',
+        parent: '3.25',
+        name: graphData24[50].Apps,
+        value: 104957438
+    }, {
+        id: '3.26',
+        parent: '2.1',
+        name: graphData13[25].category,
+        value: 94737
+    }, {
+        id: '4.143',
+        parent: '3.26',
+        name: graphData24[51].Apps,
+        value: 104957438
+    }, {
+        id: '4.144',
+        parent: '3.26',
+        name: graphData24[52].Apps,
+        value: 104957438
+    }, {
+        id: '3.27',
+        parent: '2.1',
+        name: graphData13[26].category,
+        value: 94737
+    }, {
+        id: '4.145',
+        parent: '3.27',
+        name: graphData24[53].Apps,
+        value: 104957438
+    }, {
+        id: '4.146',
+        parent: '3.27',
+        name: graphData24[54].Apps,
+        value: 104957438
+    }, {
+        id: '3.28',
+        parent: '2.1',
+        name: graphData13[27].category,
+        value: 94737
+    }, {
+        id: '4.147',
+        parent: '3.28',
+        name: graphData24[55].Apps,
+        value: 104957438
+    }, {
+        id: '4.148',
+        parent: '3.28',
+        name: graphData24[56].Apps,
+        value: 104957438
+    }, {
+        id: '3.29',
+        parent: '2.1',
+        name: graphData13[28].category,
+        value: 94737
+    }, {
+        id: '4.149',
+        parent: '3.29',
+        name: graphData24[57].Apps,
+        value: 104957438
+    }, {
+        id: '4.150',
+        parent: '3.29',
+        name: graphData24[58].Apps,
+        value: 104957438
+    }, {
+        id: '3.30',
+        parent: '2.1',
+        name: graphData13[29].category,
+        value: 94737
+    }, {
+        id: '4.151',
+        parent: '3.30',
+        name: graphData24[59].Apps,
+        value: 104957438
+    }, {
+        id: '4.152',
+        parent: '3.30',
+        name: graphData24[60].Apps,
+        value: 104957438
+    }, {
+        id: '3.31',
+        parent: '2.1',
+        name: graphData13[30].category,
+        value: 94737
+    }, {
+        id: '4.153',
+        parent: '3.31',
+        name: graphData24[61].Apps,
+        value: 104957438
+    }, {
+        id: '4.154',
+        parent: '3.31',
+        name: graphData24[62].Apps,
+        value: 104957438
+    },
+    {
+        id: '3.32',
+        parent: '2.1',
+        name: graphData13[31].category,
+        value: 94737
+    }, {
+        id: '4.155',
+        parent: '3.32',
+        name: graphData24[63].Apps,
+        value: 104957438
+    }, {
+        id: '4.156',
+        parent: '3.32',
+        name: graphData24[64].Apps,
+        value: 104957438
+    }, {
+        id: '3.33',
+        parent: '2.1',
+        name: graphData13[32].category,
+        value: 94737
+    }, {
+        id: '4.157',
+        parent: '3.33',
+        name: graphData24[65].Apps,
+        value: 104957438
+    },
+
+    {
+        id: '2.5',                         //content of free    
+        parent: '1.1',
+        name: graphData3[1].content
+    },
+
+    {
+        id: '3.42',
+        parent: '2.5',
+        name: graphData15[0].category,
+        value: 1090886311
+    },
+    {
+        id: '4.158',
+        parent: '3.42',
+        name: graphData24[66].Apps,
+        value: 109088655
+    }, {
+        id: '4.159',
+        parent: '3.42',
+        name: graphData24[67].Apps,
+        value: 109088655
+    }, {
+        id: '3.43',
+        parent: '2.5',
+        name: graphData15[1].category,
+        value: 128833629
+    }, {
+        id: '4.160',
+        parent: '3.43',
+        name: graphData24[69].Apps,
+        value: 109088655
+    }, {
+        id: '4.161',
+        parent: '3.43',
+        name: graphData24[70].Apps,
+        value: 109088655
+    }, {
+        id: '3.44',
+        parent: '2.5',
+        name: graphData15[2].category,
+        value: 124294750
+    }, {
+        id: '4.162',
+        parent: '3.44',
+        name: graphData24[71].Apps,
+        value: 109088655
+    }, {
+        id: '4.163',
+        parent: '3.44',
+        name: graphData24[72].Apps,
+        value: 109088655
+    }, {
+        id: '3.45',
+        parent: '2.5',
+        name: graphData15[3].category,
+        value: 121477348
+    }, {
+        id: '4.164',
+        parent: '3.45',
+        name: graphData24[73].Apps,
+        value: 109088655
+    }, {
+        id: '4.165',
+        parent: '3.45',
+        name: graphData24[74].Apps,
+        value: 109088655
+    }, {
+        id: '3.46',
+        parent: '2.5',
+        name: graphData15[4].category,
+        value: 19193382
+    }, {
+        id: '4.166',
+        parent: '3.46',
+        name: graphData24[75].Apps,
+        value: 109088655
+    },
+    {
+        id: '4.166',
+        parent: '3.46',
+        name: graphData24[76].Apps,
+        value: 109088655
+    }, {
+        id: '3.47',
+        parent: '2.5',
+        name: graphData15[5].category,
+        value: 18541980
+    }, {
+        id: '4.166',
+        parent: '3.47',
+        name: graphData24[77].Apps,
+        value: 109088655
+    }, {
+        id: '4.167',
+        parent: '3.47',
+        name: graphData24[78].Apps,
+        value: 109088655
+    }, {
+        id: '3.48',
+        parent: '2.5',
+        name: graphData15[6].category,
+        value: 15850567
+    }, {
+        id: '4.168',
+        parent: '3.48',
+        name: graphData24[79].Apps,
+        value: 109088655
+    }, {
+        id: '4.169',
+        parent: '3.48',
+        name: graphData24[81].Apps,
+        value: 109088655
+    }, {
+        id: '3.49',
+        parent: '2.5',
+        name: graphData15[7].category,
+        value: 12717176
+    }, {
+        id: '4.170',
+        parent: '3.49',
+        name: graphData24[82].Apps,
+        value: 109088655
+    }, {
+        id: '4.171',
+        parent: '3.49',
+        name: graphData24[83].Apps,
+        value: 109088655
+    }, {
+        id: '3.50',
+        parent: '2.5',
+        name: graphData15[8].category,
+        value: 11175692
+    }, {
+        id: '4.172',
+        parent: '3.50',
+        name: graphData24[84].Apps,
+        value: 109088655
+    }, {
+        id: '4.172',
+        parent: '3.50',
+        name: graphData24[85].Apps,
+        value: 109088655
+    }, {
+        id: '3.51',
+        parent: '2.5',
+        name: graphData15[9].category,
+        value: 7797694
+    }, {
+        id: '4.173',
+        parent: '3.51',
+        name: graphData24[87].Apps,
+        value: 109088655
+    }, {
+        id: '4.174',
+        parent: '3.51',
+        name: graphData24[88].Apps,
+        value: 109088655
+    }, {
+        id: '3.52',
+        parent: '2.5',
+        name: graphData15[10].category,
+        value: 7557212
+    }, {
+        id: '4.175',
+        parent: '3.52',
+        name: graphData24[90].Apps,
+        value: 109088655
+    }, {
+        id: '4.176',
+        parent: '3.52',
+        name: graphData24[91].Apps,
+        value: 109088655
+    }, {
+        id: '3.53',
+        parent: '2.5',
+        name: graphData15[11].category,
+        value: 4731906
+    }, {
+        id: '4.176',
+        parent: '3.53',
+        name: graphData24[92].Apps,
+        value: 109088655
+    }, {
+        id: '4.177',
+        parent: '3.53',
+        name: graphData24[93].Apps,
+        value: 109088655
+    }, {
+        id: '3.54',
+        parent: '2.5',
+        name: graphData15[12].category,
+        value: 4420184
+    }, {
+        id: '4.178',
+        parent: '3.54',
+        name: graphData24[94].Apps,
+        value: 109088655
+    }, {
+        id: '4.179',
+        parent: '3.54',
+        name: graphData24[95].Apps,
+        value: 109088655
+    }, {
+        id: '3.55',
+        parent: '2.5',
+        name: graphData15[13].category,
+        value: 2100568
+    }, {
+        id: '4.180',
+        parent: '3.55',
+        name: graphData24[96].Apps,
+        value: 109088655
+    }, {
+        id: '4.181',
+        parent: '3.55',
+        name: graphData24[97].Apps,
+        value: 109088655
+    }, {
+        id: '3.56',
+        parent: '2.5',
+        name: graphData15[14].category,
+        value: 1861283
+    }, {
+        id: '4.182',
+        parent: '3.56',
+        name: graphData24[98].Apps,
+        value: 109088655
+    }, {
+        id: '4.183',
+        parent: '3.56',
+        name: graphData24[99].Apps,
+        value: 109088655
+    }, {
+        id: '3.57',
+        parent: '2.5',
+        name: graphData15[15].category,
+        value: 546388
+    }, {
+        id: '4.184',
+        parent: '3.57',
+        name: graphData24[100].Apps,
+        value: 109088655
+    }, {
+        id: '4.185',
+        parent: '3.57',
+        name: graphData24[101].Apps,
+        value: 109088655
+    }, {
+        id: '3.58',
+        parent: '2.5',
+        name: graphData15[16].category,
+        value: 4049
+    }, {
+        id: '4.186',
+        parent: '3.58',
+        name: graphData24[102].Apps,
+        value: 109088655
+    }, {
+        id: '4.187',
+        parent: '3.58',
+        name: graphData24[103].Apps,
+        value: 109088655
+    }, {
+        id: '3.59',
+        parent: '2.5',
+        name: graphData15[17].category,
+        value: 4049
+    }, {
+        id: '4.188',
+        parent: '3.59',
+        name: graphData24[104].Apps,
+        value: 109088655
+    }, {
+        id: '4.189',
+        parent: '3.59',
+        name: graphData24[105].Apps,
+        value: 109088655
+    }, {
+        id: '3.60',
+        parent: '2.5',
+        name: graphData15[18].category,
+        value: 4049
+    }, {
+        id: '4.190',
+        parent: '3.60',
+        name: graphData24[107].Apps,
+        value: 109088655
+    }, {
+        id: '4.191',
+        parent: '3.60',
+        name: graphData24[108].Apps,
+        value: 109088655
+    }, {
+        id: '3.61',
+        parent: '2.5',
+        name: graphData15[19].category,
+        value: 4049
+    }, {
+        id: '4.192',
+        parent: '3.61',
+        name: graphData24[109].Apps,
+        value: 109088655
+    }, {
+        id: '4.193',
+        parent: '3.61',
+        name: graphData24[111].Apps,
+        value: 109088655
+    }, {
+        id: '3.62',
+        parent: '2.5',
+        name: graphData15[20].category,
+        value: 4049
+    }, {
+        id: '4.194',
+        parent: '3.62',
+        name: graphData24[112].Apps,
+        value: 109088655
+    }, {
+        id: '4.195',
+        parent: '3.62',
+        name: graphData24[113].Apps,
+        value: 109088655
+    }, {
+        id: '3.63',
+        parent: '2.5',
+        name: graphData15[21].category,
+        value: 4049
+    }, {
+        id: '4.196',
+        parent: '3.63',
+        name: graphData24[114].Apps,
+        value: 109088655
+    }, {
+        id: '4.197',
+        parent: '3.63',
+        name: graphData24[115].Apps,
+        value: 109088655
+    }, {
+        id: '3.64',
+        parent: '2.5',
+        name: graphData15[22].category,
+        value: 4049
+    }, {
+        id: '4.198',
+        parent: '3.64',
+        name: graphData24[117].Apps,
+        value: 109088655
+    }, {
+        id: '4.199',
+        parent: '3.64',
+        name: graphData24[118].Apps,
+        value: 109088655
+    }, {
+        id: '3.65',
+        parent: '2.5',
+        name: graphData15[23].category,
+        value: 4049
+    }, {
+        id: '4.200',
+        parent: '3.65',
+        name: graphData24[119].Apps,
+        value: 109088655
+    }, {
+        id: '4.201',
+        parent: '3.65',
+        name: graphData24[120].Apps,
+        value: 109088655
+    }, {
+        id: '3.66',
+        parent: '2.5',
+        name: graphData15[24].category,
+        value: 4049
+    }, {
+        id: '4.202',
+        parent: '3.66',
+        name: graphData24[121].Apps,
+        value: 109088655
+    }, {
+        id: '4.203',
+        parent: '3.66',
+        name: graphData24[122].Apps,
+        value: 109088655
+    }, {
+        id: '3.67',
+        parent: '2.5',
+        name: graphData15[25].category,
+        value: 4049
+    }, {
+        id: '4.204',
+        parent: '3.67',
+        name: graphData24[123].Apps,
+        value: 109088655
+    }, {
+        id: '4.205',
+        parent: '3.67',
+        name: graphData24[124].Apps,
+        value: 109088655
+    }, {
+        id: '3.68',
+        parent: '2.5',
+        name: graphData15[26].category,
+        value: 4049
+    }, {
+        id: '4.206',
+        parent: '3.68',
+        name: graphData24[125].Apps,
+        value: 109088655
+    }, {
+        id: '4.207',
+        parent: '3.68',
+        name: graphData24[126].Apps,
+        value: 109088655
+    }, {
+        id: '3.69',
+        parent: '2.5',
+        name: graphData15[27].category,
+        value: 4049
+    }, {
+        id: '4.208',
+        parent: '3.69',
+        name: graphData24[127].Apps,
+        value: 109088655
+    }, {
+        id: '4.209',
+        parent: '3.69',
+        name: graphData24[128].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.70',
+        parent: '2.5',
+        name: graphData15[28].category,
+        value: 4049
+    }, {
+        id: '4.210',
+        parent: '3.70',
+        name: graphData24[130].Apps,
+        value: 109088655
+    }, {
+        id: '4.211',
+        parent: '3.70',
+        name: graphData24[131].Apps,
+        value: 109088655
+    }, {
+        id: '3.71',
+        parent: '2.5',
+        name: graphData15[29].category,
+        value: 4049
+    }, {
+        id: '4.212',
+        parent: '3.71',
+        name: graphData24[133].Apps,
+        value: 109088655
+    }, {
+        id: '4.213',
+        parent: '3.71',
+        name: graphData24[134].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.72',
+        parent: '2.5',
+        name: graphData15[30].category,
+        value: 4049
+    }, {
+        id: '4.214',
+        parent: '3.72',
+        name: graphData24[135].Apps,
+        value: 109088655
+    }, {
+        id: '4.215',
+        parent: '3.72',
+        name: graphData24[136].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.73',
+        parent: '2.5',
+        name: graphData15[31].category,
+        value: 4049
+    }, {
+        id: '4.216',
+        parent: '3.73',
+        name: graphData24[137].Apps,
+        value: 109088655
+    }, {
+        id: '4.217',
+        parent: '3.73',
+        name: graphData24[139].Apps,
+        value: 109088655
+    },
+
+    {
+        id: '2.3',
+        parent: '1.1',
+        name: graphData3[2].content
+    },
+
+    {
+        id: '3.74',
+        parent: '2.3',
+        name: graphData17[0].category,
+        value: 127553151
+    }, {
+        id: '4.218',
+        parent: '3.74',
+        name: graphData24[140].Apps,
+        value: 109088655
+    }, {
+        id: '4.219',
+        parent: '3.74',
+        name: graphData24[249].Apps,
+        value: 109088655
+    }, {
+        id: '3.75',
+        parent: '2.3',
+        name: graphData17[1].category,
+        value: 141318142
+    }, {
+        id: '4.220',
+        parent: '3.75',
+        name: graphData24[142].Apps,
+        value: 109088655
+    }, {
+        id: '4.221',
+        parent: '3.75',
+        name: graphData24[143].Apps,
+        value: 109088655
+    }, {
+        id: '3.76',
+        parent: '2.3',
+        name: graphData17[2].category,
+        value: 140533330
+    }, {
+        id: '4.222',
+        parent: '3.76',
+        name: graphData24[144].Apps,
+        value: 109088655
+    }, {
+        id: '4.223',
+        parent: '3.76',
+        name: graphData24[145].Apps,
+        value: 109088655
+    }, {
+        id: '3.77',
+        parent: '2.3',
+        name: graphData17[3].category,
+        value: 135739580
+    }, {
+        id: '4.224',
+        parent: '3.77',
+        name: graphData24[147].Apps,
+        value: 109088655
+    }, {
+        id: '4.225',
+        parent: '3.77',
+        name: graphData24[161].Apps,
+        value: 109088655
+    }, {
+        id: '3.78',
+        parent: '2.3',
+        name: graphData17[4].category,
+        value: 111532127
+    }, {
+        id: '4.226',
+        parent: '3.78',
+        name: graphData24[150].Apps,
+        value: 109088655
+    }, {
+        id: '4.227',
+        parent: '3.78',
+        name: graphData24[163].Apps,
+        value: 109088655
+    }, {
+        id: '3.79',
+        parent: '2.3',
+        name: graphData17[5].category,
+        value: 16374616
+    }, {
+        id: '4.228',
+        parent: '3.79',
+        name: graphData24[152].Apps,
+        value: 109088655
+    }, {
+        id: '4.229',
+        parent: '3.79',
+        name: graphData24[153].Apps,
+        value: 109088655
+    }, {
+        id: '3.80',
+        parent: '2.3',
+        name: graphData17[6].category,
+        value: 14552628
+    }, {
+        id: '4.230',
+        parent: '3.80',
+        name: graphData24[154].Apps,
+        value: 109088655
+    }, {
+        id: '4.231',
+        parent: '3.80',
+        name: graphData24[156].Apps,
+        value: 109088655
+    }, {
+        id: '3.81',
+        parent: '2.3',
+        name: graphData17[7].category,
+        value: 14552628
+    }, {
+        id: '4.232',
+        parent: '3.81',
+        name: graphData24[157].Apps,
+        value: 109088655
+    }, {
+        id: '4.233',
+        parent: '3.81',
+        name: graphData24[158].Apps,
+        value: 109088655
+    }, {
+        id: '3.82',
+        parent: '2.3',
+        name: graphData17[8].category,
+        value: 4552628
+    }, {
+        id: '4.234',
+        parent: '3.82',
+        name: graphData24[159].Apps,
+        value: 109088655
+    }, {
+        id: '4.235',
+        parent: '3.82',
+        name: graphData24[160].Apps,
+        value: 109088655
+    }, {
+        id: '3.83',
+        parent: '2.3',
+        name: graphData17[9].category,
+        value: 4552628
+    }, {
+        id: '4.236',
+        parent: '3.83',
+        name: graphData24[161].Apps,
+        value: 109088655
+    }, {
+        id: '4.237',
+        parent: '3.83',
+        name: graphData24[162].Apps,
+        value: 109088655
+    }, {
+        id: '3.84',
+        parent: '2.3',
+        name: graphData17[10].category,
+        value: 4552628
+    }, {
+        id: '4.238',
+        parent: '3.84',
+        name: graphData24[163].Apps,
+        value: 109088655
+    }, {
+        id: '4.239',
+        parent: '3.84',
+        name: graphData24[164].Apps,
+        value: 109088655
+    }, {
+        id: '3.85',
+        parent: '2.3',
+        name: graphData17[11].category,
+        value: 4552628
+    }, {
+        id: '4.240',
+        parent: '3.85',
+        name: graphData24[166].Apps,
+        value: 109088655
+    }, {
+        id: '4.241',
+        parent: '3.85',
+        name: graphData24[167].Apps,
+        value: 109088655
+    }, {
+        id: '3.86',
+        parent: '2.3',
+        name: graphData17[12].category,
+        value: 4552628
+    }, {
+        id: '4.242',
+        parent: '3.86',
+        name: graphData24[168].Apps,
+        value: 109088655
+    }, {
+        id: '4.243',
+        parent: '3.86',
+        name: graphData24[169].Apps,
+        value: 109088655
+    }, {
+        id: '3.87',
+        parent: '2.3',
+        name: graphData17[13].category,
+        value: 4552628
+    }, {
+        id: '4.243',
+        parent: '3.87',
+        name: graphData24[170].Apps,
+        value: 109088655
+    }, {
+        id: '4.244',
+        parent: '3.87',
+        name: graphData24[171].Apps,
+        value: 109088655
+    }, {
+        id: '3.88',
+        parent: '2.3',
+        name: graphData17[14].category,
+        value: 4552628
+    }, {
+        id: '4.245',
+        parent: '3.88',
+        name: graphData24[172].Apps,
+        value: 109088655
+    }, {
+        id: '4.246',
+        parent: '3.88',
+        name: graphData24[174].Apps,
+        value: 109088655
+    }, {
+        id: '3.89',
+        parent: '2.3',
+        name: graphData17[15].category,
+        value: 4552628
+    }, {
+        id: '4.247',
+        parent: '3.89',
+        name: graphData24[175].Apps,
+        value: 109088655
+    }, {
+        id: '4.248',
+        parent: '3.89',
+        name: graphData24[176].Apps,
+        value: 109088655
+    }, {
+        id: '3.90',
+        parent: '2.3',
+        name: graphData17[16].category,
+        value: 4552628
+    }, {
+        id: '4.249',
+        parent: '3.90',
+        name: graphData24[177].Apps,
+        value: 109088655
+    }, {
+        id: '4.250',
+        parent: '3.90',
+        name: graphData24[178].Apps,
+        value: 109088655
+    }, {
+        id: '3.91',
+        parent: '2.3',
+        name: graphData17[17].category,
+        value: 4552628
+    }, {
+        id: '4.251',
+        parent: '3.91',
+        name: graphData24[179].Apps,
+        value: 109088655
+    }, {
+        id: '4.252',
+        parent: '3.91',
+        name: graphData24[180].Apps,
+        value: 109088655
+    }, {
+        id: '3.92',
+        parent: '2.3',
+        name: graphData17[18].category,
+        value: 4552628
+    }, {
+        id: '4.253',
+        parent: '3.92',
+        name: graphData24[181].Apps,
+        value: 109088655
+    }, {
+        id: '4.254',
+        parent: '3.92',
+        name: graphData24[182].Apps,
+        value: 109088655
+    }, {
+        id: '3.93',
+        parent: '2.3',
+        name: graphData17[19].category,
+        value: 4552628
+    }, {
+        id: '4.255',
+        parent: '3.93',
+        name: graphData24[183].Apps,
+        value: 109088655
+    }, {
+        id: '4.256',
+        parent: '3.93',
+        name: graphData24[184].Apps,
+        value: 109088655
+    }, {
+        id: '3.94',
+        parent: '2.3',
+        name: graphData17[20].category,
+        value: 4552628
+    }, {
+        id: '4.257',
+        parent: '3.94',
+        name: graphData24[185].Apps,
+        value: 109088655
+    }, {
+        id: '4.258',
+        parent: '3.94',
+        name: graphData24[186].Apps,
+        value: 109088655
+    }, {
+        id: '3.95',
+        parent: '2.3',
+        name: graphData17[21].category,
+        value: 4552628
+    }, {
+        id: '4.259',
+        parent: '3.95',
+        name: graphData24[187].Apps,
+        value: 109088655
+    }, {
+        id: '4.260',
+        parent: '3.95',
+        name: graphData24[188].Apps,
+        value: 109088655
+    }, {
+        id: '3.96',
+        parent: '2.3',
+        name: graphData17[22].category,
+        value: 4552628
+    }, {
+        id: '4.261',
+        parent: '3.96',
+        name: graphData24[190].Apps,
+        value: 109088655
+    }, {
+        id: '4.262',
+        parent: '3.96',
+        name: graphData24[191].Apps,
+        value: 109088655
+    }, {
+        id: '3.97',
+        parent: '2.3',
+        name: graphData17[23].category,
+        value: 4552628
+    }, {
+        id: '4.263',
+        parent: '3.97',
+        name: graphData24[192].Apps,
+        value: 109088655
+    }, {
+        id: '4.264',
+        parent: '3.97',
+        name: graphData24[193].Apps,
+        value: 109088655
+    },
+
+
+    {
+        id: '2.2',
+        parent: '1.1',
+        name: graphData3[5].content
+    },
+
+    {
+        id: '3.98',
+        parent: '2.2',
+        name: graphData19[0].category,
+        value: 14339988
+    }, {
+        id: '4.265',
+        parent: '3.98',
+        name: graphData24[194].Apps,
+        value: 109088655
+    }, {
+        id: '4.266',
+        parent: '3.98',
+        name: graphData24[195].Apps,
+        value: 109088655
+    }, {
+        id: '3.99',
+        parent: '2.2',
+        name: graphData19[1].category,
+        value: 14784193
+    }, {
+        id: '4.267',
+        parent: '3.99',
+        name: graphData24[200].Apps,
+        value: 109088655
+    }, {
+        id: '4.268',
+        parent: '3.99',
+        name: graphData24[201].Apps,
+        value: 109088655
+    }, {
+        id: '3.100',
+        parent: '2.2',
+        name: graphData19[2].category,
+        value: 14053727
+    }, {
+        id: '4.269',
+        parent: '3.100',
+        name: graphData24[199].Apps,
+        value: 109088655
+    }, {
+        id: '4.270',
+        parent: '3.100',
+        name: graphData24[200].Apps,
+        value: 109088655
+    }, {
+        id: '3.101',
+        parent: '2.2',
+        name: graphData19[3].category,
+        value: 4899994
+    }, {
+        id: '4.271',
+        parent: '3.101',
+        name: graphData24[201].Apps,
+        value: 109088655
+    }, {
+        id: '4.272',
+        parent: '3.101',
+        name: graphData24[202].Apps,
+        value: 109088655
+    }, {
+        id: '3.102',
+        parent: '2.2',
+        name: graphData19[4].category,
+        value: 4260750
+    }, {
+        id: '4.273',
+        parent: '3.102',
+        name: graphData24[203].Apps,
+        value: 109088655
+    }, {
+        id: '4.274',
+        parent: '3.102',
+        name: graphData24[204].Apps,
+        value: 109088655
+    }, {
+        id: '3.103',
+        parent: '2.2',
+        name: graphData19[5].category,
+        value: 4659080
+    }, {
+        id: '4.275',
+        parent: '3.103',
+        name: graphData24[205].Apps,
+        value: 109088655
+    }, {
+        id: '4.276',
+        parent: '3.103',
+        name: graphData24[206].Apps,
+        value: 109088655
+    }, {
+        id: '3.104',
+        parent: '2.2',
+        name: graphData19[6].category,
+        value: 4025137
+    }, {
+        id: '4.277',
+        parent: '3.104',
+        name: graphData24[207].Apps,
+        value: 109088655
+    }, {
+        id: '4.278',
+        parent: '3.104',
+        name: graphData24[208].Apps,
+        value: 109088655
+    }, {
+        id: '3.105',
+        parent: '2.2',
+        name: graphData19[7].category,
+        value: 4267689
+    }, {
+        id: '4.279',
+        parent: '3.105',
+        name: graphData24[209].Apps,
+        value: 109088655
+    }, {
+        id: '4.280',
+        parent: '3.105',
+        name: graphData24[211].Apps,
+        value: 109088655
+    }, {
+        id: '3.106',
+        parent: '2.2',
+        name: graphData19[8].category,
+        value: 4204327
+    }, {
+        id: '4.281',
+        parent: '3.106',
+        name: graphData24[212].Apps,
+        value: 109088655
+    }, {
+        id: '4.282',
+        parent: '3.106',
+        name: graphData24[213].Apps,
+        value: 109088655
+    }, {
+        id: '3.107',
+        parent: '2.2',
+        name: graphData19[9].category,
+        value: 4204327
+    }, {
+        id: '4.283',
+        parent: '3.107',
+        name: graphData24[214].Apps,
+        value: 109088655
+    }, {
+        id: '4.284',
+        parent: '3.107',
+        name: graphData24[214].Apps,
+        value: 109088655
+    }, {
+        id: '3.108',
+        parent: '2.2',
+        name: graphData19[10].category,
+        value: 4204327
+    }, {
+        id: '4.285',
+        parent: '3.108',
+        name: graphData24[214].Apps,
+        value: 109088655
+    }, {
+        id: '4.286',
+        parent: '3.108',
+        name: graphData24[215].Apps,
+        value: 109088655
+    }, {
+        id: '3.109',
+        parent: '2.2',
+        name: graphData19[11].category,
+        value: 4204327
+    }, {
+        id: '4.287',
+        parent: '3.109',
+        name: graphData24[215].Apps,
+        value: 109088655
+    }, {
+        id: '4.288',
+        parent: '3.109',
+        name: graphData24[216].Apps,
+        value: 109088655
+    }, {
+        id: '3.110',
+        parent: '2.2',
+        name: graphData19[12].category,
+        value: 4204327
+    }, {
+        id: '4.289',
+        parent: '3.110',
+        name: graphData24[218].Apps,
+        value: 109088655
+    }, {
+        id: '4.290',
+        parent: '3.110',
+        name: graphData24[220].Apps,
+        value: 109088655
+    }, {
+        id: '3.111',
+        parent: '2.2',
+        name: graphData19[13].category,
+        value: 4204327
+    }, {
+        id: '4.291',
+        parent: '3.111',
+        name: graphData24[221].Apps,
+        value: 109088655
+    }, {
+        id: '4.292',
+        parent: '3.111',
+        name: graphData24[222].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.112',
+        parent: '2.2',
+        name: graphData19[14].category,
+        value: 4204327
+    }, {
+        id: '4.293',
+        parent: '3.112',
+        name: graphData24[223].Apps,
+        value: 109088655
+    }, {
+        id: '4.294',
+        parent: '3.112',
+        name: graphData24[224].Apps,
+        value: 109088655
+    }, {
+        id: '3.113',
+        parent: '2.2',
+        name: graphData19[15].category,
+        value: 4204327
+    }, {
+        id: '4.295',
+        parent: '3.113',
+        name: graphData24[225].Apps,
+        value: 109088655
+    }, {
+        id: '4.296',
+        parent: '3.113',
+        name: graphData24[226].Apps,
+        value: 109088655
+    }, {
+        id: '3.114',
+        parent: '2.2',
+        name: graphData19[16].category,
+        value: 4204327
+    }, {
+        id: '4.297',
+        parent: '3.114',
+        name: graphData24[227].Apps,
+        value: 109088655
+    }, {
+        id: '4.298',
+        parent: '3.114',
+        name: graphData24[228].Apps,
+        value: 109088655
+    }, {
+        id: '3.115',
+        parent: '2.2',
+        name: graphData19[17].category,
+        value: 4204327
+    }, {
+        id: '4.299',
+        parent: '3.115',
+        name: graphData24[229].Apps,
+        value: 109088655
+    }, {
+        id: '4.300',
+        parent: '3.115',
+        name: graphData24[230].Apps,
+        value: 109088655
+    }, {
+        id: '3.116',
+        parent: '2.2',
+        name: graphData19[18].category,
+        value: 4204327
+    }, {
+        id: '4.301',
+        parent: '3.116',
+        name: graphData24[231].Apps,
+        value: 109088655
+    }, {
+        id: '4.301',
+        parent: '3.116',
+        name: graphData24[231].Apps,
+        value: 109088655
+    }, {
+        id: '3.117',
+        parent: '2.2',
+        name: graphData19[19].category,
+        value: 4204327
+    }, {
+        id: '4.302',
+        parent: '3.117',
+        name: graphData24[232].Apps,
+        value: 109088655
+    }, {
+        id: '4.303',
+        parent: '3.117',
+        name: graphData24[233].Apps,
+        value: 109088655
+    }, {
+        id: '3.118',
+        parent: '2.2',
+        name: graphData19[20].category,
+        value: 4204327
+    }, {
+        id: '4.304',
+        parent: '3.118',
+        name: graphData24[234].Apps,
+        value: 109088655
+    }, {
+        id: '4.305',
+        parent: '3.118',
+        name: graphData24[235].Apps,
+        value: 109088655
+    }, {
+        id: '3.119',
+        parent: '2.2',
+        name: graphData19[21].category,
+        value: 4204327
+    }, {
+        id: '4.306',
+        parent: '3.119',
+        name: graphData24[236].Apps,
+        value: 109088655
+    }, {
+        id: '4.306',
+        parent: '3.119',
+        name: graphData24[237].Apps,
+        value: 109088655
+    }, {
+        id: '3.120',
+        parent: '2.2',
+        name: graphData19[22].category,
+        value: 4204327
+    }, {
+        id: '4.307',
+        parent: '3.120',
+        name: graphData24[238].Apps,
+        value: 109088655
+    }, {
+        id: '4.308',
+        parent: '3.120',
+        name: graphData24[239].Apps,
+        value: 109088655
+    }, {
+        id: '3.121',
+        parent: '2.2',
+        name: graphData19[23].category,
+        value: 4204327
+    }, {
+        id: '4.309',
+        parent: '3.121',
+        name: graphData24[240].Apps,
+        value: 109088655
+    }, {
+        id: '4.310',
+        parent: '3.121',
+        name: graphData24[241].Apps,
+        value: 109088655
+    }, {
+        id: '3.122',
+        parent: '2.2',
+        name: graphData19[24].category,
+        value: 4204327
+    }, {
+        id: '4.311',
+        parent: '3.122',
+        name: graphData24[242].Apps,
+        value: 109088655
+    }, {
+        id: '4.312',
+        parent: '3.122',
+        name: graphData24[243].Apps,
+        value: 109088655
+    }, {
+        id: '3.123',
+        parent: '2.2',
+        name: graphData19[25].category,
+        value: 4204327
+    }, {
+        id: '4.313',
+        parent: '3.123',
+        name: graphData24[243].Apps,
+        value: 109088655
+    }, {
+        id: '4.314',
+        parent: '3.123',
+        name: graphData24[244].Apps,
+        value: 109088655
+    }, {
+        id: '3.124',
+        parent: '2.2',
+        name: graphData19[26].category,
+        value: 4204327
+    }, {
+        id: '4.315',
+        parent: '3.124',
+        name: graphData24[245].Apps,
+        value: 109088655
+    }, {
+        id: '4.316',
+        parent: '3.124',
+        name: graphData24[246].Apps,
+        value: 109088655
+    }, {
+        id: '3.125',
+        parent: '2.2',
+        name: graphData19[27].category,
+        value: 4204327
+    }, {
+        id: '4.317',
+        parent: '3.125',
+        name: graphData24[247].Apps,
+        value: 109088655
+    }, {
+        id: '3.126',
+        parent: '2.2',
+        name: graphData19[28].category,
+        value: 4204327
+    }, {
+        id: '4.317',
+        parent: '3.126',
+        name: graphData24[249].Apps,
+        value: 109088655
+    }, {
+        id: '4.318',
+        parent: '3.126',
+        name: graphData24[251].Apps,
+        value: 109088655
+    }, {
+        id: '3.127',
+        parent: '2.2',
+        name: graphData19[29].category,
+        value: 4204327
+    }, {
+        id: '4.319',
+        parent: '3.127',
+        name: graphData24[252].Apps,
+        value: 109088655
+    }, {
+        id: '4.320',
+        parent: '3.127',
+        name: graphData24[253].Apps,
+        value: 109088655
+    }, {
+        id: '3.128',
+        parent: '2.2',
+        name: graphData19[30].category,
+        value: 4204327
+    }, {
+        id: '4.320',
+        parent: '3.128',
+        name: graphData24[254].Apps,
+        value: 109088655
+    }, {
+        id: '4.321',
+        parent: '3.128',
+        name: graphData24[255].Apps,
+        value: 109088655
+    },
+    {
+        id: '2.4',
+        parent: '1.1',
+        name: graphData3[0].content
+    },
+
+    {
+        id: '3.129',
+        parent: '2.4',
+        name: graphData21[0].category,
+        value: 56717156
+    }, {
+        id: '4.321',
+        parent: '3.129',
+        name: graphData24[256].Apps,
+        value: 109088655
+    }, {
+        id: '4.322',
+        parent: '3.129',
+        name: graphData24[257].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.130',
+        parent: '2.4',
+        name: graphData21[1].category,
+        value: 2533794
+    }, {
+        id: '4.323',
+        parent: '3.130',
+        name: graphData24[259].Apps,
+        value: 109088655
+    }, {
+        id: '4.324',
+        parent: '3.130',
+        name: graphData24[260].Apps,
+        value: 109088655
+    },
+
+    /*88888888*/
+    {
+        id: '2.7',
+        parent: '1.1',
+        name: graphData3[3].content
+    },
+
+    {
+        id: '3.131',
+        parent: '2.7',
+        name: graphData23[0].category,
+        value: 56717156
+    }, {
+        id: '4.325',
+        parent: '3.131',
+        name: graphData24[264].Apps,
+        value: 109088655
+    }, {
+        id: '4.326',
+        parent: '3.131',
+        name: graphData24[266].Apps,
+        value: 109088655
+    }, {
+        id: '3.132',
+        parent: '2.7',
+        name: graphData23[1].category,
+        value: 2533794
+    }, {
+        id: '4.327',
+        parent: '3.132',
+        name: graphData24[269].Apps,
+        value: 109088655
+    }, {
+        id: '4.328',
+        parent: '3.132',
+        name: graphData24[270].Apps,
+        value: 109088655
+    },
+    /***********/
+
+    /* America */
+
+
+
+    {
+        id: '2.11',
+        parent: '1.2',
+        name: graphData1[0].content
+    },
+
+    {
+        id: '3.133',
+        parent: '2.11',
+        name: graphData5[0].category,
+        value: 309517397
+    }, {
+        id: '4.328',
+        parent: '3.133',
+        name: graphData26[0].Apps,
+        value: 109088655
+    }, {
+        id: '4.329',
+        parent: '3.133',
+        name: graphData26[1].Apps,
+        value: 109088655
+    }, {
+        id: '3.134',
+        parent: '2.11',
+        name: graphData5[1].category,
+        value: 127484450
+    }, {
+        id: '4.329',
+        parent: '3.134',
+        name: graphData26[2].Apps,
+        value: 109088655
+    }, {
+        id: '4.329',
+        parent: '3.134',
+        name: graphData26[4].Apps,
+        value: 109088655
+    }, {
+        id: '3.135',
+        parent: '2.11',
+        name: graphData5[2].category,
+        value: 50982212
+    }, {
+        id: '4.330',
+        parent: '3.135',
+        name: graphData26[5].Apps,
+        value: 109088655
+    }, {
+        id: '4.331',
+        parent: '3.135',
+        name: graphData26[6].Apps,
+        value: 109088655
+    }, {
+        id: '3.136',
+        parent: '2.11',
+        name: graphData5[3].category,
+        value: 25490965
+    }, {
+        id: '4.331',
+        parent: '3.136',
+        name: graphData26[7].Apps,
+        value: 109088655
+    }, {
+        id: '4.332',
+        parent: '3.136',
+        name: graphData26[9].Apps,
+        value: 109088655
+    }, {
+        id: '3.137',
+        parent: '2.11',
+        name: graphData5[4].category,
+        value: 23626456
+    }, {
+        id: '4.333',
+        parent: '3.137',
+        name: graphData26[10].Apps,
+        value: 109088655
+    }, {
+        id: '4.334',
+        parent: '3.137',
+        name: graphData26[11].Apps,
+        value: 109088655
+    }, {
+        id: '3.138',
+        parent: '2.11',
+        name: graphData5[5].category,
+        value: 7364883
+    }, {
+        id: '4.335',
+        parent: '3.138',
+        name: graphData26[12].Apps,
+        value: 109088655
+    }, {
+        id: '4.336',
+        parent: '3.138',
+        name: graphData26[13].Apps,
+        value: 109088655
+    }, {
+        id: '3.139',
+        parent: '2.11',
+        name: graphData5[6].category,
+        value: 3075647
+    }, {
+        id: '4.336',
+        parent: '3.139',
+        name: graphData26[14].Apps,
+        value: 109088655
+    }, {
+        id: '4.337',
+        parent: '3.139',
+        name: graphData26[15].Apps,
+        value: 109088655
+    }, {
+        id: '3.140',
+        parent: '2.11',
+        name: graphData5[7].category,
+        value: 7364883
+    }, {
+        id: '4.337',
+        parent: '3.140',
+        name: graphData26[16].Apps,
+        value: 109088655
+    }, {
+        id: '4.338',
+        parent: '3.140',
+        name: graphData26[17].Apps,
+        value: 109088655
+    }, {
+        id: '3.141',
+        parent: '2.11',
+        name: graphData5[8].category,
+        value: 7364883
+
+    }, {
+        id: '4.338',
+        parent: '3.141',
+        name: graphData26[18].Apps,
+        value: 109088655
+    }, {
+        id: '4.339',
+        parent: '3.141',
+        name: graphData26[19].Apps,
+        value: 109088655
+    }, {
+        id: '3.142',
+        parent: '2.11',
+        name: graphData5[9].category,
+        value: 7364883
+
+    }, {
+        id: '4.340',
+        parent: '3.142',
+        name: graphData26[20].Apps,
+        value: 109088655
+    }, {
+        id: '4.341',
+        parent: '3.142',
+        name: graphData26[21].Apps,
+        value: 109088655
+    }, {
+        id: '3.143',
+        parent: '2.11',
+        name: graphData5[10].category,
+        value: 7364883
+
+    }, {
+        id: '4.342',
+        parent: '3.143',
+        name: graphData26[22].Apps,
+        value: 109088655
+    }, {
+        id: '4.343',
+        parent: '3.143',
+        name: graphData26[23].Apps,
+        value: 109088655
+    }, {
+        id: '3.144',
+        parent: '2.11',
+        name: graphData5[11].category,
+        value: 7364883
+
+    }, {
+        id: '4.343',
+        parent: '3.144',
+        name: graphData26[24].Apps,
+        value: 109088655
+    }, {
+        id: '4.344',
+        parent: '3.144',
+        name: graphData26[25].Apps,
+        value: 109088655
+    }, {
+        id: '3.145',
+        parent: '2.11',
+        name: graphData5[12].category,
+        value: 7364883
+
+    }, {
+        id: '4.345',
+        parent: '3.145',
+        name: graphData26[26].Apps,
+        value: 109088655
+    }, {
+        id: '4.346',
+        parent: '3.145',
+        name: graphData26[27].Apps,
+        value: 109088655
+    }, {
+        id: '3.146',
+        parent: '2.11',
+        name: graphData5[13].category,
+        value: 7364883
+
+    }, {
+        id: '4.347',
+        parent: '3.146',
+        name: graphData26[28].Apps,
+        value: 109088655
+    }, {
+        id: '4.348',
+        parent: '3.146',
+        name: graphData26[29].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.147',
+        parent: '2.11',
+        name: graphData5[14].category,
+        value: 7364883
+
+    }, {
+        id: '4.349',
+        parent: '3.147',
+        name: graphData26[30].Apps,
+        value: 109088655
+    }, {
+        id: '4.350',
+        parent: '3.147',
+        name: graphData26[31].Apps,
+        value: 109088655
+    }, {
+        id: '3.148',
+        parent: '2.11',
+        name: graphData5[15].category,
+        value: 7364883
+
+    }, {
+        id: '4.351',
+        parent: '3.148',
+        name: graphData26[33].Apps,
+        value: 109088655
+    }, {
+        id: '4.352',
+        parent: '3.148',
+        name: graphData26[34].Apps,
+        value: 109088655
+    }, {
+        id: '3.149',
+        parent: '2.11',
+        name: graphData5[16].category,
+        value: 7364883
+
+    }, {
+        id: '4.352',
+        parent: '3.149',
+        name: graphData26[35].Apps,
+        value: 109088655
+    }, {
+        id: '4.353',
+        parent: '3.149',
+        name: graphData26[36].Apps,
+        value: 109088655
+    }, {
+        id: '3.150',
+        parent: '2.11',
+        name: graphData5[17].category,
+        value: 7364883
+
+    }, {
+        id: '4.354',
+        parent: '3.150',
+        name: graphData26[37].Apps,
+        value: 109088655
+    }, {
+        id: '4.355',
+        parent: '3.150',
+        name: graphData26[38].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.151',
+        parent: '2.11',
+        name: graphData5[18].category,
+        value: 7364883
+
+    }, {
+        id: '4.356',
+        parent: '3.151',
+        name: graphData26[39].Apps,
+        value: 109088655
+    }, {
+        id: '4.357',
+        parent: '3.151',
+        name: graphData26[40].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.152',
+        parent: '2.11',
+        name: graphData5[19].category,
+        value: 7364883
+
+    }, {
+        id: '4.358',
+        parent: '3.152',
+        name: graphData26[41].Apps,
+        value: 109088655
+    }, {
+        id: '4.359',
+        parent: '3.152',
+        name: graphData26[42].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.153',
+        parent: '2.11',
+        name: graphData5[20].category,
+        value: 7364883
+
+    }, {
+        id: '4.360',
+        parent: '3.153',
+        name: graphData26[43].Apps,
+        value: 109088655
+    }, {
+        id: '4.361',
+        parent: '3.153',
+        name: graphData26[44].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.154',
+        parent: '2.11',
+        name: graphData5[21].category,
+        value: 7364883
+
+    }, {
+        id: '4.362',
+        parent: '3.154',
+        name: graphData26[45].Apps,
+        value: 109088655
+    }, {
+        id: '4.363',
+        parent: '3.154',
+        name: graphData26[46].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.155',
+        parent: '2.11',
+        name: graphData5[22].category,
+        value: 7364883
+
+    }, {
+        id: '4.363',
+        parent: '3.155',
+        name: graphData26[47].Apps,
+        value: 109088655
+    }, {
+        id: '4.364',
+        parent: '3.155',
+        name: graphData26[48].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.156',
+        parent: '2.11',
+        name: graphData5[23].category,
+        value: 7364883
+
+    }, {
+        id: '4.365',
+        parent: '3.156',
+        name: graphData26[49].Apps,
+        value: 109088655
+    }, {
+        id: '4.366',
+        parent: '3.156',
+        name: graphData26[50].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.157',
+        parent: '2.11',
+        name: graphData5[24].category,
+        value: 7364883
+
+    }, {
+        id: '4.366',
+        parent: '3.157',
+        name: graphData26[51].Apps,
+        value: 109088655
+    }, {
+        id: '4.367',
+        parent: '3.157',
+        name: graphData26[52].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.158',
+        parent: '2.11',
+        name: graphData5[25].category,
+        value: 7364883
+
+    }, {
+        id: '4.368',
+        parent: '3.158',
+        name: graphData26[53].Apps,
+        value: 109088655
+    }, {
+        id: '4.369',
+        parent: '3.158',
+        name: graphData26[54].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.159',
+        parent: '2.11',
+        name: graphData5[26].category,
+        value: 7364883
+
+    }, {
+        id: '4.369',
+        parent: '3.159',
+        name: graphData26[55].Apps,
+        value: 109088655
+    }, {
+        id: '4.370',
+        parent: '3.159',
+        name: graphData26[56].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.161',
+        parent: '2.11',
+        name: graphData5[27].category,
+        value: 7364883
+
+    }, {
+        id: '4.370',
+        parent: '3.161',
+        name: graphData26[57].Apps,
+        value: 109088655
+    }, {
+        id: '4.371',
+        parent: '3.161',
+        name: graphData26[58].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.162',
+        parent: '2.11',
+        name: graphData5[28].category,
+        value: 7364883
+
+    }, {
+        id: '4.371',
+        parent: '3.162',
+        name: graphData26[59].Apps,
+        value: 109088655
+    }, {
+        id: '4.372',
+        parent: '3.162',
+        name: graphData26[60].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.163',
+        parent: '2.11',
+        name: graphData5[29].category,
+        value: 7364883
+
+    },
+    {
+        id: '4.373',
+        parent: '3.163',
+        name: graphData26[61].Apps,
+        value: 109088655
+    }, {
+        id: '4.374',
+        parent: '3.163',
+        name: graphData26[62].Apps,
+        value: 109088655
+    },
+
+
+
+    {
+        id: '2.12',
+        parent: '1.2',
+        name: graphData1[2].content
+    },
+
+    {
+        id: '3.164',
+        parent: '2.12',
+        name: graphData7[0].category,
+        value: 263991379
+    }, {
+        id: '4.375',
+        parent: '3.164',
+        name: graphData26[63].Apps,
+        value: 109088655
+    }, {
+        id: '4.376',
+        parent: '3.164',
+        name: graphData26[64].Apps,
+        value: 109088655
+    }, {
+        id: '3.165',
+        parent: '2.12',
+        name: graphData7[1].category,
+        value: 104918090
+    }, {
+        id: '4.377',
+        parent: '3.165',
+        name: graphData26[65].Apps,
+        value: 109088655
+    }, {
+        id: '4.378',
+        parent: '3.165',
+        name: graphData26[66].Apps,
+        value: 109088655
+    }, {
+        id: '3.166',
+        parent: '2.12',
+        name: graphData7[2].category,
+        value: 95540800
+    }, {
+        id: '4.378',
+        parent: '3.166',
+        name: graphData26[67].Apps,
+        value: 109088655
+    }, {
+        id: '4.379',
+        parent: '3.166',
+        name: graphData26[68].Apps,
+        value: 109088655
+    }, {
+        id: '3.167',
+        parent: '2.12',
+        name: graphData7[3].category,
+        value: 69037513
+    }, {
+        id: '4.380',
+        parent: '3.167',
+        name: graphData26[69].Apps,
+        value: 109088655
+    }, {
+        id: '4.381',
+        parent: '3.167',
+        name: graphData26[70].Apps,
+        value: 109088655
+    }, {
+        id: '3.168',
+        parent: '2.12',
+        name: graphData7[4].category,
+        value: 53370609
+    }, {
+        id: '4.381',
+        parent: '3.168',
+        name: graphData26[71].Apps,
+        value: 109088655
+    }, {
+        id: '4.382',
+        parent: '3.168',
+        name: graphData26[72].Apps,
+        value: 109088655
+    }, {
+        id: '3.169',
+        parent: '2.12',
+        name: graphData7[5].category,
+        value: 31624264
+    }, {
+        id: '4.383',
+        parent: '3.169',
+        name: graphData26[73].Apps,
+        value: 109088655
+    }, {
+        id: '4.384',
+        parent: '3.169',
+        name: graphData26[74].Apps,
+        value: 109088655
+    }, {
+        id: '3.170',
+        parent: '2.12',
+        name: graphData7[6].category,
+        value: 16005373
+    }, {
+        id: '4.385',
+        parent: '3.170',
+        name: graphData26[75].Apps,
+        value: 109088655
+    }, {
+        id: '4.386',
+        parent: '3.170',
+        name: graphData26[76].Apps,
+        value: 109088655
+    }, {
+        id: '3.171',
+        parent: '2.12',
+        name: graphData7[7].category,
+        value: 6858160
+    }, {
+        id: '4.386',
+        parent: '3.171',
+        name: graphData26[77].Apps,
+        value: 109088655
+    }, {
+        id: '4.387',
+        parent: '3.171',
+        name: graphData26[78].Apps,
+        value: 109088655
+    }, {
+        id: '3.172',
+        parent: '2.12',
+        name: graphData7[8].category,
+        value: 5708844
+    }, {
+        id: '4.388',
+        parent: '3.172',
+        name: graphData26[79].Apps,
+        value: 109088655
+    }, {
+        id: '4.389',
+        parent: '3.172',
+        name: graphData26[80].Apps,
+        value: 109088655
+    }, {
+        id: '3.173',
+        parent: '2.12',
+        name: graphData7[9].category,
+        value: 1296311
+    }, {
+        id: '4.390',
+        parent: '3.173',
+        name: graphData26[80].Apps,
+        value: 109088655
+    }, {
+        id: '4.391',
+        parent: '3.173',
+        name: graphData26[81].Apps,
+        value: 109088655
+    }, {
+        id: '3.174',
+        parent: '2.12',
+        name: graphData7[10].category,
+        value: 428697
+        // 'color': ''
+    }, {
+        id: '4.392',
+        parent: '3.174',
+        name: graphData26[82].Apps,
+        value: 109088655
+    }, {
+        id: '4.393',
+        parent: '3.174',
+        name: graphData26[83].Apps,
+        value: 109088655
+    }, {
+        id: '3.175',
+        parent: '2.12',
+        name: graphData7[11].category,
+        value: 428697
+        // 'color': ''
+    }, {
+        id: '4.394',
+        parent: '3.175',
+        name: graphData26[84].Apps,
+        value: 109088655
+    }, {
+        id: '4.395',
+        parent: '3.175',
+        name: graphData26[85].Apps,
+        value: 109088655
+    }, {
+        id: '3.176',
+        parent: '2.12',
+        name: graphData7[12].category,
+        value: 428697
+        // 'color': ''
+    }, {
+        id: '4.395',
+        parent: '3.176',
+        name: graphData26[86].Apps,
+        value: 109088655
+    }, {
+        id: '4.396',
+        parent: '3.176',
+        name: graphData26[87].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.177',
+        parent: '2.12',
+        name: graphData7[13].category,
+        value: 428697
+        // 'color': ''
+    }, {
+        id: '4.397',
+        parent: '3.177',
+        name: graphData26[88].Apps,
+        value: 109088655
+    }, {
+        id: '4.398',
+        parent: '3.177',
+        name: graphData26[89].Apps,
+        value: 109088655
+    }, {
+        id: '3.178',
+        parent: '2.12',
+        name: graphData7[14].category,
+        value: 428697
+        // 'color': ''
+    }, {
+        id: '4.399',
+        parent: '3.178',
+        name: graphData26[90].Apps,
+        value: 109088655
+    }, {
+        id: '4.400',
+        parent: '3.178',
+        name: graphData26[91].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.179',
+        parent: '2.12',
+        name: graphData7[15].category,
+        value: 428697
+        // 'color': ''
+    }, {
+        id: '4.401',
+        parent: '3.179',
+        name: graphData26[92].Apps,
+        value: 109088655
+    }, {
+        id: '4.402',
+        parent: '3.179',
+        name: graphData26[93].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.180',
+        parent: '2.12',
+        name: graphData7[16].category,
+        value: 428697
+        // 'color': ''
+    },
+    {
+        id: '4.403',
+        parent: '3.180',
+        name: graphData26[94].Apps,
+        value: 109088655
+    }, {
+        id: '4.404',
+        parent: '3.180',
+        name: graphData26[95].Apps,
+        value: 109088655
+    },
+    {
+        id: '2.14',
+        parent: '1.2',
+        name: graphData1[1].content
+    },
+
+    {
+        id: '3.181',
+        parent: '2.14',
+        name: graphData9[0].category,
+        value: 80745020
+    }, {
+        id: '4.405',
+        parent: '3.181',
+        name: graphData26[96].Apps,
+        value: 109088655
+    }, {
+        id: '4.406',
+        parent: '3.181',
+        name: graphData26[97].Apps,
+        value: 109088655
+    }, {
+        id: '3.182',
+        parent: '2.14',
+        name: graphData9[1].category,
+        value: 38274618
+    }, {
+        id: '4.407',
+        parent: '3.182',
+        name: graphData26[98].Apps,
+        value: 109088655
+    }, {
+        id: '4.408',
+        parent: '3.182',
+        name: graphData26[99].Apps,
+        value: 109088655
+    }, {
+        id: '3.183',
+        parent: '2.14',
+        name: graphData9[2].category,
+        value: 32938213
+    }, {
+        id: '4.408',
+        parent: '3.183',
+        name: graphData26[100].Apps,
+        value: 109088655
+    }, {
+        id: '4.409',
+        parent: '3.183',
+        name: graphData26[101].Apps,
+        value: 109088655
+    }, {
+        id: '3.184',
+        parent: '2.14',
+        name: graphData9[3].category,
+        value: 28250420
+    }, {
+        id: '4.410',
+        parent: '3.184',
+        name: graphData26[102].Apps,
+        value: 109088655
+    }, {
+        id: '4.411',
+        parent: '3.184',
+        name: graphData26[103].Apps,
+        value: 109088655
+    }, {
+        id: '3.185',
+        parent: '2.14',
+        name: graphData9[4].category,
+        value: 18269868
+    }, {
+        id: '4.412',
+        parent: '3.185',
+        name: graphData26[104].Apps,
+        value: 109088655
+    }, {
+        id: '4.413',
+        parent: '3.185',
+        name: graphData26[105].Apps,
+        value: 109088655
+    },
+
+    {
+        id: '2.10',
+        parent: '1.2',
+        name: graphData1[3].content
+    },
+
+    {
+        id: '3.186',
+        parent: '2.10',
+        name: graphData11[0].category,
+        value: 31910641
+    }, {
+        id: '4.414',
+        parent: '3.186',
+        name: graphData26[106].Apps,
+        value: 109088655
+    }, {
+        id: '3.187',
+        parent: '2.10',
+        name: graphData11[1].category,
+        value: 18204499
+    }, {
+        id: '4.415',
+        parent: '3.187',
+        name: graphData26[100].Apps,
+        value: 109088655
+    }, {
+        id: '3.187',
+        parent: '2.10',
+        name: graphData11[2].category,
+        value: 8921343
+    }, {
+        id: '4.416',
+        parent: '3.187',
+        name: graphData26[56].Apps,
+        value: 109088655
+    }, {
+        id: '3.188',
+        parent: '2.10',
+        name: graphData11[3].category,
+        value: 6045117
+    }, {
+        id: '4.417',
+        parent: '3.188',
+        name: graphData26[57].Apps,
+        value: 109088655
+    }, {
+        id: '3.189',
+        parent: '2.10',
+        name: graphData11[4].category,
+        value: 5758075
+    }, {
+        id: '4.418',
+        parent: '3.189',
+        name: graphData26[57].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.190',
+        parent: '2.10',
+        name: graphData11[5].category,
+        value: 5758075
+    }, {
+        id: '4.419',
+        parent: '3.190',
+        name: graphData26[58].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.191',
+        parent: '2.10',
+        name: graphData11[6].category,
+        value: 5758075
+    }, {
+        id: '4.420',
+        parent: '3.191',
+        name: graphData26[59].Apps,
+        value: 109088655
+    },
+    {
+        id: '3.192',
+        parent: '2.10',
+        name: graphData11[7].category,
+        value: 5758075
+    }, {
+        id: '4.421',
+        parent: '3.192',
+        name: graphData26[60].Apps,
+        value: 109088655
+    },
+    ];
+
+    // Splice in transparent for the center circle
+    var sunburstColours = ['#2f7ed8', '#0d233a', '#8bbc21', '#910000', '#1aadce',
+        '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'];
+    Highcharts.setOptions({
+        colors: ['#2d8534', '#4e2bfc', '#bc2121', '#dc42ff', '#09424f',
+            '#297063', '#ffba24', '#77a1e5', '#c42525', '#6e0a69']
+    });
+
+    Highcharts.chart('container', {
+        chart: {
+            height: '60%',
+            marginRight: 0
+
+        },
+        title: {
+            text: 'Google Play store Analysis'
+        },
+        series: [{
+            type: "sunburst",
+            data: data,
+            allowDrillToNode: true,
+            cursor: 'pointer',
+            dataLabels: {
+                format: '<span style="font-size: 10px;">{point.name}</span>',
+                filter: {
+                    property: 'innerArcLength',
+                    operator: '>',
+                    value: 16
+                }
+            },
+            levels: [{
+                level: 1,
+                levelIsConstant: false,
+                dataLabels: {
+                    filter: {
+                        property: 'outerArcLength',
+                        operator: '>',
+                        value: 64
+                    }
+                }
+            }, {
+                level: 2,
+                colorByPoint: true,
+                levelSize: {
+                    unit: 'percentage',
+                    value: 25
+                }
+            },
+            {
+                level: 3,
+                colorByPoint: true,
+                colorVariation: {
+                    key: 'brightness',
+                    to: -0.5
+                }
+            }, {
+                level: 4,
+                colorVariation: {
+                    key: 'brightness',
+                    to: -0.5
+                }
+            }, {
+                level: 5,
+            }
+            ]
+        }],
+        tooltip: {
+            headerFormat: "",
+            pointFormat: 'The name is  <b>{point.name}</b> '//is <b>{point.value1}</b>'
         }
-
-    },{
-        level: 5,
-       
-
-    }
-
-    ]
-
-}],
-tooltip: {
-    headerFormat: "",
-    pointFormat: 'The name is  <b>{point.name}</b> '//is <b>{point.value1}</b>'
-}
-});
+    });
 
 
 </script>
